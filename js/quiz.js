@@ -182,7 +182,7 @@ class QuizRunner {
     speakerBtns.forEach(btn => {
       btn.addEventListener("click", () => {
         const speechText = decodeURIComponent(btn.getAttribute("data-speech") || "");
-        const speechLang = btn.getAttribute("data-lang") || "vi-VN";
+        const speechLang = btn.getAttribute("data-lang") || "en-US";
         
         // Add visual active animation to speaker button
         speakerBtns.forEach(b => b.classList.remove("speaking-active"));

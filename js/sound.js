@@ -160,7 +160,7 @@ class SoundManager {
   }
 
   // Chuẩn hóa văn bản toán học & ký hiệu giúp phát âm Tiếng Việt chuẩn 100% tự nhiên cho bé Lớp 1
-  normalizeSpeechText(text, lang = 'vi-VN') {
+  normalizeSpeechText(text, lang = 'en-US') {
     if (!text) return "";
     let s = text.trim();
 
@@ -227,7 +227,7 @@ class SoundManager {
     return s;
   }
 
-  getBestVoice(lang = 'vi-VN') {
+  getBestVoice(lang = 'en-US') {
     const allVoices = ('speechSynthesis' in window) ? window.speechSynthesis.getVoices() : [];
     const list = (allVoices && allVoices.length > 0) ? allVoices : this.voices;
     if (!list || list.length === 0) return null;
@@ -254,7 +254,7 @@ class SoundManager {
   }
 
   // Text-To-Speech (Loa đọc bài tập chuẩn cho bé)
-  speak(text, lang = 'vi-VN') {
+  speak(text, lang = 'en-US') {
     if (!this.enabled) return;
     if (!('speechSynthesis' in window)) {
       console.warn("Speech synthesis not supported in this browser.");

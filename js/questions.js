@@ -148,11 +148,8 @@ class QuestionEngine {
         </div>
 
         <div class="question-body">
-          <!-- Audio Speaker Toolbar (Loa Đọc Song Ngữ) -->
+          <!-- Audio Speaker Toolbar (Loa Đọc Tiếng Anh) -->
           <div class="audio-speaker-toolbar">
-            <button type="button" class="btn-tts-speaker btn-tts-vi" data-speech="${encodeURIComponent(question.question)}" data-lang="vi-VN">
-              🔊 🇻🇳 Đọc Tiếng Việt
-            </button>
             <button type="button" class="btn-tts-speaker btn-tts-en" data-speech="${encodeURIComponent(enText)}" data-lang="en-US">
               🔊 🇬🇧 Read English
             </button>
