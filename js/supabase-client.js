@@ -106,7 +106,7 @@ class SupabaseService {
   async syncProgressToCloud(userId, progressData) {
     if (!this.client || !this.isOnline || !userId) return;
     try {
-      // First ensure profile exists
+      // First ensure profile exists on cloud
       if (window.progressManager && window.progressManager.state) {
         await this.saveProfile(userId, window.progressManager.state);
       }
@@ -117,8 +117,12 @@ class SupabaseService {
         stars: progressData.stars || 0,
         level: progressData.level || 1,
         streak: progressData.streak || 1,
-        completed_lessons: progressData.completedLessons || [],
+        completed_lessons: progressData.completedLessons || {},
         topics_progress: progressData.topics || {},
+        badges: progressData.badges || [],
+        answered_questions: progressData.answeredQuestions || [],
+        mistakes: progressData.mistakes || [],
+        timo_best_score: progressData.timoBestScore || 0,
         updated_at: new Date().toISOString()
       });
     } catch (e) {

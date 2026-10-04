@@ -8,7 +8,7 @@
 CREATE TABLE IF NOT EXISTS public.timo_profiles (
   id TEXT PRIMARY KEY,                       -- UUID hoặc mã định danh bé (kid_...)
   kid_name TEXT NOT NULL,                   -- Tên bé (Ví dụ: Bé An, Bé Gia Hưng)
-  username TEXT UNIQUE,                     -- Tên đăng nhập
+  username TEXT UNIQUE,                     -- Tên đăng nhập hoặc Email
   avatar TEXT DEFAULT '🦁',                 -- Biểu tượng Avatar ngộ nghĩnh
   grade INT DEFAULT 1,                      -- Lớp 1
   created_at TIMESTAMPTZ DEFAULT NOW(),
@@ -22,11 +22,28 @@ CREATE TABLE IF NOT EXISTS public.timo_progress (
   stars INT DEFAULT 0,                      -- Tổng số ngôi sao đạt được
   level INT DEFAULT 1,                      -- Cấp độ (1: Tập sự -> 6: Đại hiệp TIMO)
   streak INT DEFAULT 1,                     -- Chuỗi ngày học liên tiếp
-  completed_lessons JSONB DEFAULT '[]'::jsonb, -- Danh sách bài học đã hoàn thành
+  completed_lessons JSONB DEFAULT '{}'::jsonb, -- Bài học đã hoàn thành
   topics_progress JSONB DEFAULT '{}'::jsonb,   -- Tiến độ theo 5 chủ đề
   badges JSONB DEFAULT '[]'::jsonb,            -- Danh sách huy hiệu đạt được
+  answered_questions JSONB DEFAULT '[]'::jsonb,-- Danh sách ID các câu hỏi bé đã từng trả lời
+  mistakes JSONB DEFAULT '[]'::jsonb,           -- Danh sách ID các câu làm sai cần ôn tập
+  timo_best_score INT DEFAULT 0,              -- Điểm cao nhất thi thử TIMO 1
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- Thêm các cột bổ sung nếu bảng đã tồn tại sẵn
+DO $$ 
+BEGIN 
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='timo_progress' AND column_name='answered_questions') THEN
+        ALTER TABLE public.timo_progress ADD COLUMN answered_questions JSONB DEFAULT '[]'::jsonb;
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='timo_progress' AND column_name='mistakes') THEN
+        ALTER TABLE public.timo_progress ADD COLUMN mistakes JSONB DEFAULT '[]'::jsonb;
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='timo_progress' AND column_name='timo_best_score') THEN
+        ALTER TABLE public.timo_progress ADD COLUMN timo_best_score INT DEFAULT 0;
+    END IF;
+END $$;
 
 -- 3. BẢNG LƯU TRỮ ĐIỂM THI & LỊCH SỬ BÀI KIỂM TRA (timo_quiz_scores)
 CREATE TABLE IF NOT EXISTS public.timo_quiz_scores (
@@ -37,8 +54,8 @@ CREATE TABLE IF NOT EXISTS public.timo_quiz_scores (
   topic TEXT,                               -- Chủ đề (Số học, Hình học, Logic, Số học nâng cao, Tổ hợp)
   lesson_id TEXT,                           -- Mã bài học (ví dụ: arith-lesson-1)
   lesson_title TEXT,                        -- Tên bài học (ví dụ: Cộng trong phạm vi 20)
-  score INT NOT NULL,                       -- Số câu trả lời đúng (ví dụ: 5)
-  total INT NOT NULL,                       -- Tổng số câu hỏi (ví dụ: 5)
+  score INT NOT NULL,                       -- Số câu trả lời đúng
+  total INT NOT NULL,                       -- Tổng số câu hỏi
   accuracy INT NOT NULL,                    -- Độ chính xác % (ví dụ: 100)
   stars_earned INT DEFAULT 1,               -- Số sao nhận được (1, 2, 3 sao)
   xp_earned INT DEFAULT 0,                  -- Điểm XP thưởng
@@ -47,7 +64,7 @@ CREATE TABLE IF NOT EXISTS public.timo_quiz_scores (
   created_at TIMESTAMPTZ DEFAULT NOW()      -- Thời điểm nộp bài
 );
 
--- Tạo View alias timo_quiz_history để tương thích
+-- Tạo View alias timo_quiz_history
 CREATE OR REPLACE VIEW public.timo_quiz_history AS
 SELECT * FROM public.timo_quiz_scores;
 
@@ -62,7 +79,7 @@ SELECT
   COALESCE(pr.stars, 0) AS stars,
   COALESCE(pr.level, 1) AS level,
   COALESCE(pr.streak, 1) AS streak,
-  COALESCE(jsonb_array_length(pr.completed_lessons), 0) AS completed_lessons_count,
+  COALESCE(pr.timo_best_score, 0) AS timo_best_score,
   pr.updated_at
 FROM public.timo_profiles p
 LEFT JOIN public.timo_progress pr ON p.id = pr.user_id
@@ -78,7 +95,7 @@ ALTER TABLE public.timo_profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.timo_progress ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.timo_quiz_scores ENABLE ROW LEVEL SECURITY;
 
--- Tạo các chính sách RLS cho phép đọc & ghi công khai an toàn cho ứng dụng học tập
+-- Tạo các chính sách RLS công khai an toàn
 DROP POLICY IF EXISTS "Public read profiles" ON public.timo_profiles;
 CREATE POLICY "Public read profiles" ON public.timo_profiles FOR SELECT USING (true);
 

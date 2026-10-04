@@ -52,8 +52,12 @@ class ProgressManager {
           stars: this.state.stars,
           level: this.state.level,
           streak: this.state.streak,
-          completedLessons: Object.keys(this.state.completedLessons || {}),
-          topics: this.state.topicProgress || {}
+          completedLessons: this.state.completedLessons || {},
+          topics: this.state.topicProgress || {},
+          badges: this.state.badges || [],
+          answeredQuestions: this.state.answeredQuestions || [],
+          mistakes: this.state.mistakes || [],
+          timoBestScore: this.state.timoBestScore || 0
         });
       }
 
