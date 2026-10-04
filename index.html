@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TIMO 1 Math Adventure — Học Toán Thông Minh Lớp 1</title>
+  <meta name="description" content="Nền tảng học và luyện thi toán TIMO 1 trực quan dành cho học sinh lớp 1 với tài khoản đăng nhập cá nhân, lưu trữ bài học và đồng bộ Supabase Cloud." />
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <!-- Supabase CDN Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- ================= MANDATORY AUTH GATE OVERLAY ================= -->
+  <div id="auth-gate-overlay" class="auth-gate-overlay">
+    <div class="auth-gate-container">
+      <!-- Left Mascot & Welcome Banner -->
+      <div class="auth-gate-banner">
+        <div class="gate-mascot-circle">🦁</div>
+        <h2>TIMO 1 ADVENTURE</h2>
+        <div class="gate-tagline">Học Toán Thông Minh — Chinh Phục TIMO 1</div>
+        <p class="gate-intro-text">
+          Chào mừng bé lớp 1 và Ba Mẹ! Hãy tạo tài khoản riêng để lưu trữ hành trình học tập, tích lũy điểm XP, số sao và các huy hiệu danh giá nhé!
+        </p>
+        <div class="gate-feature-list">
+          <div class="g-feat-item">✨ 25 Bài học tương tác 5 chủ đề cốt lõi</div>
+          <div class="g-feat-item">💎 Tích lũy XP & thăng cấp Hiệp Sĩ Toán Học</div>
+          <div class="g-feat-item">☁️ Lưu trữ an toàn trên máy & Supabase Cloud</div>
+        </div>
+      </div>
+
+      <!-- Right Auth Form Card -->
+      <div class="auth-gate-card">
+        <!-- Auth Tabs Switcher -->
+        <div class="auth-tabs-row">
+          <button type="button" class="auth-tab-btn active-tab" id="tab-auth-register">
+            🌟 Tạo Tài Khoản Bé
+          </button>
+          <button type="button" class="auth-tab-btn" id="tab-auth-login">
+            🔑 Đăng Nhập
+          </button>
+        </div>
+
+        <!-- PANE 1: REGISTER (TẠO TÀI KHOẢN MỚI) -->
+        <div id="auth-pane-register" class="auth-pane active-pane">
+          <form id="form-gate-register">
+            <div class="form-group-gate">
+              <label>1. Chọn hình đại diện (Avatar) ngộ nghĩnh cho bé:</label>
+              <div class="gate-avatar-grid">
+                <button type="button" class="gate-avatar-btn selected" data-avatar="🦁">🦁</button>
+                <button type="button" class="gate-avatar-btn" data-avatar="🐯">🐯</button>
+                <button type="button" class="gate-avatar-btn" data-avatar="🐼">🐼</button>
+                <button type="button" class="gate-avatar-btn" data-avatar="🦄">🦄</button>
+                <button type="button" class="gate-avatar-btn" data-avatar="🚀">🚀</button>
+                <button type="button" class="gate-avatar-btn" data-avatar="🦊">🦊</button>
+                <button type="button" class="gate-avatar-btn" data-avatar="🐰">🐰</button>
+                <button type="button" class="gate-avatar-btn" data-avatar="🐶">🐶</button>
+                <button type="button" class="gate-avatar-btn" data-avatar="🦖">🦖</button>
+                <button type="button" class="gate-avatar-btn" data-avatar="🦸">🦸</button>
+                <button type="button" class="gate-avatar-btn" data-avatar="👑">👑</button>
+                <button type="button" class="gate-avatar-btn" data-avatar="🐱">🐱</button>
+              </div>
+            </div>
+
+            <div class="form-group-gate">
+              <label for="gate-reg-name">2. Tên của bé (Học sinh Lớp 1):</label>
+              <input type="text" id="gate-reg-name" class="gate-input" placeholder="Ví dụ: Bé An, Bé Gia Hưng, Bé Bắp..." required />
+            </div>
+
+            <div class="form-group-gate">
+              <label for="gate-reg-user">3. Tên đăng nhập hoặc Email:</label>
+              <input type="text" id="gate-reg-user" class="gate-input" placeholder="Ví dụ: bean2018 hoặc an@gmail.com" required />
+            </div>
+
+            <div class="form-group-gate">
+              <label for="gate-reg-pass">4. Mật khẩu / Mã PIN bảo vệ:</label>
+              <input type="password" id="gate-reg-pass" class="gate-input" placeholder="Nhập mã PIN hoặc mật khẩu (dễ nhớ cho bé)" required />
+            </div>
+
+            <button type="submit" class="btn-gate-submit">
+              Tạo Tài Khoản & Bắt Đầu Học Ngay 🚀
+            </button>
+          </form>
+        </div>
+
+        <!-- PANE 2: LOGIN (ĐĂNG NHẬP) -->
+        <div id="auth-pane-login" class="auth-pane">
+          <!-- Saved Quick Accounts on this device -->
+          <div id="auth-saved-profiles-grid"></div>
+
+          <form id="form-gate-login" style="margin-top: 18px;">
+            <div class="form-group-gate">
+              <label for="gate-login-user">Tên đăng nhập hoặc Email:</label>
+              <input type="text" id="gate-login-user" class="gate-input" placeholder="Nhập tên đăng nhập của bé" required />
+            </div>
+
+            <div class="form-group-gate">
+              <label for="gate-login-pass">Mật khẩu / Mã PIN:</label>
+              <input type="password" id="gate-login-pass" class="gate-input" placeholder="Nhập mật khẩu" required />
+            </div>
+
+            <button type="submit" class="btn-gate-submit btn-login-theme">
+              Đăng Nhập Vào Học Ngay ➔
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand-logo" id="brand-logo-btn" onclick="window.uiManager.showView('home-view')">
+        <div class="logo-badge">📐</div>
+        <div class="logo-text">
+          <h1>TIMO 1</h1>
+          <span>Math Adventure</span>
+        </div>
+      </div>
+
+      <!-- Top Navigation -->
+      <nav class="top-nav">
+        <a class="nav-link active" data-target="home-view">🏠 Trang chủ</a>
+        <a class="nav-link" data-target="home-view" onclick="document.getElementById('topics-section')?.scrollIntoView({behavior: 'smooth'})">📚 Bài học</a>
+        <a class="nav-link" data-target="practice-view">🧩 Luyện tập</a>
+        <a class="nav-link" data-target="progress-view">📊 Tiến độ</a>
+        <a class="nav-link" data-target="home-view" onclick="document.getElementById('badges-section')?.scrollIntoView({behavior: 'smooth'})">🏆 Thành tích</a>
+      </nav>
+
+      <!-- Actions & Profile -->
+      <div class="header-actions">
+        <!-- Cloud Status Badge -->
+        <div id="cloud-status-badge" class="cloud-badge cloud-local" onclick="document.getElementById('btn-open-cloud-modal')?.click()" title="Bấm để cấu hình Supabase Cloud">
+          <span class="dot"></span> 💾 Lưu trữ trên máy
+        </div>
+
+        <button type="button" id="btn-sound-toggle" class="btn-back-link" style="padding: 6px 12px; font-size: 13px;">
+          🔊 Âm thanh: Bật
+        </button>
+
+        <!-- Kid Profile Button -->
+        <button type="button" class="user-profile-btn" id="btn-open-profile-modal" title="Bấm để xem hồ sơ, đổi tài khoản hoặc đăng xuất">
+          <span class="user-avatar-circle" id="header-kid-avatar">🦁</span>
+          <div class="user-text-info">
+            <span class="user-name-text" id="header-kid-name">Bé Lớp 1</span>
+            <span class="user-level-sub" id="header-kid-level-title">Cấp 1 • Tập Sự Thông Thái</span>
+          </div>
+        </button>
+
+        <button type="button" id="btn-open-cloud-modal" style="display:none;"></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main View Router Container -->
+  <main class="app-main">
+
+    <!-- ================= 1. HOME VIEW ================= -->
+    <div id="home-view" class="app-view active-view">
+      
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-content">
+          <h2>TIMO 1 MATH ADVENTURE</h2>
+          <div class="hero-subtitle">Học Toán thông minh — Rèn tư duy — Chinh phục TIMO 1</div>
+          <p class="hero-desc">
+            Luyện tập 5 chủ đề quan trọng của kỳ thi toán quốc tế TIMO 1 thông qua bài học ngắn, ví dụ trực quan quả táo, que tính, khối hình và thử thách tư duy hào hứng mỗi ngày!
+          </p>
+          <div class="hero-buttons">
+            <button type="button" class="btn-hero-primary" id="btn-hero-start">Bắt Đầu Học Ngay 🚀</button>
+            <button type="button" class="btn-hero-secondary" id="btn-hero-roadmap">Xem Lộ Trình 🗺️</button>
+          </div>
+        </div>
+
+        <div class="hero-visual-card">
+          <span class="hero-character-float">🦁</span>
+          <h3 style="font-size: 20px; font-weight: 900; margin-bottom: 8px;">Bạn Sư Tử Toán Học</h3>
+          <p style="font-size: 14px; opacity: 0.9; margin-bottom: 16px;">Chào mừng bé lớp 1 đến với thế giới toán học diệu kỳ!</p>
+          <div class="hero-visual-tags">
+            <span class="h-tag">🔢 Số học</span>
+            <span class="h-tag">📐 Hình học</span>
+            <span class="h-tag">🧠 Logic</span>
+            <span class="h-tag">🎯 Tổ hợp</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Learning Dashboard Stats -->
+      <section class="dashboard-summary-card">
+        <div class="dash-header-row">
+          <div class="dash-title-group">
+            <h3>Tiến Độ Học Tập Của Bé</h3>
+            <p>Hành trình làm chủ 25 bài học và 5 chủ đề cốt lõi TIMO 1</p>
+          </div>
+          <div class="dash-pct-badge" id="dash-progress-pct">0%</div>
+        </div>
+
+        <div class="dash-progress-track">
+          <div class="dash-progress-fill" id="dash-progress-bar-fill" style="width: 0%;"></div>
+        </div>
+
+        <div class="dash-metrics-grid">
+          <div class="dash-metric-item">
+            <div class="metric-icon">📚</div>
+            <div class="metric-data">
+              <strong id="dash-lessons-count">0 / 25 bài</strong>
+              <span>Bài đã hoàn thành</span>
+            </div>
+          </div>
+          <div class="dash-metric-item">
+            <div class="metric-icon">🏆</div>
+            <div class="metric-data">
+              <strong id="dash-topics-count">0 / 5 chủ đề</strong>
+              <span>Chủ đề hoàn thành</span>
+            </div>
+          </div>
+          <div class="dash-metric-item">
+            <div class="metric-icon">🎯</div>
+            <div class="metric-data">
+              <strong id="dash-acc-val">100%</strong>
+              <span>Tỉ lệ trả lời đúng</span>
+            </div>
+          </div>
+          <div class="dash-metric-item">
+            <div class="metric-icon">🔥</div>
+            <div class="metric-data">
+              <strong id="dash-streak-count">1 ngày</strong>
+              <span>Chuỗi học liên tiếp</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Continue Learning Next Step -->
+      <section class="continue-learning-section" id="continue-learning-banner"></section>
+
+      <!-- Review Mistakes Banner (if any) -->
+      <section class="review-banner-container" id="review-mistakes-banner" style="display: none;"></section>
+
+      <!-- Arena Quick Actions (Daily Challenge & TIMO Exam) -->
+      <section class="arena-quick-grid">
+        <div class="arena-card daily-arena-card">
+          <div class="arena-top">
+            <div class="arena-icon">🌟</div>
+            <div class="arena-text">
+              <h3>Thử Thách Hàng Ngày</h3>
+              <p>Mỗi ngày 1 câu đố thú vị giúp bé rèn luyện phản xạ toán và duy trì chuỗi học tập ngọn lửa 🔥!</p>
+            </div>
+          </div>
+          <button type="button" class="arena-btn" id="btn-start-daily-challenge">Làm Thử Thách Hôm Nay (+20 XP) ➔</button>
+        </div>
+
+        <div class="arena-card timo-arena-card">
+          <div class="arena-top">
+            <div class="arena-icon">🏆</div>
+            <div class="arena-text">
+              <h3>Đấu Trường TIMO 1</h3>
+              <p>Mô phỏng bài thi TIMO chuẩn quốc tế với 10 câu hỏi tổng hợp cả 5 chủ đề trong thời gian 15 phút!</p>
+            </div>
+          </div>
+          <button type="button" class="arena-btn" id="btn-start-timo-arena">Vào Thi Thử TIMO (+100 XP) ➔</button>
+        </div>
+      </section>
+
+      <!-- Five Core Topics Section -->
+      <section id="topics-section" style="margin-bottom: 48px;">
+        <div class="section-header-block">
+          <h2>5 Chủ Đề Cốt Lõi TIMO 1</h2>
+          <p>Mỗi chủ đề gồm 5 bài học trực quan được thiết kế theo lộ trình chuẩn quốc tế</p>
+        </div>
+        <div class="topics-grid" id="topics-cards-grid"></div>
+      </section>
+
+      <!-- Learning Roadmap Section -->
+      <section id="roadmap-section" style="margin-bottom: 48px;">
+        <div class="section-header-block">
+          <h2>Lộ Trình Chinh Phục TIMO 1</h2>
+          <p>6 Cấp độ tiến dần từ nền tảng số học đến tư duy tổ hợp đỉnh cao</p>
+        </div>
+        <div class="roadmap-container" id="roadmap-container"></div>
+      </section>
+
+      <!-- Badges & Achievements Section -->
+      <section id="badges-section" style="margin-bottom: 48px;">
+        <div class="section-header-block">
+          <h2>Huy Hiệu & Thành Tích Của Bé</h2>
+          <p>Thu thập đủ 6 huy hiệu danh giá để trở thành Đại Hiệp TIMO 1 Vô Địch</p>
+        </div>
+        <div class="badges-grid" id="badges-grid-container"></div>
+      </section>
+
+    </div>
+
+    <!-- ================= 2. LESSON DETAIL VIEW ================= -->
+    <div id="lesson-detail-view" class="app-view">
+      <div class="lesson-page-container">
+        <div class="lesson-top-bar">
+          <button type="button" class="btn-back-link" id="btn-back-from-lesson">← Quay lại danh sách bài</button>
+          <span class="lesson-topic-badge" id="lesson-topic-badge">Số học • Arithmetic</span>
+          <div id="lesson-current-status"></div>
+        </div>
+
+        <div class="lesson-main-card">
+          <div class="lesson-header-box">
+            <div class="lesson-title-box">
+              <h2 id="lesson-title">Bài 1: Cộng trong phạm vi 20</h2>
+              <h4 id="lesson-en-title">Addition within 20</h4>
+            </div>
+            <div class="lesson-obj-box">
+              🎯 <strong>Mục tiêu:</strong> <span id="lesson-objective-text">Giúp bé nắm vững phương pháp đếm thêm.</span>
+            </div>
+          </div>
+
+          <h3 class="lesson-section-title">📖 1. Lý Thuyết & Kiến Thức Trực Quan</h3>
+          <div id="lesson-concept-content"></div>
+
+          <h3 class="lesson-section-title">✨ 2. Ví Dụ Mẫu Từng Bước</h3>
+          <div class="worked-example-card" id="lesson-worked-example"></div>
+
+          <div class="lesson-cta-bar">
+            <button type="button" class="btn-start-practice-large" id="btn-start-lesson-quiz">
+              Bắt Đầu Làm Bài Luyện Tập & Nhận Sao ⭐ ➔
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 3. QUIZ & PRACTICE RUNNER VIEW ================= -->
+    <div id="quiz-view" class="app-view">
+      <div class="quiz-runner-container">
+        <div class="quiz-top-nav-bar">
+          <div class="quiz-title-txt" id="quiz-top-title">📚 Bài học số 1</div>
+          <div class="quiz-timer-badge" id="quiz-timer-display" style="display: inline-block;">⏱️ 15:00</div>
+          <button type="button" class="btn-exit-quiz-pill" id="btn-exit-quiz">✕ Dừng bài</button>
+        </div>
+
+        <div class="quiz-progress-track">
+          <div class="quiz-progress-fill" id="quiz-progress-bar-fill" style="width: 0%;"></div>
+        </div>
+
+        <div id="quiz-card-wrapper"></div>
+      </div>
+    </div>
+
+    <!-- ================= 4. PRACTICE CENTER VIEW ================= -->
+    <div id="practice-view" class="app-view">
+      <div class="practice-center-container">
+        <div class="section-header-block">
+          <h2>🧩 Trung Tâm Luyện Tập Tự Do</h2>
+          <p>Tự chọn chủ đề, độ khó và số lượng câu hỏi để rèn luyện kỹ năng mỗi ngày</p>
+        </div>
+
+        <div class="practice-config-card">
+          <form id="practice-center-form">
+            <div class="form-group-custom">
+              <label for="practice-topic-select">Chọn Chủ Đề Cần Luyện Tập:</label>
+              <select id="practice-topic-select" class="form-select-custom"></select>
+            </div>
+
+            <div class="form-group-custom">
+              <label for="practice-diff-select">Chọn Mức Độ Thử Thách:</label>
+              <select id="practice-diff-select" class="form-select-custom">
+                <option value="">Tất cả độ khó (Ngẫu nhiên)</option>
+                <option value="1">⭐ Cấp độ 1 — Nhận biết cơ bản</option>
+                <option value="2">⭐⭐ Cấp độ 2 — Suy luận 1 bước</option>
+                <option value="3">⭐⭐⭐ Cấp độ 3 — Thử thách TIMO nâng cao</option>
+              </select>
+            </div>
+
+            <div class="form-group-custom">
+              <label for="practice-count-select">Số Lượng Câu Hỏi:</label>
+              <select id="practice-count-select" class="form-select-custom">
+                <option value="5">5 câu hỏi (Nhanh - 5 phút)</option>
+                <option value="10" selected>10 câu hỏi (Tiêu chuẩn - 10 phút)</option>
+                <option value="20">20 câu hỏi (Đầy đủ - 20 phút)</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn-start-practice-large" style="width: 100%; margin-top: 12px;">
+              Bắt Đầu Luyện Tập 🚀
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 5. PROGRESS & DASHBOARD VIEW ================= -->
+    <div id="progress-view" class="app-view">
+      <div class="progress-view-container">
+        <!-- Kid Profile Banner -->
+        <div class="profile-hero-card">
+          <div class="profile-hero-left">
+            <div class="p-hero-avatar" id="prog-user-avatar">🦁</div>
+            <div class="p-hero-text">
+              <h2 id="prog-user-name">Bé Lớp 1</h2>
+              <p id="prog-user-title">Tập Sự Thông Thái 🌱</p>
+            </div>
+          </div>
+          <button type="button" class="btn-primary-action" onclick="document.getElementById('btn-open-profile-modal')?.click()">
+            Tài Khoản & Hồ Sơ Bé 👤
+          </button>
+        </div>
+
+        <!-- Metrics Row -->
+        <div class="profile-metrics-row">
+          <div class="p-metric-card">
+            <h4>Tổng Điểm XP</h4>
+            <strong id="prog-total-xp" style="color: #8E44AD;">0 XP</strong>
+          </div>
+          <div class="p-metric-card">
+            <h4>Ngôi Sao</h4>
+            <strong id="prog-total-stars" style="color: #F39C12;">0 ⭐</strong>
+          </div>
+          <div class="p-metric-card">
+            <h4>Chuỗi Ngày</h4>
+            <strong id="prog-streak-days" style="color: #E67E22;">1 ngày</strong>
+          </div>
+          <div class="p-metric-card">
+            <h4>Bài Hoàn Thành</h4>
+            <strong id="prog-lessons-done" style="color: #27AE60;">0/25</strong>
+          </div>
+          <div class="p-metric-card">
+            <h4>Độ Chính Xác</h4>
+            <strong id="prog-accuracy-val" style="color: #2980B9;">100%</strong>
+          </div>
+        </div>
+
+        <!-- Quiz History Table -->
+        <div class="history-card">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+            <h3>📜 Bảng Điểm & Lịch Sử Bài Kiểm Tra Của Bé</h3>
+            <span style="font-size: 13px; font-weight: 700; color: var(--primary);">☁️ Tự động đồng bộ Supabase Cloud</span>
+          </div>
+          <div style="overflow-x: auto;">
+            <table class="history-table">
+              <thead>
+                <tr>
+                  <th>Loại hình & Thời gian</th>
+                  <th>Bài học / Chủ đề</th>
+                  <th>Điểm số</th>
+                  <th>Số sao</th>
+                  <th>Độ chính xác</th>
+                  <th>XP Thưởng</th>
+                </tr>
+              </thead>
+              <tbody id="quiz-history-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= MODALS ================= -->
+
+  <!-- 1. Account Menu / Profile Details Modal -->
+  <div class="modal-overlay" id="account-menu-modal">
+    <div class="modal-box">
+      <button type="button" class="modal-close-btn" id="btn-close-account-menu">✕</button>
+      
+      <div class="account-menu-header">
+        <div class="acc-avatar-large" id="acc-modal-avatar">🦁</div>
+        <div class="acc-header-info">
+          <h3 id="acc-modal-name">Bé An</h3>
+          <span class="acc-user-badge" id="acc-modal-user">@bean2018</span>
+          <span class="acc-title-badge" id="acc-modal-level-title">Cấp 1 • Tập Sự Thông Thái</span>
+        </div>
+      </div>
+
+      <div class="acc-quick-stats-grid">
+        <div class="acc-stat-box">
+          <span class="acc-s-num" id="acc-modal-xp">0 XP</span>
+          <span class="acc-s-label">Điểm XP</span>
+        </div>
+        <div class="acc-stat-box">
+          <span class="acc-s-num" id="acc-modal-stars">0 ⭐</span>
+          <span class="acc-s-label">Ngôi Sao</span>
+        </div>
+        <div class="acc-stat-box">
+          <span class="acc-s-num" id="acc-modal-done">0/25</span>
+          <span class="acc-s-label">Bài Đã Học</span>
+        </div>
+      </div>
+
+      <div class="acc-action-buttons-list">
+        <button type="button" class="btn-acc-action" id="btn-account-view-progress">
+          📊 Xem Bảng Tiến Độ & Lịch Sử Bài Làm
+        </button>
+        <button type="button" class="btn-acc-action" id="btn-account-switch-kid">
+          🔄 Đổi Sang Tài Khoản Bé Khác
+        </button>
+        <button type="button" class="btn-acc-action" id="btn-account-new-kid">
+          ➕ Đăng Ký Tài Khoản Bé Mới
+        </button>
+        <button type="button" class="btn-acc-action" onclick="document.getElementById('account-menu-modal')?.classList.remove('modal-open'); document.getElementById('btn-open-cloud-modal')?.click();">
+          ☁️ Cài Đặt Kết Nối Supabase Cloud
+        </button>
+        <button type="button" class="btn-acc-action btn-acc-logout" id="btn-account-logout">
+          🚪 Đăng Xuất Khỏi Tài Khoản
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Supabase Cloud Configuration Modal -->
+  <div class="modal-overlay" id="supabase-config-modal">
+    <div class="modal-box">
+      <button type="button" class="modal-close-btn" id="btn-close-cloud-modal">✕</button>
+      <div class="modal-header-centered">
+        <span class="modal-icon-big">☁️</span>
+        <h3>Cấu Hình Supabase Cloud</h3>
+        <p>Đồng bộ dữ liệu điểm số, bài học của bé lên máy chủ đám mây Supabase</p>
+      </div>
+
+      <form id="form-supabase-config">
+        <div class="form-group-custom">
+          <label for="input-supabase-url">Supabase Project URL:</label>
+          <input type="url" id="input-supabase-url" class="form-input-custom" value="https://zidaconljcntuvxtqkxy.supabase.co" required />
+        </div>
+
+        <div class="form-group-custom">
+          <label for="input-supabase-anon">Supabase Anon Key (Khóa công khai):</label>
+          <input type="text" id="input-supabase-anon" class="form-input-custom" placeholder="Nhập anon public key của Supabase project" />
+          <small style="color: var(--text-muted); font-size: 12px; margin-top: 4px; display: block;">
+            Lấy từ Supabase Dashboard ➔ Project Settings ➔ API ➔ anon public key.
+          </small>
+        </div>
+
+        <div id="supabase-test-status" style="margin-bottom: 14px; font-size: 13px; font-weight: 700;"></div>
+
+        <div class="modal-actions-group">
+          <button type="button" id="btn-test-supabase" class="btn-modal-secondary">Kiểm Tra Kết Nối 🔄</button>
+          <button type="submit" class="btn-modal-primary">Lưu Cấu Hình Cloud 💾</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. Quiz Result Summary Modal -->
+  <div class="modal-overlay" id="quiz-result-modal">
+    <div class="modal-box" style="text-align: center;">
+      <div class="modal-header-centered">
+        <div style="font-size: 54px;" id="res-modal-stars">⭐⭐⭐</div>
+        <h3 id="res-modal-title">XUẤT SẮC!</h3>
+        <p id="res-modal-praise">Bé đã hoàn thành bài kiểm tra rất tuyệt vời!</p>
+      </div>
+
+      <div class="result-stats-summary">
+        <div class="res-stat-item">
+          <strong id="res-modal-score">5 / 5</strong>
+          <span>Số câu đúng</span>
+        </div>
+        <div class="res-stat-item">
+          <strong id="res-modal-accuracy">100%</strong>
+          <span>Độ chính xác</span>
+        </div>
+        <div class="res-stat-item">
+          <strong id="res-modal-xp" style="color: #8E44AD;">+60 XP</strong>
+          <span>Điểm thưởng</span>
+        </div>
+      </div>
+
+      <div class="modal-actions-group">
+        <button type="button" id="btn-res-next" class="btn-modal-primary">Tiếp Tục Bài Học ➔</button>
+        <button type="button" id="btn-res-retry" class="btn-modal-secondary">Luyện Lại Bài Này 🔄</button>
+        <button type="button" id="btn-res-home" class="btn-modal-secondary">Về Trang Chủ 🏠</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Level Up Celebration Modal -->
+  <div class="modal-overlay" id="level-up-modal">
+    <div class="modal-box" style="text-align: center;">
+      <button type="button" class="modal-close-btn" id="btn-close-lvl-up">✕</button>
+      <div style="font-size: 64px; margin-bottom: 8px;">🎉 🏆 🌟</div>
+      <h3 style="font-size: 26px; font-weight: 900; color: #E67E22;" id="lvl-up-number">Cấp Độ 2!</h3>
+      <h4 style="font-size: 18px; font-weight: 800; color: var(--primary); margin-bottom: 12px;" id="lvl-up-title">Nhà Thám Hiểm Số Học</h4>
+      <p style="font-size: 15px; color: var(--text-dark); margin-bottom: 24px;">
+        Bé đã tích lũy đủ điểm kinh nghiệm để thăng hạng danh hiệu mới! Hãy tiếp tục phát huy nhé!
+      </p>
+      <button type="button" class="btn-modal-primary" onclick="document.getElementById('level-up-modal')?.classList.remove('modal-open')">
+        Tuyệt Vời Quá! 🚀
+      </button>
+    </div>
+  </div>
+
+  <!-- 5. Badge Unlock Modal -->
+  <div class="modal-overlay" id="badge-unlock-modal">
+    <div class="modal-box" style="text-align: center;">
+      <button type="button" class="modal-close-btn" id="btn-close-badge-modal">✕</button>
+      <div style="font-size: 64px; margin-bottom: 8px;" id="b-unlock-icon">👑</div>
+      <h3 style="font-size: 24px; font-weight: 900; color: #D68910;" id="b-unlock-name">Huy Hiệu Mới!</h3>
+      <p style="font-size: 15px; color: var(--text-dark); margin-bottom: 24px;" id="b-unlock-desc">
+        Chúc mừng bé đã đạt được huy hiệu danh giá này!
+      </p>
+      <button type="button" class="btn-modal-primary" onclick="document.getElementById('badge-unlock-modal')?.classList.remove('modal-open')">
+        Nhận Huy Hiệu 🏆
+      </button>
+    </div>
+  </div>
+
+  <!-- App Footer -->
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <div>
+        <strong>TIMO 1 Math Adventure</strong> — Dành riêng cho các bé lớp 1 chinh phục toán quốc tế.
+      </div>
+      <div>
+        Kết nối: <strong>Supabase Cloud & Local Storage</strong> • 100% An toàn & Bảo mật cho trẻ em.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core JavaScript Modules -->
+  <script src="js/sound.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/questions.js"></script>
+  <script src="js/progress.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

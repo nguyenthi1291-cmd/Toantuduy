@@ -1,0 +1,167 @@
+/* Responsive Media Queries for TIMO 1 Platform */
+
+@media (max-width: 1024px) {
+  .hero-section {
+    grid-template-columns: 1fr;
+    padding: 36px 24px;
+    text-align: center;
+  }
+
+  .hero-content h2 {
+    font-size: 32px;
+  }
+
+  .hero-desc {
+    margin: 0 auto 24px;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .dash-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .profile-metrics-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .auth-gate-container {
+    grid-template-columns: 1fr;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .auth-gate-banner {
+    padding: 28px 24px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .auth-gate-banner h2 {
+    font-size: 24px;
+  }
+
+  .gate-intro-text {
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .top-nav {
+    justify-content: center;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .nav-link {
+    padding: 8px 12px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .header-actions {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .arena-quick-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .continue-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px 20px;
+  }
+
+  .continue-info {
+    flex-direction: column;
+  }
+
+  .review-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .review-left {
+    flex-direction: column;
+  }
+
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tf-options-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shapes-showcase {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .columns-calc {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-hero-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .profile-hero-left {
+    flex-direction: column;
+  }
+
+  .profile-metrics-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .result-stats-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .gate-avatar-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .dash-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kid-numpad {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+  }
+
+  .num-key {
+    height: 46px;
+    font-size: 18px;
+  }
+
+  .profile-metrics-row {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-box {
+    padding: 24px 18px;
+  }
+
+  .auth-gate-card {
+    padding: 24px 18px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
