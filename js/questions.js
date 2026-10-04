@@ -1,11 +1,33 @@
-// Question Engine: Renderers, Interactive Inputs, Hints & Visual Aids
+// Question Engine: Renderers, Interactive Inputs, Hints, Bilingual Support & Audio TTS
 class QuestionEngine {
   constructor() {
     this.allQuestions = TIMO_DATA.questions || [];
   }
 
+  prioritizeAndRotate(questionsList) {
+    if (!questionsList || questionsList.length === 0) return [];
+    
+    const userState = window.progressManager?.getActiveProfile();
+    const answeredIds = userState?.answeredQuestions || [];
+
+    const unseen = questionsList.filter(q => !answeredIds.includes(q.id));
+    const seen = questionsList.filter(q => answeredIds.includes(q.id));
+
+    const shuffledUnseen = this.shuffleArray([...unseen]);
+    const shuffledSeen = this.shuffleArray([...seen]);
+
+    // If unseen questions exist, prioritize them first.
+    // If all questions have been answered, cycle/rotate through seen questions dynamically!
+    if (shuffledUnseen.length > 0) {
+      return [...shuffledUnseen, ...shuffledSeen];
+    } else {
+      return shuffledSeen;
+    }
+  }
+
   getQuestionsByLesson(lessonId) {
-    return this.allQuestions.filter(q => q.lessonId === lessonId);
+    let list = this.allQuestions.filter(q => q.lessonId === lessonId);
+    return this.prioritizeAndRotate(list);
   }
 
   getQuestionsByTopic(topicId, difficulty = null, limit = null) {
@@ -13,7 +35,7 @@ class QuestionEngine {
     if (difficulty) {
       list = list.filter(q => q.difficulty === parseInt(difficulty));
     }
-    list = this.shuffleArray([...list]);
+    list = this.prioritizeAndRotate(list);
     if (limit && limit > 0) {
       list = list.slice(0, limit);
     }
@@ -21,14 +43,12 @@ class QuestionEngine {
   }
 
   getTimoChallengeQuestions(count = 10) {
-    // Pick 2 questions from each of the 5 topics for balanced competition
+    // Pick questions from each of the 5 topics for balanced competition
     const topics = ["arithmetic", "geometry", "logic", "advanced-arithmetic", "combinatorics"];
     let selected = [];
     topics.forEach(topId => {
       const qs = this.getQuestionsByTopic(topId);
-      // Try to pick medium and challenge difficulty
-      const sorted = qs.sort((a, b) => b.difficulty - a.difficulty);
-      selected.push(...sorted.slice(0, 2));
+      selected.push(...qs.slice(0, 2));
     });
 
     return this.shuffleArray(selected).slice(0, count);
@@ -62,6 +82,8 @@ class QuestionEngine {
   renderQuestion(question, questionIndex, totalQuestions, userState = {}) {
     const diffStars = "⭐".repeat(question.difficulty || 1);
     const visualHtml = question.visual ? `<div class="question-visual-box">${question.visual}</div>` : "";
+
+    const enText = question.questionEn ? question.questionEn : question.question;
 
     let inputAreaHtml = "";
 
@@ -107,11 +129,11 @@ class QuestionEngine {
         <div class="tf-options-grid">
           <button type="button" class="option-btn tf-btn tf-true" data-option="Đúng">
             <span class="tf-icon">✅</span>
-            <span class="opt-text">ĐÚNG</span>
+            <span class="opt-text">ĐÚNG / TRUE</span>
           </button>
           <button type="button" class="option-btn tf-btn tf-false" data-option="Sai">
             <span class="tf-icon">❌</span>
-            <span class="opt-text">SAI</span>
+            <span class="opt-text">SAI / FALSE</span>
           </button>
         </div>
       `;
@@ -126,7 +148,25 @@ class QuestionEngine {
         </div>
 
         <div class="question-body">
-          <h3 class="question-text">${question.question}</h3>
+          <!-- Audio Speaker Toolbar (Loa Đọc Song Ngữ) -->
+          <div class="audio-speaker-toolbar">
+            <button type="button" class="btn-tts-speaker btn-tts-vi" data-speech="${encodeURIComponent(question.question)}" data-lang="vi-VN">
+              🔊 🇻🇳 Đọc Tiếng Việt
+            </button>
+            <button type="button" class="btn-tts-speaker btn-tts-en" data-speech="${encodeURIComponent(enText)}" data-lang="en-US">
+              🔊 🇬🇧 Read English
+            </button>
+          </div>
+
+          <!-- Bilingual Question Prompts -->
+          <div class="bilingual-question-box">
+            <h3 class="question-text">${question.question}</h3>
+            <div class="question-text-en">
+              <span class="lang-flag">🇬🇧</span>
+              <span class="en-content">${enText}</span>
+            </div>
+          </div>
+
           ${visualHtml}
           ${inputAreaHtml}
         </div>

@@ -117,7 +117,56 @@ class SoundManager {
 
   toggleSound() {
     this.enabled = !this.enabled;
+    if (!this.enabled) {
+      this.stopSpeech();
+    }
     return this.enabled;
+  }
+
+  // Text-To-Speech (Loa đọc bài tập cho bé)
+  speak(text, lang = 'vi-VN') {
+    if (!this.enabled) return;
+    if (!('speechSynthesis' in window)) {
+      console.warn("Speech synthesis not supported in this browser.");
+      return;
+    }
+
+    this.stopSpeech();
+
+    let cleanText = text
+      .replace(/<[^>]*>/g, '')
+      .replace(/\[ \? \]/g, 'bao nhiêu')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+    if (!cleanText) return;
+
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+    utterance.lang = lang;
+    utterance.rate = 0.88; // Slower rate suitable for young children
+    utterance.pitch = 1.05; // Kid-friendly pitch
+
+    const voices = window.speechSynthesis.getVoices();
+    if (voices && voices.length > 0) {
+      const targetLang = lang.toLowerCase().replace('_', '-');
+      let matchedVoice = voices.find(v => v.lang.toLowerCase().replace('_', '-').includes(targetLang));
+      if (!matchedVoice && targetLang.startsWith('vi')) {
+        matchedVoice = voices.find(v => v.lang.toLowerCase().includes('vi'));
+      } else if (!matchedVoice && targetLang.startsWith('en')) {
+        matchedVoice = voices.find(v => v.lang.toLowerCase().includes('en'));
+      }
+      if (matchedVoice) {
+        utterance.voice = matchedVoice;
+      }
+    }
+
+    window.speechSynthesis.speak(utterance);
+  }
+
+  stopSpeech() {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
   }
 }
 

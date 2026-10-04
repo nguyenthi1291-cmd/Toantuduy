@@ -113,6 +113,7 @@ class ProgressManager {
       },
       badges: [],
       mistakes: [],
+      answeredQuestions: [],
       quizHistory: [],
       timoBestScore: 0
     };
@@ -361,6 +362,23 @@ class ProgressManager {
       this.state.mistakes.splice(index, 1);
       this.save();
     }
+  }
+
+  recordAnsweredQuestion(questionId) {
+    if (!this.state) return;
+    if (!this.state.answeredQuestions) {
+      this.state.answeredQuestions = [];
+    }
+    if (!this.state.answeredQuestions.includes(questionId)) {
+      this.state.answeredQuestions.push(questionId);
+      this.save();
+    }
+  }
+
+  clearAnsweredQuestions() {
+    if (!this.state) return;
+    this.state.answeredQuestions = [];
+    this.save();
   }
 
   getOverallStats() {

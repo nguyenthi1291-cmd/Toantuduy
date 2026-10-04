@@ -129,6 +129,8 @@ class QuizRunner {
 
   renderCurrentQuestion() {
     this.hasAnswered = false;
+    window.soundManager?.stopSpeech();
+
     const container = document.getElementById("quiz-card-wrapper");
     if (!container) return;
 
@@ -174,6 +176,21 @@ class QuizRunner {
   attachEventListeners(question) {
     const container = document.getElementById("quiz-card-wrapper");
     if (!container) return;
+
+    // Audio TTS Speakers
+    const speakerBtns = container.querySelectorAll(".btn-tts-speaker");
+    speakerBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const speechText = decodeURIComponent(btn.getAttribute("data-speech") || "");
+        const speechLang = btn.getAttribute("data-lang") || "vi-VN";
+        
+        // Add visual active animation to speaker button
+        speakerBtns.forEach(b => b.classList.remove("speaking-active"));
+        btn.classList.add("speaking-active");
+        
+        window.soundManager.speak(speechText, speechLang);
+      });
+    });
 
     // Options (Multiple choice & True/False)
     const optionBtns = container.querySelectorAll(".option-btn");
@@ -226,6 +243,13 @@ class QuizRunner {
 
   submitAnswer(question, userAnswer, element) {
     this.hasAnswered = true;
+    window.soundManager?.stopSpeech();
+
+    // Record question in history for rotation tracking
+    if (window.progressManager?.recordAnsweredQuestion) {
+      window.progressManager.recordAnsweredQuestion(question.id);
+    }
+
     const isCorrect = (userAnswer.toString().trim().toLowerCase() === question.answer.toString().trim().toLowerCase());
     const feedbackBox = document.getElementById("feedback-container");
 
