@@ -1,9 +1,11 @@
-// Web Audio API Sound Effects (Zero external asset dependency, works offline & online)
+// Web Audio API Sound Effects & Child-Friendly Text-To-Speech (TTS) Engine
 class SoundManager {
   constructor() {
     this.ctx = null;
     this.enabled = true;
+    this.voices = [];
     this.initAudioContext();
+    this.initVoices();
   }
 
   initAudioContext() {
@@ -14,6 +16,15 @@ class SoundManager {
       }
     } catch (e) {
       console.warn("Web Audio API not supported", e);
+    }
+  }
+
+  initVoices() {
+    if ('speechSynthesis' in window) {
+      this.voices = window.speechSynthesis.getVoices();
+      window.speechSynthesis.onvoiceschanged = () => {
+        this.voices = window.speechSynthesis.getVoices();
+      };
     }
   }
 
@@ -123,7 +134,70 @@ class SoundManager {
     return this.enabled;
   }
 
-  // Text-To-Speech (Loa đọc bài tập cho bé)
+  // Chuẩn hóa văn bản toán học & ký hiệu giúp phát âm Tiếng Việt chuẩn 100% cho bé Lớp 1
+  normalizeSpeechText(text, lang = 'vi-VN') {
+    if (!text) return "";
+    
+    let s = text
+      .replace(/<[^>]*>/g, '') // Bỏ thẻ HTML
+      .replace(/\[\s*\?\s*\]/g, lang.startsWith('vi') ? ' bao nhiêu ' : ' how much ')
+      .replace(/\?/g, lang.startsWith('vi') ? ' bao nhiêu ' : ' how much ');
+
+    if (lang.startsWith('vi')) {
+      // Chuyển đổi các dấu phép tính toán học sang câu nói tiếng Việt rõ ràng
+      s = s
+        .replace(/\+/g, ' cộng ')
+        .replace(/--|—|-/g, ' trừ ')
+        .replace(/\=/g, ' bằng ')
+        .replace(/\×|\*/g, ' nhân ')
+        .replace(/\:|\÷/g, ' chia ')
+        .replace(/🍎/g, ' quả táo ')
+        .replace(/🍏/g, ' quả táo xanh ')
+        .replace(/⭐/g, ' ngôi sao ')
+        .replace(/🎈/g, ' quả bóng ')
+        .replace(/🔺/g, ' hình tam giác ')
+        .replace(/🟦/g, ' hình vuông ')
+        .replace(/🟨/g, ' hình chữ nhật ')
+        .replace(/🔴/g, ' hình tròn ');
+    } else {
+      // English math operations
+      s = s
+        .replace(/\+/g, ' plus ')
+        .replace(/--|—|-/g, ' minus ')
+        .replace(/\=/g, ' equals ')
+        .replace(/\×|\*/g, ' times ')
+        .replace(/\:|\÷/g, ' divided by ');
+    }
+
+    s = s.replace(/\s+/g, ' ').trim();
+    return s;
+  }
+
+  getBestVoice(lang = 'vi-VN') {
+    const allVoices = ('speechSynthesis' in window) ? window.speechSynthesis.getVoices() : [];
+    const list = (allVoices && allVoices.length > 0) ? allVoices : this.voices;
+    if (!list || list.length === 0) return null;
+
+    const targetLang = lang.toLowerCase().replace('_', '-');
+    if (targetLang.startsWith('vi')) {
+      // Ưu tiên các giọng đọc Tiếng Việt (Google Tiếng Việt, Microsoft HoaiMy, Microsoft An, vi-VN, vietnamese)
+      return list.find(v => 
+        v.lang.toLowerCase().replace('_', '-').includes('vi-vn') ||
+        v.lang.toLowerCase().includes('vi') ||
+        v.name.toLowerCase().includes('viet') ||
+        v.name.toLowerCase().includes('hoaimy') ||
+        v.name.toLowerCase().includes('an')
+      ) || null;
+    } else if (targetLang.startsWith('en')) {
+      return list.find(v => 
+        v.lang.toLowerCase().includes('en-us') ||
+        v.lang.toLowerCase().includes('en')
+      ) || null;
+    }
+    return null;
+  }
+
+  // Text-To-Speech (Loa đọc bài tập chuẩn cho bé)
   speak(text, lang = 'vi-VN') {
     if (!this.enabled) return;
     if (!('speechSynthesis' in window)) {
@@ -133,31 +207,17 @@ class SoundManager {
 
     this.stopSpeech();
 
-    let cleanText = text
-      .replace(/<[^>]*>/g, '')
-      .replace(/\[ \? \]/g, 'bao nhiêu')
-      .replace(/\s+/g, ' ')
-      .trim();
-
+    const cleanText = this.normalizeSpeechText(text, lang);
     if (!cleanText) return;
 
     const utterance = new SpeechSynthesisUtterance(cleanText);
     utterance.lang = lang;
-    utterance.rate = 0.88; // Slower rate suitable for young children
-    utterance.pitch = 1.05; // Kid-friendly pitch
+    utterance.rate = lang.startsWith('vi') ? 0.90 : 0.88; // Tốc độ vừa phải, chuẩn phát âm
+    utterance.pitch = 1.0; // Giọng tự nhiên thân thiện cho bé
 
-    const voices = window.speechSynthesis.getVoices();
-    if (voices && voices.length > 0) {
-      const targetLang = lang.toLowerCase().replace('_', '-');
-      let matchedVoice = voices.find(v => v.lang.toLowerCase().replace('_', '-').includes(targetLang));
-      if (!matchedVoice && targetLang.startsWith('vi')) {
-        matchedVoice = voices.find(v => v.lang.toLowerCase().includes('vi'));
-      } else if (!matchedVoice && targetLang.startsWith('en')) {
-        matchedVoice = voices.find(v => v.lang.toLowerCase().includes('en'));
-      }
-      if (matchedVoice) {
-        utterance.voice = matchedVoice;
-      }
+    const bestVoice = this.getBestVoice(lang);
+    if (bestVoice) {
+      utterance.voice = bestVoice;
     }
 
     window.speechSynthesis.speak(utterance);
