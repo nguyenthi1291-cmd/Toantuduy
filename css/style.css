@@ -2467,3 +2467,43 @@ body {
   font-style: normal;
   font-size: 18px;
 }
+
+
+/* ================= SEQUENTIAL ROADMAP TOPIC LOCK STYLES ================= */
+.topic-card-locked {
+  opacity: 0.85;
+  background: #F8FAFC;
+  position: relative;
+}
+
+.topic-lock-banner {
+  background: #F1F5F9;
+  border: 1.5px dashed #94A3B8;
+  color: #475569;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-topic-locked {
+  background: #E2E8F0 !important;
+  color: #64748B !important;
+  cursor: not-allowed;
+  box-shadow: none !important;
+}
+
+.btn-topic-locked:hover {
+  transform: none !important;
+  background: #E2E8F0 !important;
+}
+
+.lesson-locked {
+  opacity: 0.6;
+  background: #F1F5F9;
+  cursor: not-allowed;
+}

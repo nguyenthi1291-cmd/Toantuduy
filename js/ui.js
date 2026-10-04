@@ -272,15 +272,24 @@ class UIManager {
     const completedMap = profile?.completedLessons || {};
 
     grid.innerHTML = TIMO_DATA.topics.map(topic => {
+      const isTopicUnlocked = window.progressManager.isTopicUnlocked(topic.id);
+      const prevTopicName = window.progressManager.getPrevTopicName(topic.id);
       const completedCount = topic.lessons.filter(l => completedMap[l.id]).length;
       const topicPct = Math.round((completedCount / topic.lessons.length) * 100);
       const isCompleted = completedCount === topic.lessons.length;
 
+      const lockBadge = isTopicUnlocked ? "" : `
+        <div class="topic-lock-banner">
+          🔒 Đang khóa — Đạt kết quả bài kiểm tra chủ đề "${prevTopicName}" để mở khóa!
+        </div>
+      `;
+
       return `
-        <div class="topic-card" style="border-top-color: ${topic.color}">
+        <div class="topic-card ${isTopicUnlocked ? '' : 'topic-card-locked'}" style="border-top-color: ${isTopicUnlocked ? topic.color : '#CBD5E1'}">
+          ${lockBadge}
           <div class="topic-card-header">
-            <div class="topic-icon-box" style="background: ${topic.bgGradient}">
-              ${topic.icon}
+            <div class="topic-icon-box" style="background: ${isTopicUnlocked ? topic.bgGradient : '#94A3B8'}">
+              ${isTopicUnlocked ? topic.icon : '🔒'}
             </div>
             <div class="topic-title-box">
               <h3>${topic.name}</h3>
@@ -296,27 +305,32 @@ class UIManager {
               <strong>${completedCount}/${topic.lessons.length} bài (${topicPct}%)</strong>
             </div>
             <div class="progress-bar-track">
-              <div class="progress-bar-fill" style="width: ${topicPct}%; background: ${topic.bgGradient}"></div>
+              <div class="progress-bar-fill" style="width: ${topicPct}%; background: ${isTopicUnlocked ? topic.bgGradient : '#94A3B8'}"></div>
             </div>
           </div>
 
           <div class="topic-lessons-list">
             ${topic.lessons.map(lesson => {
               const lCompleted = completedMap[lesson.id];
-              const starStr = lCompleted ? "⭐".repeat(lCompleted.stars || 1) : "";
+              const isLUnlocked = window.progressManager.isLessonUnlocked(topic.id, lesson.id);
+              
+              let statusIcon = '⚪';
+              if (lCompleted) statusIcon = "⭐".repeat(lCompleted.stars || 1);
+              else if (!isLUnlocked) statusIcon = '🔒';
+
               return `
-                <div class="lesson-mini-item ${lCompleted ? 'lesson-done' : ''}" data-tid="${topic.id}" data-lid="${lesson.id}">
+                <div class="lesson-mini-item ${lCompleted ? 'lesson-done' : (!isLUnlocked ? 'lesson-locked' : '')}" data-tid="${topic.id}" data-lid="${lesson.id}">
                   <span class="l-num">${lesson.number}</span>
                   <span class="l-name">${lesson.title}</span>
-                  <span class="l-stars">${starStr || '⚪'}</span>
+                  <span class="l-stars">${statusIcon}</span>
                 </div>
               `;
             }).join("")}
           </div>
 
           <div class="topic-footer-actions">
-            <button type="button" class="btn-topic-action" data-topic-id="${topic.id}">
-              ${isCompleted ? 'Ôn Tập Lại 🔄' : 'Khám Phá Chủ Đề ➔'}
+            <button type="button" class="btn-topic-action ${isTopicUnlocked ? '' : 'btn-topic-locked'}" data-topic-id="${topic.id}">
+              ${isTopicUnlocked ? (isCompleted ? 'Ôn Tập Lại 🔄' : 'Khám Phá Chủ Đề ➔') : '🔒 Đang Khóa'}
             </button>
           </div>
         </div>
@@ -330,6 +344,15 @@ class UIManager {
         const topic = TIMO_DATA.topics.find(t => t.id === tid);
         const lesson = topic?.lessons.find(l => l.id === lid);
         if (topic && lesson) {
+          if (!window.progressManager.isTopicUnlocked(topic.id)) {
+            const prevName = window.progressManager.getPrevTopicName(topic.id);
+            alert(`🔒 Chủ đề "${topic.name}" đang bị khóa!\n\nBé cần học và đạt kết quả kiểm tra ở chủ đề "${prevName}" trước khi chuyển sang chủ đề này nhé! 🚀`);
+            return;
+          }
+          if (!window.progressManager.isLessonUnlocked(topic.id, lesson.id)) {
+            alert(`🔒 Bài học "${lesson.title}" đang bị khóa!\n\nBé hãy làm bài kiểm tra và đạt kết quả bài trước trong cùng chủ đề để mở khóa bài học này nhé! 🌟`);
+            return;
+          }
           this.showLessonDetail(topic, lesson);
         }
       });
@@ -340,7 +363,12 @@ class UIManager {
         const tid = btn.getAttribute("data-topic-id");
         const topic = TIMO_DATA.topics.find(t => t.id === tid);
         if (topic && topic.lessons.length > 0) {
-          const firstIncomplete = topic.lessons.find(l => !completedMap[l.id]) || topic.lessons[0];
+          if (!window.progressManager.isTopicUnlocked(topic.id)) {
+            const prevName = window.progressManager.getPrevTopicName(topic.id);
+            alert(`🔒 Chủ đề "${topic.name}" đang bị khóa!\n\nBé hãy hoàn thành bài kiểm tra và đạt kết quả ở chủ đề "${prevName}" để mở khóa chủ đề tiếp theo nhé! 🚀`);
+            return;
+          }
+          const firstIncomplete = topic.lessons.find(l => !completedMap[l.id] && window.progressManager.isLessonUnlocked(topic.id, l.id)) || topic.lessons[0];
           this.showLessonDetail(topic, firstIncomplete);
         }
       });
@@ -350,6 +378,17 @@ class UIManager {
   showLessonDetail(topic, lesson) {
     if (!window.progressManager.isLoggedIn) {
       this.showAuthGate("login");
+      return;
+    }
+
+    if (!window.progressManager.isTopicUnlocked(topic.id)) {
+      const prevName = window.progressManager.getPrevTopicName(topic.id);
+      alert(`🔒 Chủ đề "${topic.name}" đang bị khóa!\n\nBé hãy học và đạt kết quả ở chủ đề "${prevName}" trước nhé! 🚀`);
+      return;
+    }
+
+    if (!window.progressManager.isLessonUnlocked(topic.id, lesson.id)) {
+      alert(`🔒 Bài học "${lesson.title}" đang bị khóa!\n\nBé hãy đạt kết quả các bài học trước trong lộ trình để mở khóa nhé! 🌟`);
       return;
     }
 

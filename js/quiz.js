@@ -325,6 +325,9 @@ class QuizRunner {
     const accuracy = Math.round((this.score / total) * 100);
     const timeSpentSeconds = this.startTime ? Math.round((Date.now() - this.startTime) / 1000) : 0;
 
+    // Track unlocked topics before saving
+    const prevUnlockedTopics = (TIMO_DATA.topics || []).filter(t => window.progressManager.isTopicUnlocked(t.id)).map(t => t.id);
+
     // Calculate stars
     let starsEarned = 1;
     if (accuracy === 100) starsEarned = 3;
@@ -342,6 +345,16 @@ class QuizRunner {
         this.score,
         total
       );
+
+      // Check if newly unlocked a new topic on the roadmap!
+      const nextUnlockedTopics = (TIMO_DATA.topics || []).filter(t => window.progressManager.isTopicUnlocked(t.id));
+      const newlyUnlockedTopic = nextUnlockedTopics.find(t => !prevUnlockedTopics.includes(t.id));
+
+      if (newlyUnlockedTopic) {
+        setTimeout(() => {
+          alert(`🎉 XUẤT SẮC THÔNG THÁI!\n\nBé đã đạt kết quả tuyệt vời ở chủ đề "${this.currentTopic?.name}"!\n\nChủ đề tiếp theo "${newlyUnlockedTopic.name}" đã chính thức MỞ KHÓA! 🚀`);
+        }, 600);
+      }
     } else if (this.currentMode === "timo_challenge") {
       bonusXP = 100;
       window.progressManager.addXP(bonusXP);

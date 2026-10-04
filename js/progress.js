@@ -286,6 +286,44 @@ class ProgressManager {
     return titles[level] || titles[1];
   }
 
+  // Sequential Roadmap & Topic Unlocking Rules
+  isTopicUnlocked(topicId) {
+    if (!this.state) return false;
+    const topics = TIMO_DATA.topics || [];
+    const index = topics.findIndex(t => t.id === topicId);
+    if (index <= 0) return true; // First topic (Số học) is always unlocked
+
+    const prevTopic = topics[index - 1];
+    if (!prevTopic) return true;
+
+    const completedMap = this.state.completedLessons || {};
+    const passedCount = prevTopic.lessons.filter(l => completedMap[l.id] && (completedMap[l.id].stars > 0 || completedMap[l.id].score > 0)).length;
+
+    // Must pass at least 4 of 5 lessons in previous topic to unlock next topic
+    return passedCount >= 4;
+  }
+
+  isLessonUnlocked(topicId, lessonId) {
+    if (!this.isTopicUnlocked(topicId)) return false;
+
+    const topic = TIMO_DATA.topics.find(t => t.id === topicId);
+    if (!topic) return false;
+
+    const lIndex = topic.lessons.findIndex(l => l.id === lessonId);
+    if (lIndex <= 0) return true; // Lesson 1 of an unlocked topic is unlocked
+
+    const prevLesson = topic.lessons[lIndex - 1];
+    const completedMap = this.state?.completedLessons || {};
+    return !!(completedMap[prevLesson.id] && completedMap[prevLesson.id].score > 0);
+  }
+
+  getPrevTopicName(topicId) {
+    const topics = TIMO_DATA.topics || [];
+    const index = topics.findIndex(t => t.id === topicId);
+    if (index > 0) return topics[index - 1].name;
+    return "";
+  }
+
   // Lesson & Topic Completion
   completeLesson(topicId, lessonId, starsEarned, score, total) {
     if (!this.state) return;

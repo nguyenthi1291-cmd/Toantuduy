@@ -134,23 +134,67 @@ class SoundManager {
     return this.enabled;
   }
 
-  // Chuẩn hóa văn bản toán học & ký hiệu giúp phát âm Tiếng Việt chuẩn 100% cho bé Lớp 1
+  // Chuyển đổi số từ dạng chữ số sang chữ đọc Tiếng Việt chuẩn
+  numberToVietnameseWords(nStr) {
+    const num = parseInt(nStr);
+    if (isNaN(num)) return nStr;
+    if (num < 0 || num > 99) return nStr;
+
+    const ones = ["không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"];
+    if (num < 10) return ones[num];
+    if (num === 10) return "mười";
+    if (num < 20) {
+      const unit = num % 10;
+      if (unit === 1) return "mười một";
+      if (unit === 5) return "mười lăm";
+      return "mười " + ones[unit];
+    }
+    const tens = Math.floor(num / 10);
+    const unit = num % 10;
+    let tenStr = ones[tens] + " mươi";
+    if (unit === 0) return tenStr;
+    if (unit === 1) return tenStr + " mốt";
+    if (unit === 4) return tenStr + " tư";
+    if (unit === 5) return tenStr + " lăm";
+    return tenStr + " " + ones[unit];
+  }
+
+  // Chuẩn hóa văn bản toán học & ký hiệu giúp phát âm Tiếng Việt chuẩn 100% tự nhiên cho bé Lớp 1
   normalizeSpeechText(text, lang = 'vi-VN') {
     if (!text) return "";
-    
-    let s = text
-      .replace(/<[^>]*>/g, '') // Bỏ thẻ HTML
-      .replace(/\[\s*\?\s*\]/g, lang.startsWith('vi') ? ' bao nhiêu ' : ' how much ')
-      .replace(/\?/g, lang.startsWith('vi') ? ' bao nhiêu ' : ' how much ');
+    let s = text.trim();
 
     if (lang.startsWith('vi')) {
-      // Chuyển đổi các dấu phép tính toán học sang câu nói tiếng Việt rõ ràng
       s = s
+        // 1. Loại bỏ các thẻ HTML nếu có
+        .replace(/<[^>]*>/g, ' ')
+
+        // 2. Chuẩn hóa ô trống bí mật [ ? ] hoặc dấu ? thành lời nói tự nhiên
+        .replace(/\[\s*\?\s*\]/g, ' bao nhiêu ')
+        .replace(/\?/g, ' bao nhiêu ')
+
+        // 3. Chuẩn hóa các phép toán thành từ Tiếng Việt tự nhiên
         .replace(/\+/g, ' cộng ')
-        .replace(/--|—|-/g, ' trừ ')
+        .replace(/\s*-\s*/g, ' trừ ')
         .replace(/\=/g, ' bằng ')
         .replace(/\×|\*/g, ' nhân ')
         .replace(/\:|\÷/g, ' chia ')
+
+        // 4. Loại bỏ các ký tự dấu câu làm giọng đọc bị đọc tên ký tự gây ngượng (dấu hai chấm, ngoặc vuông...)
+        .replace(/\:/g, ', ')
+        .replace(/\[|\]/g, ' ')
+        .replace(/\(|\)/g, ', ')
+        .replace(/\"|\'/g, ' ')
+        .replace(/\;/g, ', ')
+        .replace(/\//g, ' hoặc ')
+
+        // 5. Chuẩn hóa âm đọc cho ẩn số X trong bài toán
+        .replace(/\bX\b|\bx\b/g, ' ích ')
+
+        // 6. Chuyển đổi các số từ 0 đến 99 sang chữ Tiếng Việt đọc tự nhiên
+        .replace(/\b\d{1,2}\b/g, (m) => this.numberToVietnameseWords(m))
+
+        // 7. Chuyển đổi icon emoji hình vẽ toán học thành tên gọi Tiếng Việt
         .replace(/🍎/g, ' quả táo ')
         .replace(/🍏/g, ' quả táo xanh ')
         .replace(/⭐/g, ' ngôi sao ')
@@ -158,18 +202,28 @@ class SoundManager {
         .replace(/🔺/g, ' hình tam giác ')
         .replace(/🟦/g, ' hình vuông ')
         .replace(/🟨/g, ' hình chữ nhật ')
-        .replace(/🔴/g, ' hình tròn ');
+        .replace(/🔴/g, ' hình tròn ')
+
+        // 8. Loại bỏ khoảng trắng dư thừa
+        .replace(/\s+/g, ' ')
+        .trim();
     } else {
       // English math operations
       s = s
+        .replace(/<[^>]*>/g, ' ')
+        .replace(/\[\s*\?\s*\]/g, ' how much ')
+        .replace(/\?/g, ' how much ')
         .replace(/\+/g, ' plus ')
-        .replace(/--|—|-/g, ' minus ')
+        .replace(/\s*-\s*/g, ' minus ')
         .replace(/\=/g, ' equals ')
         .replace(/\×|\*/g, ' times ')
-        .replace(/\:|\÷/g, ' divided by ');
+        .replace(/\:|\÷/g, ' divided by ')
+        .replace(/\:/g, ', ')
+        .replace(/\[|\]|\(|\)/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
     }
 
-    s = s.replace(/\s+/g, ' ').trim();
     return s;
   }
 
@@ -180,13 +234,15 @@ class SoundManager {
 
     const targetLang = lang.toLowerCase().replace('_', '-');
     if (targetLang.startsWith('vi')) {
-      // Ưu tiên các giọng đọc Tiếng Việt (Google Tiếng Việt, Microsoft HoaiMy, Microsoft An, vi-VN, vietnamese)
+      // Ưu tiên chọn giọng đọc Tiếng Việt chuẩn (Google Tiếng Việt, Microsoft HoaiMy, Microsoft An, vi-VN)
       return list.find(v => 
         v.lang.toLowerCase().replace('_', '-').includes('vi-vn') ||
         v.lang.toLowerCase().includes('vi') ||
         v.name.toLowerCase().includes('viet') ||
         v.name.toLowerCase().includes('hoaimy') ||
-        v.name.toLowerCase().includes('an')
+        v.name.toLowerCase().includes('an') ||
+        v.name.toLowerCase().includes('nam') ||
+        v.name.toLowerCase().includes('minh')
       ) || null;
     } else if (targetLang.startsWith('en')) {
       return list.find(v => 
@@ -212,8 +268,8 @@ class SoundManager {
 
     const utterance = new SpeechSynthesisUtterance(cleanText);
     utterance.lang = lang;
-    utterance.rate = lang.startsWith('vi') ? 0.90 : 0.88; // Tốc độ vừa phải, chuẩn phát âm
-    utterance.pitch = 1.0; // Giọng tự nhiên thân thiện cho bé
+    utterance.rate = lang.startsWith('vi') ? 0.88 : 0.85; // Tốc độ vừa phải, chuẩn phát âm cho trẻ Lớp 1
+    utterance.pitch = 1.0; // Giọng tự nhiên thân thiện
 
     const bestVoice = this.getBestVoice(lang);
     if (bestVoice) {
