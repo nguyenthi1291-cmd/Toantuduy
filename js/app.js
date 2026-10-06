@@ -289,7 +289,7 @@ function renderAccountModalData() {
   document.getElementById("acc-modal-level-title").textContent = `Cấp ${stats.level} • ${stats.levelTitle}`;
   document.getElementById("acc-modal-xp").textContent = `${stats.xp.toLocaleString()} XP`;
   document.getElementById("acc-modal-stars").textContent = `${stats.stars} ⭐`;
-  document.getElementById("acc-modal-done").textContent = `${stats.completedLessonsCount}/25 bài`;
+  document.getElementById("acc-modal-done").textContent = `${stats.completedLessonsCount}/${stats.totalLessons} bài`;
 }
 
 // Supabase Cloud Configuration Modal

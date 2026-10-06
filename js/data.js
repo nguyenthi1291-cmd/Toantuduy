@@ -192,6 +192,171 @@ const TIMO_DATA = {
       ]
     },
     {
+      id: "number-theory",
+      name: "Lý thuyết số",
+      englishName: "Number Theory",
+      icon: "🧮",
+      color: "#9B59B6",
+      bgGradient: "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)",
+      description: "Số chẵn - số lẻ, chục và đơn vị, so sánh số, chia đều và quy luật dãy chữ lặp lại.",
+      totalLessons: 5,
+      lessons: [
+        {
+          id: "nt-lesson-1",
+          number: 1,
+          title: "Số chẵn và số lẻ",
+          englishTitle: "Even and Odd Numbers",
+          icon: "⚖️",
+          objective: "Giúp bé nhận biết số chẵn, số lẻ qua việc ghép đôi đồ vật và chữ số tận cùng.",
+          concept: `
+            <div class="concept-box">
+              <h4>💡 Bí kíp ghép đôi:</h4>
+              <p>Xếp đồ vật thành từng <strong>đôi</strong>. Nếu vừa đủ đôi ➔ <strong>số chẵn</strong>. Nếu thừa 1 ➔ <strong>số lẻ</strong>.</p>
+              <div class="visual-math-row">
+                <div class="math-group"><span class="items-bubble">🧦🧦 🧦🧦 🧦🧦</span><span class="count-tag">6 = chẵn (Even)</span></div>
+                <div class="math-group"><span class="items-bubble">🧦🧦 🧦🧦 🧦</span><span class="count-tag highlight">5 = lẻ (Odd)</span></div>
+              </div>
+              <ul>
+                <li><strong>Số chẵn</strong> tận cùng là 0, 2, 4, 6, 8.</li>
+                <li><strong>Số lẻ</strong> tận cùng là 1, 3, 5, 7, 9.</li>
+              </ul>
+            </div>
+          `,
+          workedExample: {
+            problem: "Từ 1 đến 10 có bao nhiêu số lẻ?",
+            steps: [
+              "Bước 1: Liệt kê các số tận cùng 1, 3, 5, 7, 9.",
+              "Bước 2: Các số lẻ là 1, 3, 5, 7, 9.",
+              "Đáp số: 5 số lẻ."
+            ],
+            answer: "5"
+          }
+        },
+        {
+          id: "nt-lesson-2",
+          number: 2,
+          title: "Chục và đơn vị",
+          englishTitle: "Tens and Ones",
+          icon: "🔟",
+          objective: "Giúp bé hiểu cấu tạo số có 2 chữ số gồm hàng chục và hàng đơn vị.",
+          concept: `
+            <div class="concept-box">
+              <h4>💡 Bó que tính:</h4>
+              <p>10 que tính bó lại thành <strong>1 chục</strong>. Que lẻ là <strong>đơn vị</strong>.</p>
+              <div class="visual-math-row">
+                <div class="math-group"><span class="items-bubble">🥢×10 🥢×10 🥢×10</span><span class="count-tag">3 chục</span></div>
+                <div class="math-op">➕</div>
+                <div class="math-group"><span class="items-bubble">🥢🥢🥢🥢</span><span class="count-tag">4 đơn vị</span></div>
+                <div class="math-op">🟰</div>
+                <div class="math-group result-group"><span class="items-bubble">34</span><span class="count-tag highlight">Ba mươi tư</span></div>
+              </div>
+              <p>Chữ số bên trái là <strong>hàng chục (tens)</strong>, chữ số bên phải là <strong>hàng đơn vị (ones)</strong>.</p>
+            </div>
+          `,
+          workedExample: {
+            problem: "Số gồm 6 đơn vị và 5 chục là số nào?",
+            steps: [
+              "Bước 1: Hàng chục là 5, hàng đơn vị là 6.",
+              "Bước 2: Viết hàng chục trước, hàng đơn vị sau.",
+              "Đáp số: 56."
+            ],
+            answer: "56"
+          }
+        },
+        {
+          id: "nt-lesson-3",
+          number: 3,
+          title: "So sánh & Sắp xếp số",
+          englishTitle: "Comparing and Ordering Numbers",
+          icon: "📊",
+          objective: "Giúp bé so sánh, sắp xếp các số có 2 chữ số và tìm số liền trước, liền sau.",
+          concept: `
+            <div class="concept-box">
+              <h4>💡 Bí kíp so sánh 2 bước:</h4>
+              <ul>
+                <li><strong>Bước 1:</strong> So sánh <strong>hàng chục</strong>. Số nào có hàng chục lớn hơn thì lớn hơn: 52 &gt; 48.</li>
+                <li><strong>Bước 2:</strong> Hàng chục bằng nhau thì so sánh <strong>hàng đơn vị</strong>: 47 &gt; 43.</li>
+              </ul>
+              <div class="number-line">
+                <div class="nl-step">29</div>
+                <div class="nl-arrow">← liền trước</div>
+                <div class="nl-step highlight">30</div>
+                <div class="nl-arrow">liền sau →</div>
+                <div class="nl-step">31</div>
+              </div>
+            </div>
+          `,
+          workedExample: {
+            problem: "Sắp xếp 63, 36, 60 từ lớn đến bé.",
+            steps: [
+              "Bước 1: So sánh hàng chục: 6, 3, 6 ➔ 36 bé nhất.",
+              "Bước 2: 63 và 60 cùng hàng chục 6, so hàng đơn vị: 3 > 0 ➔ 63 > 60.",
+              "Đáp số: 63, 60, 36."
+            ],
+            answer: "63, 60, 36"
+          }
+        },
+        {
+          id: "nt-lesson-4",
+          number: 4,
+          title: "Chia đều & Chia nhóm",
+          englishTitle: "Equal Sharing and Grouping",
+          icon: "🍬",
+          objective: "Giúp bé chia đều đồ vật bằng cách phát lần lượt hoặc đếm theo nhóm.",
+          concept: `
+            <div class="concept-box">
+              <h4>💡 Bí kíp phát lần lượt:</h4>
+              <p>Chia 6 cái kẹo cho 2 bạn: mỗi lượt phát cho mỗi bạn 1 cái, đến khi hết kẹo.</p>
+              <div class="visual-math-row">
+                <div class="math-group"><span class="items-bubble">🍬🍬🍬🍬🍬🍬</span><span class="count-tag">6 cái kẹo</span></div>
+                <div class="math-op">➔</div>
+                <div class="math-group"><span class="items-bubble">👦 🍬🍬🍬</span><span class="count-tag">3 cái</span></div>
+                <div class="math-group result-group"><span class="items-bubble">👧 🍬🍬🍬</span><span class="count-tag highlight">3 cái</span></div>
+              </div>
+              <p><strong>Chia nhóm:</strong> 12 cái bánh, mỗi hộp 3 cái ➔ đếm 3, 6, 9, 12 ➔ <strong>4 hộp</strong>.</p>
+            </div>
+          `,
+          workedExample: {
+            problem: "Có 10 quả bóng chia đều cho 2 bạn. Mỗi bạn được mấy quả?",
+            steps: [
+              "Bước 1: Tìm số cộng với chính nó bằng 10.",
+              "Bước 2: 5 + 5 = 10.",
+              "Đáp số: Mỗi bạn 5 quả."
+            ],
+            answer: "5"
+          }
+        },
+        {
+          id: "nt-lesson-5",
+          number: 5,
+          title: "Dãy chữ & Dãy lặp lại",
+          englishTitle: "Letter and Repeating Patterns",
+          icon: "🔤",
+          objective: "Giúp bé tìm quy luật dãy chữ cái và tìm phần tử thứ N trong dãy lặp lại.",
+          concept: `
+            <div class="concept-box">
+              <h4>💡 Bí kíp tìm nhóm lặp:</h4>
+              <ul>
+                <li><strong>Dãy chữ theo thứ tự:</strong> A, B, C, D, <span class="badge-num">E</span></li>
+                <li><strong>Dãy chữ cách 1:</strong> A, C, E, G, <span class="badge-num">I</span></li>
+                <li><strong>Dãy lặp lại:</strong> 🍎 🍌 🍇 | 🍎 🍌 🍇 | 🍎 ...</li>
+              </ul>
+              <p>Tìm phần tử thứ N: khoanh từng <strong>nhóm lặp</strong>, đếm xem phần tử thứ N rơi vào vị trí nào trong nhóm.</p>
+            </div>
+          `,
+          workedExample: {
+            problem: "Dãy 🔴 🔵 🔴 🔵 ... Hình thứ 7 là hình gì?",
+            steps: [
+              "Bước 1: Nhóm lặp gồm 2 hình: 🔴 🔵.",
+              "Bước 2: Hình thứ 1, 3, 5, 7 (vị trí lẻ) là 🔴.",
+              "Đáp số: 🔴."
+            ],
+            answer: "🔴"
+          }
+        }
+      ]
+    },
+    {
       id: "geometry",
       name: "Hình học",
       englishName: "Geometry",
@@ -770,7 +935,7 @@ const TIMO_DATA = {
     }
   ],
 
-  // Over 105 rich questions covering all topics, lesson tests, practice mode, TIMO challenge & daily challenge
+  // 300 questions (6 topics × 5 lessons × 10) covering all topics, lesson tests, practice mode, TIMO challenge & daily challenge
   questions: [
     // --- TOPIC 1: ARITHMETIC (25 Questions) ---
     {
@@ -1248,12 +1413,18 @@ const TIMO_DATA = {
       lessonId: "geo-lesson-3",
       difficulty: 1,
       type: "multiple-choice",
-      question: "Ghép 2 hình tam giác vuông giống hệt nhau có thể tạo thành hình nào?",
-      questionEn: "Combining 2 identical right-angled triangles can form which shape?",
-      options: ["Hình tròn", "Hình vuông", "Hình ngôi sao", "Hình trụ"],
+      question: "Ghép 2 hình tam giác vuông cân giống hệt nhau theo cạnh dài nhất. Bé được hình gì?",
+      questionEn: "Join 2 identical isosceles right triangles along their longest side. What shape do you get?",
+      visual: "◤ ◢",
+      options: [
+        "Hình tròn",
+        "Hình vuông",
+        "Hình ngôi sao",
+        "Hình trụ"
+      ],
       answer: "Hình vuông",
-      hint: "2 nửa hình vuông ghép lại tạo thành hình vuông.",
-      explanation: "2 tam giác vuông cân ghép lại tạo thành hình vuông.",
+      hint: "Hai góc vuông nằm ở hai đầu đối diện, 4 cạnh còn lại dài bằng nhau.",
+      explanation: "2 tam giác vuông cân ghép theo cạnh dài nhất tạo thành hình vuông (4 cạnh bằng nhau, 4 góc vuông).",
       xp: 10
     },
     {
@@ -1844,12 +2015,18 @@ const TIMO_DATA = {
       lessonId: "adv-lesson-3",
       difficulty: 2,
       type: "multiple-choice",
-      question: "Có 15 chiếc kẹo chia đều cho 3 bạn Nam, Việt, Long. Hỏi mỗi bạn được mấy chiếc kẹo?",
-      questionEn: "15 candies shared equally among 3 friends. How many candies does each friend get?",
-      options: ["3", "4", "5", "6"],
-      answer: "5",
-      hint: "5 + 5 + 5 = 15.",
-      explanation: "Mỗi bạn nhận được 5 chiếc kẹo.",
+      question: "Một hộp bút giá 9 nghìn đồng. Bé đưa cô bán hàng tờ 20 nghìn đồng. Cô trả lại bé bao nhiêu nghìn đồng?",
+      questionEn: "A pencil case costs 9 thousand dong. You pay with a 20-thousand note. How much change do you get (in thousands)?",
+      visual: "💵 20",
+      options: [
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      answer: "11",
+      hint: "Tiền trả lại = tiền đưa - giá hộp bút.",
+      explanation: "20 - 9 = 11 nghìn đồng.",
       xp: 15
     },
     {
@@ -2238,12 +2415,18 @@ const TIMO_DATA = {
       lessonId: "comb-lesson-5",
       difficulty: 3,
       type: "multiple-choice",
-      question: "Một hình vuông được kẻ 1 đường dọc và 1 đường ngang chia thành 4 ô vuông nhỏ. Hỏi có tất cả bao nhiêu hình vuông?",
-      questionEn: "A square divided by 1 vertical and 1 horizontal line into 4 small squares. Total squares?",
-      options: ["4", "5", "6", "8"],
-      answer: "5",
-      hint: "4 ô vuông nhỏ + 1 ô vuông lớn bao ngoài = 5.",
-      explanation: "4 + 1 = 5 hình vuông.",
+      question: "Một hình chữ nhật được chia thành 4 ô vuông thẳng hàng. Hỏi có tất cả bao nhiêu hình chữ nhật (kể cả hình vuông)?",
+      questionEn: "A rectangle is divided into 4 squares in a row. How many rectangles (including squares) are there?",
+      visual: "⬜⬜⬜⬜",
+      options: [
+        "4",
+        "8",
+        "10",
+        "12"
+      ],
+      answer: "10",
+      hint: "Đếm hình gồm 1 ô, 2 ô, 3 ô, 4 ô.",
+      explanation: "4 + 3 + 2 + 1 = 10 hình chữ nhật.",
       xp: 20
     },
     {
@@ -2252,11 +2435,12 @@ const TIMO_DATA = {
       lessonId: "comb-lesson-5",
       difficulty: 3,
       type: "fill-blank",
-      question: "Xếp 5 học sinh A, B, C, D, E thành một hàng ngang. Biết bạn A luôn phải đứng đầu hàng. Có bao nhiêu cách xếp 4 bạn còn lại? [ ? ]",
-      questionEn: "5 students in a row. A must stand first. How many arrangements for remaining 4? [ ? ]",
-      answer: "24",
-      hint: "4 × 3 × 2 × 1 = 24 cách xếp.",
-      explanation: "Có 4 × 3 × 2 × 1 = 24 cách xếp.",
+      question: "Muốn cưa một khúc gỗ thành 6 đoạn thì cần cưa ít nhất bao nhiêu nhát? [ ? ]",
+      questionEn: "To saw a log into 6 pieces, how many cuts are needed at least? [ ? ]",
+      visual: "🪵",
+      answer: "5",
+      hint: "Số nhát cưa = số đoạn - 1.",
+      explanation: "6 - 1 = 5 nhát cưa.",
       xp: 20
     }
   ,    
@@ -2335,12 +2519,18 @@ const TIMO_DATA = {
       lessonId: "geo-lesson-1",
       difficulty: 1,
       type: "multiple-choice",
-      question: "Hình nào sau đây có đúng 3 cạnh và 3 góc?",
-      questionEn: "Which shape has exactly 3 sides and 3 angles?",
-      options: ["Hình vuông / Square", "Hình tam giác / Triangle", "Hình tròn / Circle", "Hình chữ nhật / Rectangle"],
-      answer: "Hình tam giác / Triangle",
-      hint: "Hình tam giác có 3 cạnh.",
-      explanation: "Hình tam giác có 3 cạnh và 3 góc.",
+      question: "Tìm hình tiếp theo trong dãy: 🔺 🟦 🔺 🟦 🔺 ?",
+      questionEn: "Find the next shape: 🔺 🟦 🔺 🟦 🔺 ?",
+      visual: "🔺 🟦 🔺 🟦 🔺 ❓",
+      options: [
+        "🔺",
+        "🟦",
+        "🔴",
+        "⭐"
+      ],
+      answer: "🟦",
+      hint: "Dãy lặp lại 2 hình: tam giác, vuông.",
+      explanation: "Quy luật lặp: 🔺 🟦. Sau 🔺 là 🟦.",
       xp: 10
     },
     {
@@ -2349,12 +2539,18 @@ const TIMO_DATA = {
       lessonId: "geo-lesson-2",
       difficulty: 2,
       type: "multiple-choice",
-      question: "Một hình chữ nhật được chia thành 3 ô vuông nhỏ thẳng hàng. Hỏi có tất cả bao nhiêu hình chữ nhật?",
-      questionEn: "A rectangle is divided into 3 small squares in a row. How many rectangles in total?",
-      options: ["4", "5", "6", "3"],
-      answer: "6",
-      hint: "3 + 2 + 1 = 6.",
-      explanation: "3 hình đơn + 2 hình đôi + 1 hình ba = 6 hình chữ nhật.",
+      question: "Một hình vuông được kẻ cả 2 đường chéo. Hỏi có tất cả bao nhiêu hình tam giác?",
+      questionEn: "A square has both diagonals drawn. How many triangles are there in total?",
+      visual: "⊠",
+      options: [
+        "4",
+        "6",
+        "8",
+        "10"
+      ],
+      answer: "8",
+      hint: "Đếm 4 tam giác nhỏ, rồi đếm các tam giác ghép từ 2 tam giác nhỏ.",
+      explanation: "4 tam giác nhỏ + 4 tam giác ghép (mỗi nửa hình vuông theo 1 đường chéo) = 8 tam giác.",
       xp: 15
     },
     {
@@ -2363,12 +2559,18 @@ const TIMO_DATA = {
       lessonId: "geo-lesson-3",
       difficulty: 2,
       type: "multiple-choice",
-      question: "Ghép 2 hình tam giác vuông giống nhau có thể tạo thành hình nào?",
-      questionEn: "Combining 2 identical right-angled triangles can form which shape?",
-      options: ["Hình tròn / Circle", "Hình chữ nhật / Rectangle", "Hình ngũ giác / Pentagon", "Hình elip / Ellipse"],
-      answer: "Hình chữ nhật / Rectangle",
-      hint: "Ghép 2 tam giác vuông theo cạnh huyền.",
-      explanation: "2 tam giác vuông cân ghép lại tạo thành hình chữ nhật hoặc hình vuông.",
+      question: "Bé có 7 que tính. Bé xếp được nhiều nhất bao nhiêu hình tam giác rời nhau (không chung cạnh)?",
+      questionEn: "You have 7 sticks. At most how many separate triangles (no shared sides) can you make?",
+      visual: "🥢🥢🥢🥢🥢🥢🥢",
+      options: [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      answer: "2",
+      hint: "Mỗi tam giác rời cần 3 que.",
+      explanation: "3 + 3 = 6 que cho 2 tam giác, còn thừa 1 que không đủ xếp tam giác thứ 3.",
       xp: 15
     },
     {
@@ -2377,11 +2579,12 @@ const TIMO_DATA = {
       lessonId: "geo-lesson-4",
       difficulty: 3,
       type: "fill-blank",
-      question: "Trên một đường thẳng có 5 điểm mốc A, B, C, D, E. Hỏi có tất cả bao nhiêu đoạn thẳng? [ ? ]",
-      questionEn: "There are 5 marked points A, B, C, D, E on a line. How many line segments are formed? [ ? ]",
-      answer: "10",
-      hint: "4 + 3 + 2 + 1 = 10.",
-      explanation: "Tổng số đoạn thẳng = 4 + 3 + 2 + 1 = 10 đoạn.",
+      question: "Trên một đường thẳng có 6 điểm. Hỏi có tất cả bao nhiêu đoạn thẳng? [ ? ]",
+      questionEn: "There are 6 points on a line. How many line segments are there in total? [ ? ]",
+      visual: "•—•—•—•—•—•",
+      answer: "15",
+      hint: "Cộng 5 + 4 + 3 + 2 + 1.",
+      explanation: "Số đoạn thẳng = 5 + 4 + 3 + 2 + 1 = 15 đoạn.",
       xp: 20
     },
     {
@@ -2390,11 +2593,12 @@ const TIMO_DATA = {
       lessonId: "geo-lesson-5",
       difficulty: 2,
       type: "fill-blank",
-      question: "Một khối lập phương (Cube) có tất cả bao nhiêu mặt phẳng vuông bằng nhau? [ ? ]",
-      questionEn: "How many identical square faces does a cube have? [ ? ]",
+      question: "Xếp khối lập phương thành bậc thang: hàng dưới 3 khối, hàng giữa 2 khối, hàng trên 1 khối. Có tất cả bao nhiêu khối? [ ? ]",
+      questionEn: "Cubes form stairs: 3 on the bottom, 2 in the middle, 1 on top. How many cubes in total? [ ? ]",
+      visual: "🟫<br>🟫🟫<br>🟫🟫🟫",
       answer: "6",
-      hint: "Khối lập phương có 6 mặt.",
-      explanation: "Khối lập phương có đúng 6 mặt phẳng hình vuông.",
+      hint: "Cộng số khối từng hàng.",
+      explanation: "3 + 2 + 1 = 6 khối.",
       xp: 15
     },
 
@@ -2418,12 +2622,17 @@ const TIMO_DATA = {
       lessonId: "logic-lesson-2",
       difficulty: 2,
       type: "multiple-choice",
-      question: "Nếu hôm nay là Thứ Tư, thì 2 ngày nữa sẽ là Thứ mấy trong tuần?",
-      questionEn: "If today is Wednesday, what day of the week will it be in 2 days?",
-      options: ["Thứ Năm / Thursday", "Thứ Sáu / Friday", "Thứ Bảy / Saturday", "Chủ Nhật / Sunday"],
-      answer: "Thứ Sáu / Friday",
-      hint: "Thứ Tư + 2 ngày = Thứ Sáu.",
-      explanation: "Thứ Tư cộng 2 ngày là Thứ Sáu.",
+      question: "Hôm kia là Chủ Nhật. Hỏi hôm nay là thứ mấy?",
+      questionEn: "The day before yesterday was Sunday. What day is today?",
+      options: [
+        "Thứ Hai",
+        "Thứ Ba",
+        "Thứ Tư",
+        "Thứ Năm"
+      ],
+      answer: "Thứ Ba",
+      hint: "Hôm kia + 2 ngày = hôm nay.",
+      explanation: "Chủ Nhật → Thứ Hai (hôm qua) → Thứ Ba (hôm nay).",
       xp: 15
     },
     {
@@ -2432,11 +2641,11 @@ const TIMO_DATA = {
       lessonId: "logic-lesson-3",
       difficulty: 3,
       type: "fill-blank",
-      question: "Nam đứng thứ 4 từ đầu hàng và đứng thứ 3 từ cuối hàng. Hỏi hàng đó có tất cả bao nhiêu bạn? [ ? ]",
-      questionEn: "Nam is 4th from front and 3rd from back in a line. How many students in total? [ ? ]",
-      answer: "6",
-      hint: "4 + 3 - 1 = 6.",
-      explanation: "4 + 3 - 1 = 6 bạn.",
+      question: "Hàng có 9 bạn. Hoa đứng chính giữa hàng. Hoa đứng thứ mấy tính từ đầu hàng? [ ? ]",
+      questionEn: "There are 9 children in a line. Hoa stands exactly in the middle. What is her position from the front? [ ? ]",
+      answer: "5",
+      hint: "Hai bên Hoa có số bạn bằng nhau.",
+      explanation: "Bỏ Hoa ra còn 8 bạn, mỗi bên 4 bạn ➔ Hoa đứng thứ 4 + 1 = 5.",
       xp: 20
     },
     {
@@ -2599,6 +2808,2902 @@ const TIMO_DATA = {
       hint: "4 + 1 = 5.",
       explanation: "4 + 1 = 5 đoạn dây.",
       xp: 10
+    },
+
+    // --- UPDATE 2026-10: 10 câu/bài + dạng bài mới ---
+    {
+      id: "arith-q31",
+      topic: "arithmetic",
+      lessonId: "arith-lesson-1",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Tính: 6 + 9 = ?",
+      questionEn: "Calculate: 6 + 9 = ?",
+      options: [
+        "13",
+        "14",
+        "15",
+        "16"
+      ],
+      answer: "15",
+      hint: "6 + 4 = 10, rồi cộng thêm 5.",
+      explanation: "6 + 9 = 15.",
+      xp: 10
+    },
+    {
+      id: "arith-q32",
+      topic: "arithmetic",
+      lessonId: "arith-lesson-1",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Tính nhanh: 5 + 8 + 5 = [ ? ]",
+      questionEn: "Quick sum: 5 + 8 + 5 = [ ? ]",
+      answer: "18",
+      hint: "Gộp 5 + 5 = 10 trước.",
+      explanation: "5 + 5 = 10; 10 + 8 = 18.",
+      xp: 15
+    },
+    {
+      id: "arith-q33",
+      topic: "arithmetic",
+      lessonId: "arith-lesson-1",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Phép cộng nào có kết quả bằng 13?",
+      questionEn: "Which addition equals 13?",
+      options: [
+        "6 + 6",
+        "7 + 5",
+        "8 + 5",
+        "9 + 3"
+      ],
+      answer: "8 + 5",
+      hint: "Tính từng phép cộng rồi so sánh với 13.",
+      explanation: "6 + 6 = 12; 7 + 5 = 12; 8 + 5 = 13; 9 + 3 = 12.",
+      xp: 15
+    },
+    {
+      id: "arith-q34",
+      topic: "arithmetic",
+      lessonId: "arith-lesson-1",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Tính nhanh: 1 + 2 + 3 + 4 + 5 + 5 = [ ? ]",
+      questionEn: "Quick sum: 1 + 2 + 3 + 4 + 5 + 5 = [ ? ]",
+      answer: "20",
+      hint: "Ghép các cặp có tổng bằng 10 hoặc 5.",
+      explanation: "(5 + 5) + (1 + 4) + (2 + 3) = 10 + 5 + 5 = 20.",
+      xp: 20
+    },
+    {
+      id: "arith-q35",
+      topic: "arithmetic",
+      lessonId: "arith-lesson-2",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Tính: 12 - 5 = ?",
+      questionEn: "Calculate: 12 - 5 = ?",
+      options: [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      answer: "7",
+      hint: "12 - 2 = 10, rồi trừ tiếp 3.",
+      explanation: "12 - 5 = 7.",
+      xp: 10
+    },
+    {
+      id: "arith-q36",
+      topic: "arithmetic",
+      lessonId: "arith-lesson-2",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Tính: 19 - 6 - 3 = [ ? ]",
+      questionEn: "Calculate: 19 - 6 - 3 = [ ? ]",
+      answer: "10",
+      hint: "Trừ lần lượt từ trái sang phải.",
+      explanation: "19 - 6 = 13; 13 - 3 = 10.",
+      xp: 15
+    },
+    {
+      id: "arith-q37",
+      topic: "arithmetic",
+      lessonId: "arith-lesson-2",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Phép trừ nào có kết quả bé nhất?",
+      questionEn: "Which subtraction has the smallest result?",
+      options: [
+        "14 - 6",
+        "13 - 7",
+        "15 - 8",
+        "11 - 2"
+      ],
+      answer: "13 - 7",
+      hint: "Tính từng phép trừ rồi so sánh.",
+      explanation: "14 - 6 = 8; 13 - 7 = 6; 15 - 8 = 7; 11 - 2 = 9 ➔ bé nhất là 6.",
+      xp: 15
+    },
+    {
+      id: "arith-q38",
+      topic: "arithmetic",
+      lessonId: "arith-lesson-2",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Tính nhanh: 20 - 1 - 2 - 3 - 4 = [ ? ]",
+      questionEn: "Quick calculation: 20 - 1 - 2 - 3 - 4 = [ ? ]",
+      answer: "10",
+      hint: "Trừ liên tiếp 1, 2, 3, 4 cũng là trừ đi tổng của chúng.",
+      explanation: "1 + 2 + 3 + 4 = 10; 20 - 10 = 10.",
+      xp: 20
+    },
+    {
+      id: "arith-q39",
+      topic: "arithmetic",
+      lessonId: "arith-lesson-3",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Tính: 60 + 30 = ?",
+      questionEn: "Calculate: 60 + 30 = ?",
+      options: [
+        "70",
+        "80",
+        "90",
+        "100"
+      ],
+      answer: "90",
+      hint: "6 chục + 3 chục = 9 chục.",
+      explanation: "60 + 30 = 90.",
+      xp: 10
+    },
+    {
+      id: "arith-q40",
+      topic: "arithmetic",
+      lessonId: "arith-lesson-3",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "So sánh: 45 + 3 và 50 - 1. Kết quả phép tính thứ nhất thế nào so với phép tính thứ hai?",
+      questionEn: "Compare 45 + 3 and 50 - 1. How does the first result compare with the second?",
+      options: [
+        "Lớn hơn",
+        "Bé hơn",
+        "Bằng nhau"
+      ],
+      answer: "Bé hơn",
+      hint: "Tính hai vế trước rồi mới so sánh.",
+      explanation: "45 + 3 = 48; 50 - 1 = 49; 48 bé hơn 49.",
+      xp: 15
+    },
+    {
+      id: "arith-q41",
+      topic: "arithmetic",
+      lessonId: "arith-lesson-3",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Tính: 99 - 45 = [ ? ]",
+      questionEn: "Calculate: 99 - 45 = [ ? ]",
+      answer: "54",
+      hint: "Trừ hàng đơn vị, rồi trừ hàng chục.",
+      explanation: "9 - 5 = 4 (đơn vị); 9 - 4 = 5 (chục) ➔ 54.",
+      xp: 15
+    },
+    {
+      id: "arith-q42",
+      topic: "arithmetic",
+      lessonId: "arith-lesson-3",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Phép tính nào có kết quả lớn hơn: 67 - 25 hay 21 + 20?",
+      questionEn: "Which is greater: 67 - 25 or 21 + 20?",
+      options: [
+        "67 - 25",
+        "21 + 20",
+        "Bằng nhau"
+      ],
+      answer: "67 - 25",
+      hint: "Tính cả hai phép tính.",
+      explanation: "67 - 25 = 42; 21 + 20 = 41; 42 lớn hơn 41.",
+      xp: 20
+    },
+    {
+      id: "arith-q43",
+      topic: "arithmetic",
+      lessonId: "arith-lesson-4",
+      difficulty: 1,
+      type: "fill-blank",
+      question: "Điền số vào ô trống: [ ? ] + 6 = 14",
+      questionEn: "Fill in the blank: [ ? ] + 6 = 14",
+      answer: "8",
+      hint: "Lấy tổng trừ đi số đã biết.",
+      explanation: "14 - 6 = 8. Thử lại: 8 + 6 = 14.",
+      xp: 10
+    },
+    {
+      id: "arith-q44",
+      topic: "arithmetic",
+      lessonId: "arith-lesson-4",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Điền dấu thích hợp vào ô trống: 12 [ ? ] 5 = 7",
+      questionEn: "Fill in the correct sign: 12 [ ? ] 5 = 7",
+      options: [
+        "+",
+        "-"
+      ],
+      answer: "-",
+      hint: "Kết quả 7 bé hơn 12, vậy là cộng hay trừ?",
+      explanation: "12 - 5 = 7 nên điền dấu trừ (-).",
+      xp: 15
+    },
+    {
+      id: "arith-q45",
+      topic: "arithmetic",
+      lessonId: "arith-lesson-4",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Nếu ⭐ + ⭐ + ⭐ = 15 thì ⭐ bằng bao nhiêu?",
+      questionEn: "If ⭐ + ⭐ + ⭐ = 15, what is ⭐?",
+      visual: "⭐ ➕ ⭐ ➕ ⭐ 🟰 15",
+      options: [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      answer: "5",
+      hint: "Thử từng đáp án: 3 số giống nhau cộng lại bằng 15.",
+      explanation: "5 + 5 + 5 = 15 nên ⭐ = 5.",
+      xp: 15
+    },
+    {
+      id: "arith-q46",
+      topic: "arithmetic",
+      lessonId: "arith-lesson-4",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Điền số: 18 - [ ? ] = 4 + 5",
+      questionEn: "Fill in the number: 18 - [ ? ] = 4 + 5",
+      answer: "9",
+      hint: "Tính vế phải trước.",
+      explanation: "4 + 5 = 9; 18 - [ ? ] = 9 ➔ [ ? ] = 18 - 9 = 9.",
+      xp: 20
+    },
+    {
+      id: "arith-q47",
+      topic: "arithmetic",
+      lessonId: "arith-lesson-5",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Tìm số tiếp theo: 10, 20, 30, 40, ?",
+      questionEn: "Find the next number: 10, 20, 30, 40, ?",
+      options: [
+        "41",
+        "45",
+        "50",
+        "60"
+      ],
+      answer: "50",
+      hint: "Mỗi số tăng thêm 10.",
+      explanation: "40 + 10 = 50.",
+      xp: 10
+    },
+    {
+      id: "arith-q48",
+      topic: "arithmetic",
+      lessonId: "arith-lesson-5",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Điền số tiếp theo: 1, 3, 5, 7, 9, [ ? ]",
+      questionEn: "Fill in the next number: 1, 3, 5, 7, 9, [ ? ]",
+      answer: "11",
+      hint: "Mỗi số tăng thêm 2.",
+      explanation: "9 + 2 = 11.",
+      xp: 15
+    },
+    {
+      id: "arith-q49",
+      topic: "arithmetic",
+      lessonId: "arith-lesson-5",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Tìm số tiếp theo: 20, 18, 16, 14, ?",
+      questionEn: "Find the next number: 20, 18, 16, 14, ?",
+      options: [
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      answer: "12",
+      hint: "Mỗi số giảm đi 2.",
+      explanation: "14 - 2 = 12.",
+      xp: 15
+    },
+    {
+      id: "arith-q50",
+      topic: "arithmetic",
+      lessonId: "arith-lesson-5",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Điền số tiếp theo: 1, 1, 2, 3, 5, 8, [ ? ]",
+      questionEn: "Fill in the next number: 1, 1, 2, 3, 5, 8, [ ? ]",
+      answer: "13",
+      hint: "Mỗi số bằng tổng của 2 số đứng ngay trước nó.",
+      explanation: "1+1=2, 1+2=3, 2+3=5, 3+5=8, 5+8=13.",
+      xp: 20
+    },
+    {
+      id: "geo-q26",
+      topic: "geometry",
+      lessonId: "geo-lesson-1",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Bánh xe đạp có dạng hình gì?",
+      questionEn: "What shape is a bicycle wheel?",
+      visual: "🚲",
+      options: [
+        "Hình vuông",
+        "Hình tam giác",
+        "Hình tròn",
+        "Hình chữ nhật"
+      ],
+      answer: "Hình tròn",
+      hint: "Bánh xe lăn tròn được.",
+      explanation: "Bánh xe có dạng hình tròn.",
+      xp: 10
+    },
+    {
+      id: "geo-q27",
+      topic: "geometry",
+      lessonId: "geo-lesson-1",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Tìm hình tiếp theo: 🔴 🔺 🔴 🔺 🔴 ?",
+      questionEn: "Find the next shape: 🔴 🔺 🔴 🔺 🔴 ?",
+      visual: "🔴 🔺 🔴 🔺 🔴 ❓",
+      options: [
+        "🔴",
+        "🔺",
+        "🟦",
+        "⭐"
+      ],
+      answer: "🔺",
+      hint: "Hai hình lặp đi lặp lại.",
+      explanation: "Quy luật lặp: 🔴 🔺. Sau 🔴 là 🔺.",
+      xp: 10
+    },
+    {
+      id: "geo-q28",
+      topic: "geometry",
+      lessonId: "geo-lesson-1",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Tìm hình tiếp theo: 🟦 🟦 🔺 🟦 🟦 🔺 🟦 ?",
+      questionEn: "Find the next shape: 🟦 🟦 🔺 🟦 🟦 🔺 🟦 ?",
+      visual: "🟦 🟦 🔺 🟦 🟦 🔺 🟦 ❓",
+      options: [
+        "🟦",
+        "🔺",
+        "🔴",
+        "⭐"
+      ],
+      answer: "🟦",
+      hint: "Nhóm lặp gồm 3 hình: 🟦 🟦 🔺.",
+      explanation: "Nhóm thứ 3 bắt đầu bằng 🟦, hình tiếp theo vẫn là 🟦.",
+      xp: 15
+    },
+    {
+      id: "geo-q29",
+      topic: "geometry",
+      lessonId: "geo-lesson-1",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Hình chữ nhật có mấy cạnh?",
+      questionEn: "How many sides does a rectangle have?",
+      visual: "▭",
+      options: [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      answer: "4",
+      hint: "Đếm các cạnh xung quanh hình.",
+      explanation: "Hình chữ nhật có 4 cạnh (2 cạnh dài, 2 cạnh ngắn).",
+      xp: 10
+    },
+    {
+      id: "geo-q30",
+      topic: "geometry",
+      lessonId: "geo-lesson-1",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Dãy quả lặp lại: 🍎 🍌 🍇 🍎 🍌 🍇 ... Quả thứ 10 là quả gì?",
+      questionEn: "Repeating pattern: 🍎 🍌 🍇 🍎 🍌 🍇 ... What is the 10th fruit?",
+      visual: "🍎 🍌 🍇 🍎 🍌 🍇 ...",
+      options: [
+        "🍎",
+        "🍌",
+        "🍇"
+      ],
+      answer: "🍎",
+      hint: "Mỗi nhóm 3 quả. Quả thứ 9 là quả cuối của nhóm thứ 3.",
+      explanation: "Quả thứ 3, 6, 9 là 🍇 ➔ quả thứ 10 bắt đầu nhóm mới: 🍎.",
+      xp: 20
+    },
+    {
+      id: "geo-q31",
+      topic: "geometry",
+      lessonId: "geo-lesson-2",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Một hình vuông được kẻ 1 đường chéo. Hỏi có bao nhiêu hình tam giác?",
+      questionEn: "A square has one diagonal drawn. How many triangles are there?",
+      visual: "◩",
+      options: [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      answer: "2",
+      hint: "Đường chéo chia hình vuông thành 2 phần.",
+      explanation: "Có 2 hình tam giác.",
+      xp: 10
+    },
+    {
+      id: "geo-q32",
+      topic: "geometry",
+      lessonId: "geo-lesson-2",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Hình chữ nhật được chia thành 2 ô vuông bằng nhau. Có tất cả bao nhiêu hình chữ nhật (kể cả hình vuông)? [ ? ]",
+      questionEn: "A rectangle is split into 2 equal squares. How many rectangles (including squares) are there? [ ? ]",
+      visual: "⬜⬜",
+      answer: "3",
+      hint: "Đếm hình 1 ô và hình 2 ô.",
+      explanation: "2 hình 1 ô + 1 hình 2 ô = 3 hình.",
+      xp: 15
+    },
+    {
+      id: "geo-q33",
+      topic: "geometry",
+      lessonId: "geo-lesson-2",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Đếm số hình tròn trong dãy sau:",
+      questionEn: "Count the circles below:",
+      visual: "🔴 🔵 🔺 🔴 🟦 🔵 🔴",
+      options: [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      answer: "5",
+      hint: "Chỉ đếm hình tròn (🔴 🔵), bỏ qua 🔺 và 🟦.",
+      explanation: "🔴 🔵 🔴 🔵 🔴 = 5 hình tròn.",
+      xp: 15
+    },
+    {
+      id: "geo-q34",
+      topic: "geometry",
+      lessonId: "geo-lesson-2",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Một hình tam giác lớn được kẻ 3 đường từ đỉnh xuống đáy, chia thành 4 tam giác nhỏ. Có tất cả bao nhiêu hình tam giác? [ ? ]",
+      questionEn: "A big triangle has 3 lines from the top to the base, making 4 small triangles. How many triangles in total? [ ? ]",
+      visual: "🔺",
+      answer: "10",
+      hint: "Đếm tam giác gồm 1, 2, 3, 4 phần nhỏ.",
+      explanation: "4 + 3 + 2 + 1 = 10 hình tam giác.",
+      xp: 20
+    },
+    {
+      id: "geo-q35",
+      topic: "geometry",
+      lessonId: "geo-lesson-2",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Một lưới 2 hàng, 2 cột (4 ô vuông). Có tất cả bao nhiêu hình chữ nhật (kể cả hình vuông)?",
+      questionEn: "A 2×2 grid has 4 squares. How many rectangles (including squares) are there?",
+      visual: "⬜⬜<br>⬜⬜",
+      options: [
+        "5",
+        "7",
+        "9",
+        "10"
+      ],
+      answer: "9",
+      hint: "Đếm hình 1 ô, 2 ô ngang, 2 ô dọc và 4 ô.",
+      explanation: "4 (1 ô) + 2 (2 ô ngang) + 2 (2 ô dọc) + 1 (4 ô) = 9 hình.",
+      xp: 20
+    },
+    {
+      id: "geo-q36",
+      topic: "geometry",
+      lessonId: "geo-lesson-3",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Cần bao nhiêu que diêm để xếp được 1 hình vuông (mỗi cạnh 1 que)?",
+      questionEn: "How many matchsticks make 1 square (1 stick per side)?",
+      options: [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      answer: "4",
+      hint: "Hình vuông có mấy cạnh?",
+      explanation: "Hình vuông có 4 cạnh ➔ cần 4 que diêm.",
+      xp: 10
+    },
+    {
+      id: "geo-q37",
+      topic: "geometry",
+      lessonId: "geo-lesson-3",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Xếp 2 hình vuông cạnh nhau, chung 1 cạnh. Cần ít nhất bao nhiêu que diêm? [ ? ]",
+      questionEn: "Make 2 squares side by side sharing 1 side. At least how many matchsticks? [ ? ]",
+      visual: "⬜⬜",
+      answer: "7",
+      hint: "Hình thứ hai dùng lại 1 cạnh của hình thứ nhất.",
+      explanation: "4 + 3 = 7 que diêm.",
+      xp: 15
+    },
+    {
+      id: "geo-q38",
+      topic: "geometry",
+      lessonId: "geo-lesson-3",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Cắt hình vuông theo 1 đường chéo, bé được 2 hình gì?",
+      questionEn: "Cut a square along a diagonal. What 2 shapes do you get?",
+      options: [
+        "Hình tròn",
+        "Hình tam giác",
+        "Hình vuông",
+        "Hình chữ nhật"
+      ],
+      answer: "Hình tam giác",
+      hint: "Mỗi phần có mấy cạnh?",
+      explanation: "Mỗi phần có 3 cạnh ➔ 2 hình tam giác.",
+      xp: 15
+    },
+    {
+      id: "geo-q39",
+      topic: "geometry",
+      lessonId: "geo-lesson-3",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Xếp 3 hình vuông thành một hàng, 2 hình cạnh nhau chung 1 cạnh. Cần bao nhiêu que diêm? [ ? ]",
+      questionEn: "Make 3 squares in a row, neighbours sharing a side. How many matchsticks? [ ? ]",
+      visual: "⬜⬜⬜",
+      answer: "10",
+      hint: "Hình đầu cần 4 que, mỗi hình sau cần thêm 3 que.",
+      explanation: "4 + 3 + 3 = 10 que diêm.",
+      xp: 20
+    },
+    {
+      id: "geo-q40",
+      topic: "geometry",
+      lessonId: "geo-lesson-3",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Có 9 que diêm xếp thành 3 hình tam giác rời nhau. Bớt đi 3 que thì còn lại nhiều nhất mấy hình tam giác?",
+      questionEn: "9 matchsticks form 3 separate triangles. If 3 sticks are removed, at most how many triangles remain?",
+      visual: "🔺 🔺 🔺",
+      options: [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      answer: "2",
+      hint: "Bớt cả 3 que của cùng 1 tam giác.",
+      explanation: "Bớt hết 3 que của 1 tam giác thì 2 tam giác còn lại vẫn nguyên.",
+      xp: 20
+    },
+    {
+      id: "geo-q41",
+      topic: "geometry",
+      lessonId: "geo-lesson-4",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Bút chì dài 15 cm, thước kẻ dài 20 cm. Thước dài hơn bút chì bao nhiêu xăng-ti-mét?",
+      questionEn: "A pencil is 15 cm long and a ruler is 20 cm. How much longer is the ruler?",
+      visual: "✏️ 15 cm 📏 20 cm",
+      options: [
+        "3 cm",
+        "5 cm",
+        "10 cm",
+        "35 cm"
+      ],
+      answer: "5 cm",
+      hint: "Lấy độ dài lớn trừ độ dài bé.",
+      explanation: "20 - 15 = 5 cm.",
+      xp: 10
+    },
+    {
+      id: "geo-q42",
+      topic: "geometry",
+      lessonId: "geo-lesson-4",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "A, B, C thẳng hàng, B ở giữa. AB dài 8 cm, BC dài 7 cm. Đoạn AC dài bao nhiêu cm? [ ? ]",
+      questionEn: "A, B, C are on a line with B in the middle. AB = 8 cm, BC = 7 cm. How long is AC in cm? [ ? ]",
+      visual: "A———B———C",
+      answer: "15",
+      hint: "AC gồm AB và BC.",
+      explanation: "AC = 8 + 7 = 15 cm.",
+      xp: 15
+    },
+    {
+      id: "geo-q43",
+      topic: "geometry",
+      lessonId: "geo-lesson-4",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Hình tam giác được tạo bởi bao nhiêu đoạn thẳng?",
+      questionEn: "How many line segments form a triangle?",
+      visual: "🔺",
+      options: [
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      answer: "3",
+      hint: "Đếm các cạnh.",
+      explanation: "Hình tam giác có 3 cạnh = 3 đoạn thẳng.",
+      xp: 10
+    },
+    {
+      id: "geo-q44",
+      topic: "geometry",
+      lessonId: "geo-lesson-4",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Sợi dây dài 20 cm. Bé cắt đi 6 cm, rồi cắt tiếp 5 cm. Sợi dây còn lại dài bao nhiêu cm? [ ? ]",
+      questionEn: "A string is 20 cm. Cut off 6 cm, then 5 cm more. How long is it now in cm? [ ? ]",
+      answer: "9",
+      hint: "Trừ lần lượt hai đoạn đã cắt.",
+      explanation: "20 - 6 = 14; 14 - 5 = 9 cm.",
+      xp: 20
+    },
+    {
+      id: "geo-q45",
+      topic: "geometry",
+      lessonId: "geo-lesson-4",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Một chú kiến bò 1 vòng quanh hình vuông, mỗi cạnh dài 3 cm. Kiến bò được bao nhiêu cm?",
+      questionEn: "An ant walks once around a square with 3 cm sides. How far does it walk?",
+      visual: "🐜 ⬜",
+      options: [
+        "6 cm",
+        "9 cm",
+        "12 cm",
+        "15 cm"
+      ],
+      answer: "12 cm",
+      hint: "Hình vuông có 4 cạnh bằng nhau.",
+      explanation: "3 + 3 + 3 + 3 = 12 cm.",
+      xp: 20
+    },
+    {
+      id: "geo-q46",
+      topic: "geometry",
+      lessonId: "geo-lesson-5",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Quả bóng đá có dạng khối gì?",
+      questionEn: "What solid shape is a football?",
+      visual: "⚽",
+      options: [
+        "Khối lập phương",
+        "Khối cầu",
+        "Khối trụ",
+        "Khối hộp chữ nhật"
+      ],
+      answer: "Khối cầu",
+      hint: "Quả bóng tròn đều mọi phía.",
+      explanation: "Quả bóng có dạng khối cầu.",
+      xp: 10
+    },
+    {
+      id: "geo-q47",
+      topic: "geometry",
+      lessonId: "geo-lesson-5",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Viên gạch có dạng khối gì?",
+      questionEn: "What solid shape is a brick?",
+      visual: "🧱",
+      options: [
+        "Khối cầu",
+        "Khối trụ",
+        "Khối hộp chữ nhật",
+        "Hình tròn"
+      ],
+      answer: "Khối hộp chữ nhật",
+      hint: "Viên gạch có 6 mặt là hình chữ nhật.",
+      explanation: "Viên gạch có dạng khối hộp chữ nhật.",
+      xp: 10
+    },
+    {
+      id: "geo-q48",
+      topic: "geometry",
+      lessonId: "geo-lesson-5",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Xếp 2 tầng khối lập phương: tầng dưới 4 khối, tầng trên 2 khối. Có tất cả bao nhiêu khối? [ ? ]",
+      questionEn: "Two layers of cubes: 4 on the bottom, 2 on top. How many cubes? [ ? ]",
+      visual: "🟫🟫<br>🟫🟫🟫🟫",
+      answer: "6",
+      hint: "Cộng số khối 2 tầng.",
+      explanation: "4 + 2 = 6 khối.",
+      xp: 15
+    },
+    {
+      id: "geo-q49",
+      topic: "geometry",
+      lessonId: "geo-lesson-5",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Mèo ngồi trên cái hộp, chó nằm dưới gầm bàn, cái hộp đặt trên mặt bàn. Con nào ở cao hơn?",
+      questionEn: "A cat sits on a box, the box is on a table, and a dog lies under the table. Which animal is higher?",
+      visual: "🐱📦 / 🪑 / 🐶",
+      options: [
+        "Con mèo",
+        "Con chó",
+        "Cao bằng nhau"
+      ],
+      answer: "Con mèo",
+      hint: "Mèo ở trên bàn, chó ở dưới bàn.",
+      explanation: "Mèo ở trên hộp, trên bàn ➔ mèo cao hơn chó.",
+      xp: 15
+    },
+    {
+      id: "geo-q50",
+      topic: "geometry",
+      lessonId: "geo-lesson-5",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Tháp 3 tầng khối lập phương: tầng trên cùng 1 khối, mỗi tầng phía dưới nhiều hơn tầng ngay trên nó 2 khối. Tháp có tất cả bao nhiêu khối? [ ? ]",
+      questionEn: "A 3-level tower: 1 cube on top, each lower level has 2 more cubes than the level above. How many cubes? [ ? ]",
+      answer: "9",
+      hint: "Tầng trên 1, tầng giữa 3, tầng dưới 5.",
+      explanation: "1 + 3 + 5 = 9 khối.",
+      xp: 20
+    },
+    {
+      id: "logic-q26",
+      topic: "logic",
+      lessonId: "logic-lesson-1",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Một tuần lễ có mấy ngày?",
+      questionEn: "How many days are there in a week?",
+      visual: "📅",
+      options: [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      answer: "7",
+      hint: "Kể từ Thứ Hai đến Chủ Nhật.",
+      explanation: "Thứ Hai, Ba, Tư, Năm, Sáu, Bảy, Chủ Nhật = 7 ngày.",
+      xp: 10
+    },
+    {
+      id: "logic-q27",
+      topic: "logic",
+      lessonId: "logic-lesson-1",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Kim ngắn chỉ số 3, kim dài chỉ số 12. Đồng hồ chỉ mấy giờ?",
+      questionEn: "The short hand points to 3 and the long hand to 12. What time is it?",
+      visual: "🕒",
+      options: [
+        "3 giờ",
+        "12 giờ",
+        "3 giờ 30 phút",
+        "12 giờ 15 phút"
+      ],
+      answer: "3 giờ",
+      hint: "Kim ngắn chỉ giờ, kim dài chỉ số 12 là giờ đúng.",
+      explanation: "Kim ngắn ở số 3, kim dài ở số 12 ➔ 3 giờ đúng.",
+      xp: 10
+    },
+    {
+      id: "logic-q28",
+      topic: "logic",
+      lessonId: "logic-lesson-1",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Thứ Hai tuần này là ngày 8. Thứ Hai tuần sau là ngày bao nhiêu?",
+      questionEn: "This Monday is the 8th. What date is next Monday?",
+      options: [
+        "9",
+        "14",
+        "15",
+        "16"
+      ],
+      answer: "15",
+      hint: "Cùng một thứ ở tuần sau thì cộng thêm 7 ngày.",
+      explanation: "8 + 7 = 15.",
+      xp: 15
+    },
+    {
+      id: "logic-q29",
+      topic: "logic",
+      lessonId: "logic-lesson-1",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Bé đi ngủ lúc 9 giờ tối và thức dậy lúc 6 giờ sáng hôm sau. Bé ngủ được mấy tiếng? [ ? ]",
+      questionEn: "A child sleeps at 9 pm and wakes at 6 am. How many hours of sleep? [ ? ]",
+      visual: "🌙 ➔ ☀️",
+      answer: "9",
+      hint: "Đếm từ 9 giờ tối đến 12 giờ đêm, rồi từ 12 giờ đêm đến 6 giờ sáng.",
+      explanation: "9 giờ → 12 giờ: 3 tiếng; 12 giờ → 6 giờ: 6 tiếng; 3 + 6 = 9 tiếng.",
+      xp: 20
+    },
+    {
+      id: "logic-q30",
+      topic: "logic",
+      lessonId: "logic-lesson-1",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Ngày 1 tháng này là Thứ Sáu. Ngày 3 tháng này là thứ mấy?",
+      questionEn: "The 1st of this month is a Friday. What day is the 3rd?",
+      options: [
+        "Thứ Bảy",
+        "Chủ Nhật",
+        "Thứ Hai",
+        "Thứ Năm"
+      ],
+      answer: "Chủ Nhật",
+      hint: "Ngày 3 cách ngày 1 là 2 ngày.",
+      explanation: "Ngày 1: Thứ Sáu; ngày 2: Thứ Bảy; ngày 3: Chủ Nhật.",
+      xp: 15
+    },
+    {
+      id: "logic-q31",
+      topic: "logic",
+      lessonId: "logic-lesson-2",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Hôm nay là Thứ Hai. Ngày mai là thứ mấy?",
+      questionEn: "Today is Monday. What day is tomorrow?",
+      options: [
+        "Chủ Nhật",
+        "Thứ Ba",
+        "Thứ Tư",
+        "Thứ Hai"
+      ],
+      answer: "Thứ Ba",
+      hint: "Ngày mai = hôm nay + 1 ngày.",
+      explanation: "Thứ Hai + 1 ngày = Thứ Ba.",
+      xp: 10
+    },
+    {
+      id: "logic-q32",
+      topic: "logic",
+      lessonId: "logic-lesson-2",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Hôm nay là Thứ Năm. Hôm qua là thứ mấy?",
+      questionEn: "Today is Thursday. What day was yesterday?",
+      options: [
+        "Thứ Ba",
+        "Thứ Tư",
+        "Thứ Sáu",
+        "Thứ Bảy"
+      ],
+      answer: "Thứ Tư",
+      hint: "Hôm qua = hôm nay - 1 ngày.",
+      explanation: "Thứ Năm - 1 ngày = Thứ Tư.",
+      xp: 10
+    },
+    {
+      id: "logic-q33",
+      topic: "logic",
+      lessonId: "logic-lesson-2",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Ngày mai của hôm qua là ngày nào?",
+      questionEn: "What is the day after yesterday?",
+      options: [
+        "Hôm kia",
+        "Hôm qua",
+        "Hôm nay",
+        "Ngày mai"
+      ],
+      answer: "Hôm nay",
+      hint: "Từ hôm qua tiến thêm 1 ngày.",
+      explanation: "Hôm qua + 1 ngày = hôm nay.",
+      xp: 15
+    },
+    {
+      id: "logic-q34",
+      topic: "logic",
+      lessonId: "logic-lesson-2",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Hôm nay là ngày 20. Hôm kia là ngày bao nhiêu? [ ? ]",
+      questionEn: "Today is the 20th. What date was the day before yesterday? [ ? ]",
+      answer: "18",
+      hint: "Hôm kia = hôm nay - 2 ngày.",
+      explanation: "20 - 2 = 18.",
+      xp: 15
+    },
+    {
+      id: "logic-q35",
+      topic: "logic",
+      lessonId: "logic-lesson-2",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Nếu hôm kia là Thứ Sáu thì ngày mai là thứ mấy?",
+      questionEn: "If the day before yesterday was Friday, what day is tomorrow?",
+      options: [
+        "Chủ Nhật",
+        "Thứ Hai",
+        "Thứ Ba",
+        "Thứ Bảy"
+      ],
+      answer: "Thứ Hai",
+      hint: "Tìm hôm nay trước: hôm kia + 2 ngày.",
+      explanation: "Thứ Sáu + 2 = Chủ Nhật (hôm nay) ➔ ngày mai là Thứ Hai.",
+      xp: 20
+    },
+    {
+      id: "logic-q36",
+      topic: "logic",
+      lessonId: "logic-lesson-3",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Hàng có 5 bạn. Bạn Tú đứng thứ 2 tính từ đầu hàng. Tú đứng thứ mấy tính từ cuối hàng?",
+      questionEn: "There are 5 children in a line. Tu is 2nd from the front. What is Tu's position from the back?",
+      visual: "🧒🧒🧒🧒🧒",
+      options: [
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      answer: "4",
+      hint: "Đếm số bạn đứng sau Tú rồi cộng 1.",
+      explanation: "Sau Tú có 5 - 2 = 3 bạn ➔ Tú đứng thứ 3 + 1 = 4 từ cuối.",
+      xp: 10
+    },
+    {
+      id: "logic-q37",
+      topic: "logic",
+      lessonId: "logic-lesson-3",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Trồng 5 cây thẳng hàng, 2 cây cạnh nhau cách nhau 2 m. Từ cây đầu đến cây cuối dài bao nhiêu mét? [ ? ]",
+      questionEn: "5 trees are planted in a row, 2 m apart. How many metres from the first tree to the last? [ ? ]",
+      visual: "🌳—🌳—🌳—🌳—🌳",
+      answer: "8",
+      hint: "5 cây thì có 4 khoảng cách.",
+      explanation: "Số khoảng = 5 - 1 = 4; 2 + 2 + 2 + 2 = 8 m.",
+      xp: 20
+    },
+    {
+      id: "logic-q38",
+      topic: "logic",
+      lessonId: "logic-lesson-3",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Trồng 6 cây thẳng hàng. Giữa các cây liền nhau có tất cả mấy khoảng cách?",
+      questionEn: "6 trees are planted in a row. How many gaps are there between neighbouring trees?",
+      visual: "🌳🌳🌳🌳🌳🌳",
+      options: [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      answer: "5",
+      hint: "Số khoảng cách = số cây - 1.",
+      explanation: "6 - 1 = 5 khoảng cách.",
+      xp: 10
+    },
+    {
+      id: "logic-q39",
+      topic: "logic",
+      lessonId: "logic-lesson-3",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Đi từ tầng 1 lên tầng 2 phải leo 10 bậc thang. Đi từ tầng 1 lên tầng 3 phải leo bao nhiêu bậc? [ ? ]",
+      questionEn: "From floor 1 to floor 2 there are 10 steps. How many steps from floor 1 to floor 3? [ ? ]",
+      visual: "🪜",
+      answer: "20",
+      hint: "Từ tầng 1 lên tầng 3 phải đi qua 2 đoạn cầu thang.",
+      explanation: "Tầng 1 → 2: 10 bậc; tầng 2 → 3: 10 bậc; 10 + 10 = 20 bậc.",
+      xp: 20
+    },
+    {
+      id: "logic-q40",
+      topic: "logic",
+      lessonId: "logic-lesson-3",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Có 4 bạn xếp hàng, giữa 2 bạn đứng liền nhau đặt 1 chậu hoa. Có mấy chậu hoa?",
+      questionEn: "4 children stand in a line with a flower pot between each two neighbours. How many pots?",
+      visual: "🧒🌷🧒🌷🧒🌷🧒",
+      options: [
+        "3",
+        "4",
+        "5",
+        "2"
+      ],
+      answer: "3",
+      hint: "Đếm số khoảng giữa các bạn.",
+      explanation: "4 bạn có 4 - 1 = 3 khoảng ➔ 3 chậu hoa.",
+      xp: 15
+    },
+    {
+      id: "logic-q41",
+      topic: "logic",
+      lessonId: "logic-lesson-4",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Ba con vật xếp hàng: 🐱 🐶 🐰. Con nào đứng ở giữa?",
+      questionEn: "Three animals stand in a row: 🐱 🐶 🐰. Which one is in the middle?",
+      visual: "🐱 🐶 🐰",
+      options: [
+        "Con mèo",
+        "Con chó",
+        "Con thỏ"
+      ],
+      answer: "Con chó",
+      hint: "Con ở giữa có 1 bạn bên trái, 1 bạn bên phải.",
+      explanation: "Chó đứng giữa mèo và thỏ.",
+      xp: 10
+    },
+    {
+      id: "logic-q42",
+      topic: "logic",
+      lessonId: "logic-lesson-4",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Bé giơ tay phải lên rồi quay người ra phía sau. Lúc này tay bé đang giơ là tay nào?",
+      questionEn: "You raise your right hand and turn around. Which hand is raised now?",
+      visual: "✋",
+      options: [
+        "Tay phải",
+        "Tay trái"
+      ],
+      answer: "Tay phải",
+      hint: "Quay người không làm đổi tay của bé.",
+      explanation: "Bé vẫn giơ tay phải; chỉ hướng nhìn thay đổi.",
+      xp: 15
+    },
+    {
+      id: "logic-q43",
+      topic: "logic",
+      lessonId: "logic-lesson-4",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Lan ngồi bên trái Mai. Mai ngồi bên trái Hồng. Ai ngồi ở giữa?",
+      questionEn: "Lan sits to the left of Mai. Mai sits to the left of Hong. Who is in the middle?",
+      options: [
+        "Lan",
+        "Mai",
+        "Hồng"
+      ],
+      answer: "Mai",
+      hint: "Sắp xếp từ trái sang phải.",
+      explanation: "Thứ tự từ trái sang phải: Lan, Mai, Hồng ➔ Mai ở giữa.",
+      xp: 15
+    },
+    {
+      id: "logic-q44",
+      topic: "logic",
+      lessonId: "logic-lesson-4",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Trên giá có 7 quyển sách xếp thành hàng. Quyển truyện tranh đứng thứ 3 tính từ bên trái. Bên phải quyển truyện tranh có mấy quyển sách? [ ? ]",
+      questionEn: "7 books stand on a shelf. The comic is 3rd from the left. How many books are to its right? [ ? ]",
+      visual: "📚📚📕📚📚📚📚",
+      answer: "4",
+      hint: "Bỏ đi quyển truyện và các quyển bên trái nó.",
+      explanation: "7 - 3 = 4 quyển.",
+      xp: 15
+    },
+    {
+      id: "logic-q45",
+      topic: "logic",
+      lessonId: "logic-lesson-4",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Bốn bạn ngồi hàng ngang. An ngồi bên phải Bình. Cường ngồi bên trái Bình. Dũng ngồi ngoài cùng bên phải. Ai ngồi ngoài cùng bên trái?",
+      questionEn: "Four friends sit in a row. An is to the right of Binh. Cuong is to the left of Binh. Dung is at the far right. Who is at the far left?",
+      options: [
+        "An",
+        "Bình",
+        "Cường",
+        "Dũng"
+      ],
+      answer: "Cường",
+      hint: "Xếp Bình trước, rồi đặt Cường, An quanh Bình.",
+      explanation: "Thứ tự từ trái: Cường, Bình, An, Dũng ➔ Cường ngồi ngoài cùng bên trái.",
+      xp: 20
+    },
+    {
+      id: "logic-q46",
+      topic: "logic",
+      lessonId: "logic-lesson-5",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Đĩa cân bên trái có 1 quả dưa, đĩa bên phải có 3 quả táo. Cân thăng bằng. 1 quả dưa và 1 quả táo, quả nào nặng hơn?",
+      questionEn: "A balance has 1 melon on the left and 3 apples on the right, and it is level. Which is heavier: 1 melon or 1 apple?",
+      visual: "🍈 ⚖️ 🍎🍎🍎",
+      options: [
+        "Quả dưa",
+        "Quả táo",
+        "Nặng bằng nhau"
+      ],
+      answer: "Quả dưa",
+      hint: "1 quả dưa nặng bằng cả 3 quả táo.",
+      explanation: "1 quả dưa = 3 quả táo ➔ quả dưa nặng hơn 1 quả táo.",
+      xp: 10
+    },
+    {
+      id: "logic-q47",
+      topic: "logic",
+      lessonId: "logic-lesson-5",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Cân thăng bằng: 1 🍉 nặng bằng 2 🍍, 1 🍍 nặng bằng 2 🍎. Hỏi 1 🍉 nặng bằng mấy 🍎? [ ? ]",
+      questionEn: "1 🍉 weighs the same as 2 🍍, and 1 🍍 weighs the same as 2 🍎. How many 🍎 equal 1 🍉? [ ? ]",
+      visual: "🍉 ⚖️ 🍍🍍",
+      answer: "4",
+      hint: "Thay mỗi 🍍 bằng 2 🍎.",
+      explanation: "1 🍉 = 2 🍍 = 2 + 2 = 4 🍎.",
+      xp: 15
+    },
+    {
+      id: "logic-q48",
+      topic: "logic",
+      lessonId: "logic-lesson-5",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Lớp có 10 bạn thích vẽ, 8 bạn thích hát, trong đó 3 bạn thích cả vẽ và hát. Có bao nhiêu bạn chỉ thích vẽ? [ ? ]",
+      questionEn: "10 pupils like drawing and 8 like singing; 3 like both. How many like only drawing? [ ? ]",
+      visual: "🎨 ⭕⭕ 🎤",
+      answer: "7",
+      hint: "Vẽ sơ đồ 2 vòng tròn giao nhau (sơ đồ Venn).",
+      explanation: "Chỉ thích vẽ = 10 - 3 = 7 bạn.",
+      xp: 20
+    },
+    {
+      id: "logic-q49",
+      topic: "logic",
+      lessonId: "logic-lesson-5",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Bảng đếm quả: Táo 🍎🍎🍎, Cam 🍊🍊🍊🍊🍊, Lê 🍐🍐. Loại quả nào nhiều nhất?",
+      questionEn: "Fruit chart: Apples 🍎🍎🍎, Oranges 🍊🍊🍊🍊🍊, Pears 🍐🍐. Which fruit is the most?",
+      visual: "🍎×3 | 🍊×5 | 🍐×2",
+      options: [
+        "Táo",
+        "Cam",
+        "Lê"
+      ],
+      answer: "Cam",
+      hint: "Đếm từng loại quả.",
+      explanation: "Táo 3, Cam 5, Lê 2 ➔ Cam nhiều nhất.",
+      xp: 10
+    },
+    {
+      id: "logic-q50",
+      topic: "logic",
+      lessonId: "logic-lesson-5",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Mỗi bạn trong nhóm thích bóng đá hoặc cầu lông (có bạn thích cả hai). 6 bạn thích bóng đá, 5 bạn thích cầu lông, 2 bạn thích cả hai. Nhóm có bao nhiêu bạn? [ ? ]",
+      questionEn: "Each child likes football or badminton (some like both). 6 like football, 5 like badminton, 2 like both. How many children are in the group? [ ? ]",
+      visual: "⚽ ⭕⭕ 🏸",
+      answer: "9",
+      hint: "Các bạn thích cả hai bị đếm 2 lần.",
+      explanation: "6 + 5 - 2 = 9 bạn.",
+      xp: 20
+    },
+    {
+      id: "adv-q26",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-1",
+      difficulty: 1,
+      type: "fill-blank",
+      question: "Có 9 con gà, thêm 4 con nữa. Có tất cả bao nhiêu con gà? [ ? ]",
+      questionEn: "There are 9 chickens and 4 more come. How many chickens in total? [ ? ]",
+      visual: "🐔",
+      answer: "13",
+      hint: "Thêm thì làm phép cộng.",
+      explanation: "9 + 4 = 13 con gà.",
+      xp: 10
+    },
+    {
+      id: "adv-q27",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-1",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Có 18 quả bóng bay, 5 quả bị vỡ. Còn lại bao nhiêu quả bóng bay?",
+      questionEn: "There are 18 balloons and 5 pop. How many are left?",
+      visual: "🎈",
+      options: [
+        "12",
+        "13",
+        "14",
+        "23"
+      ],
+      answer: "13",
+      hint: "Bớt đi thì làm phép trừ.",
+      explanation: "18 - 5 = 13 quả.",
+      xp: 10
+    },
+    {
+      id: "adv-q28",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-1",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Tàu có 20 hành khách. Đến ga thứ nhất có 6 người xuống. Đến ga thứ hai có 3 người lên. Trên tàu lúc này có bao nhiêu người?",
+      questionEn: "A train has 20 passengers. 6 get off at the first station, 3 get on at the second. How many are on the train now?",
+      visual: "🚆",
+      options: [
+        "11",
+        "14",
+        "17",
+        "23"
+      ],
+      answer: "17",
+      hint: "Xuống thì trừ, lên thì cộng.",
+      explanation: "20 - 6 + 3 = 17 người.",
+      xp: 15
+    },
+    {
+      id: "adv-q29",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-1",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Mẹ mua 15 quả trứng, dùng 4 quả làm bánh và 3 quả để rán. Còn lại bao nhiêu quả trứng? [ ? ]",
+      questionEn: "Mum buys 15 eggs, uses 4 for a cake and 3 for frying. How many eggs are left? [ ? ]",
+      visual: "🥚",
+      answer: "8",
+      hint: "Trừ lần lượt số trứng đã dùng.",
+      explanation: "15 - 4 - 3 = 8 quả trứng.",
+      xp: 15
+    },
+    {
+      id: "adv-q30",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-1",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Nam có nhiều hơn Hà 5 viên bi. Hà có 9 viên bi. Hai bạn có tất cả bao nhiêu viên bi?",
+      questionEn: "Nam has 5 more marbles than Ha. Ha has 9. How many marbles do they have altogether?",
+      options: [
+        "14",
+        "19",
+        "23",
+        "24"
+      ],
+      answer: "23",
+      hint: "Tìm số bi của Nam trước.",
+      explanation: "Nam: 9 + 5 = 14 viên; cả hai: 14 + 9 = 23 viên.",
+      xp: 20
+    },
+    {
+      id: "adv-q31",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-2",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "An có 6 cái kẹo, Bình có 2 cái kẹo. An phải cho Bình mấy cái để hai bạn có số kẹo bằng nhau?",
+      questionEn: "An has 6 sweets, Binh has 2. How many must An give Binh so they have the same?",
+      visual: "🍬",
+      options: [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      answer: "2",
+      hint: "Chênh lệch chia đôi.",
+      explanation: "Chênh lệch 6 - 2 = 4; cho một nửa là 2 cái ➔ mỗi bạn 4 cái.",
+      xp: 10
+    },
+    {
+      id: "adv-q32",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-2",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "1 con cá đổi được 2 quả táo. Hỏi 3 con cá đổi được bao nhiêu quả táo? [ ? ]",
+      questionEn: "1 fish can be swapped for 2 apples. How many apples for 3 fish? [ ? ]",
+      visual: "🐟 = 🍎🍎",
+      answer: "6",
+      hint: "Mỗi con cá đổi được 2 quả.",
+      explanation: "2 + 2 + 2 = 6 quả táo.",
+      xp: 15
+    },
+    {
+      id: "adv-q33",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-2",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "2 viên bi xanh đổi được 1 viên bi đỏ. Muốn đổi lấy 4 viên bi đỏ cần bao nhiêu viên bi xanh?",
+      questionEn: "2 blue marbles swap for 1 red marble. How many blue marbles for 4 red ones?",
+      visual: "🔵🔵 = 🔴",
+      options: [
+        "2",
+        "4",
+        "6",
+        "8"
+      ],
+      answer: "8",
+      hint: "Mỗi viên đỏ cần 2 viên xanh.",
+      explanation: "2 + 2 + 2 + 2 = 8 viên bi xanh.",
+      xp: 15
+    },
+    {
+      id: "adv-q34",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-2",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Lan và Hoa có tổng cộng 16 nhãn vở, số nhãn của hai bạn bằng nhau. Nếu Lan cho Hoa 3 nhãn thì Hoa có bao nhiêu nhãn vở? [ ? ]",
+      questionEn: "Lan and Hoa have 16 stickers in total, the same number each. If Lan gives Hoa 3, how many does Hoa have? [ ? ]",
+      answer: "11",
+      hint: "Mỗi bạn có một nửa của 16.",
+      explanation: "Mỗi bạn có 8 nhãn; Hoa nhận thêm 3 ➔ 8 + 3 = 11 nhãn.",
+      xp: 20
+    },
+    {
+      id: "adv-q35",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-2",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Hộp A có 12 viên bi, hộp B có 4 viên bi. Phải chuyển bao nhiêu viên từ hộp A sang hộp B để hộp B nhiều hơn hộp A 2 viên?",
+      questionEn: "Box A has 12 marbles, box B has 4. How many should move from A to B so that B has 2 more than A?",
+      options: [
+        "4",
+        "5",
+        "6",
+        "8"
+      ],
+      answer: "5",
+      hint: "Tổng số bi không đổi là 16. Thử từng đáp án.",
+      explanation: "Chuyển 5 viên: A còn 7, B có 9; 9 - 7 = 2 ✔.",
+      xp: 20
+    },
+    {
+      id: "adv-q36",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-3",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Bé có 1 tờ 10 nghìn đồng và 1 tờ 5 nghìn đồng. Bé có tất cả bao nhiêu tiền?",
+      questionEn: "You have a 10-thousand note and a 5-thousand note. How much money do you have?",
+      visual: "💵 10 + 💵 5",
+      options: [
+        "5 nghìn đồng",
+        "10 nghìn đồng",
+        "15 nghìn đồng",
+        "20 nghìn đồng"
+      ],
+      answer: "15 nghìn đồng",
+      hint: "Cộng giá trị 2 tờ tiền.",
+      explanation: "10 + 5 = 15 nghìn đồng.",
+      xp: 10
+    },
+    {
+      id: "adv-q37",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-3",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Quyển vở giá 8 nghìn đồng, cái bút giá 6 nghìn đồng. Mua 1 quyển vở và 1 cái bút hết bao nhiêu nghìn đồng? [ ? ]",
+      questionEn: "A notebook costs 8 thousand and a pen 6 thousand. How much (in thousands) for one of each? [ ? ]",
+      visual: "📒 ✒️",
+      answer: "14",
+      hint: "Cộng giá hai món.",
+      explanation: "8 + 6 = 14 nghìn đồng.",
+      xp: 15
+    },
+    {
+      id: "adv-q38",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-3",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Bé có 20 nghìn đồng, mua một cái kẹp tóc giá 7 nghìn đồng. Bé còn lại bao nhiêu nghìn đồng?",
+      questionEn: "You have 20 thousand and buy a hair clip for 7 thousand. How much is left (in thousands)?",
+      options: [
+        "12",
+        "13",
+        "14",
+        "27"
+      ],
+      answer: "13",
+      hint: "Lấy số tiền có trừ giá kẹp tóc.",
+      explanation: "20 - 7 = 13 nghìn đồng.",
+      xp: 15
+    },
+    {
+      id: "adv-q39",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-3",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Một cái bánh giá 5 nghìn đồng. Bé có 18 nghìn đồng. Bé mua được nhiều nhất mấy cái bánh? [ ? ]",
+      questionEn: "A cake costs 5 thousand. You have 18 thousand. At most how many cakes can you buy? [ ? ]",
+      visual: "🧁",
+      answer: "3",
+      hint: "Cộng dần 5, 10, 15, 20 và so với 18.",
+      explanation: "3 cái hết 15 nghìn (≤ 18); 4 cái hết 20 nghìn (> 18) ➔ nhiều nhất 3 cái.",
+      xp: 20
+    },
+    {
+      id: "adv-q40",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-3",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Mua 2 cái kem giá bằng nhau hết 12 nghìn đồng. Mỗi cái kem giá bao nhiêu?",
+      questionEn: "2 ice creams of the same price cost 12 thousand. How much is one?",
+      visual: "🍦🍦",
+      options: [
+        "5 nghìn đồng",
+        "6 nghìn đồng",
+        "7 nghìn đồng",
+        "10 nghìn đồng"
+      ],
+      answer: "6 nghìn đồng",
+      hint: "Tìm số cộng với chính nó bằng 12.",
+      explanation: "6 + 6 = 12 ➔ mỗi cái 6 nghìn đồng.",
+      xp: 20
+    },
+    {
+      id: "adv-q41",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-4",
+      difficulty: 1,
+      type: "fill-blank",
+      question: "Năm nay Bin 6 tuổi. Năm ngoái Bin mấy tuổi? [ ? ]",
+      questionEn: "Bin is 6 this year. How old was Bin last year? [ ? ]",
+      visual: "🎂",
+      answer: "5",
+      hint: "Năm ngoái ít hơn năm nay 1 tuổi.",
+      explanation: "6 - 1 = 5 tuổi.",
+      xp: 10
+    },
+    {
+      id: "adv-q42",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-4",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Bố 35 tuổi, con 7 tuổi. Bố hơn con bao nhiêu tuổi?",
+      questionEn: "Dad is 35 and his child is 7. How much older is Dad?",
+      visual: "👨 👦",
+      options: [
+        "27",
+        "28",
+        "32",
+        "42"
+      ],
+      answer: "28",
+      hint: "Lấy tuổi bố trừ tuổi con.",
+      explanation: "35 - 7 = 28 tuổi.",
+      xp: 10
+    },
+    {
+      id: "adv-q43",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-4",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Năm nay chị 9 tuổi, em 5 tuổi. Khi chị 12 tuổi thì em bao nhiêu tuổi?",
+      questionEn: "The sister is 9 and the brother is 5. When the sister is 12, how old will the brother be?",
+      options: [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      answer: "8",
+      hint: "Hiệu số tuổi không bao giờ thay đổi.",
+      explanation: "Chị hơn em 9 - 5 = 4 tuổi ➔ em 12 - 4 = 8 tuổi.",
+      xp: 15
+    },
+    {
+      id: "adv-q44",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-4",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Năm nay tổng số tuổi của hai anh em là 15. Sau 2 năm nữa, tổng số tuổi của hai anh em là bao nhiêu? [ ? ]",
+      questionEn: "The two brothers' ages add up to 15 now. What will the total be in 2 years? [ ? ]",
+      answer: "19",
+      hint: "Mỗi người thêm 2 tuổi.",
+      explanation: "15 + 2 + 2 = 19 tuổi.",
+      xp: 15
+    },
+    {
+      id: "adv-q45",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-4",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Anh hơn em 3 tuổi. Tổng số tuổi hai anh em là 13. Anh bao nhiêu tuổi?",
+      questionEn: "The older brother is 3 years older. Their ages add up to 13. How old is the older brother?",
+      options: [
+        "5",
+        "7",
+        "8",
+        "10"
+      ],
+      answer: "8",
+      hint: "Thử: hai số hơn kém nhau 3 và cộng lại bằng 13.",
+      explanation: "Anh 8, em 5: 8 + 5 = 13 và 8 - 5 = 3 ✔.",
+      xp: 20
+    },
+    {
+      id: "adv-q46",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-5",
+      difficulty: 1,
+      type: "fill-blank",
+      question: "Một số trừ đi 4 thì được 10. Số đó là bao nhiêu? [ ? ]",
+      questionEn: "A number minus 4 equals 10. What is the number? [ ? ]",
+      answer: "14",
+      hint: "Làm ngược lại: cộng 4 vào 10.",
+      explanation: "10 + 4 = 14.",
+      xp: 10
+    },
+    {
+      id: "adv-q47",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-5",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Gấu có một số hũ mật. Gấu ăn hết 5 hũ thì còn 7 hũ. Lúc đầu Gấu có mấy hũ mật?",
+      questionEn: "Bear has some honey jars. After eating 5, there are 7 left. How many jars at first?",
+      visual: "🐻🍯",
+      options: [
+        "2",
+        "10",
+        "12",
+        "13"
+      ],
+      answer: "12",
+      hint: "Cộng số đã ăn với số còn lại.",
+      explanation: "7 + 5 = 12 hũ.",
+      xp: 15
+    },
+    {
+      id: "adv-q48",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-5",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Thùng có 10 lít nước. Đổ thêm một số lít thì được 17 lít. Đã đổ thêm bao nhiêu lít? [ ? ]",
+      questionEn: "A tank has 10 litres. After adding some water it has 17 litres. How many litres were added? [ ? ]",
+      visual: "🪣",
+      answer: "7",
+      hint: "Lấy số lít sau trừ số lít trước.",
+      explanation: "17 - 10 = 7 lít.",
+      xp: 15
+    },
+    {
+      id: "adv-q49",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-5",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Mai cho Lan 4 cái kẹo, sau đó mẹ cho Mai thêm 6 cái thì Mai có 15 cái. Lúc đầu Mai có mấy cái kẹo?",
+      questionEn: "Mai gives Lan 4 sweets, then Mum gives Mai 6, and Mai has 15. How many did Mai have at first?",
+      options: [
+        "11",
+        "13",
+        "15",
+        "17"
+      ],
+      answer: "13",
+      hint: "Đi ngược: bỏ 6 cái mẹ cho, trả lại 4 cái đã cho.",
+      explanation: "15 - 6 + 4 = 13 cái kẹo.",
+      xp: 20
+    },
+    {
+      id: "adv-q50",
+      topic: "advanced-arithmetic",
+      lessonId: "adv-lesson-5",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Đoạn dây thứ nhất dài hơn đoạn dây thứ hai 4 cm. Hai đoạn dài tổng cộng 16 cm. Đoạn dây thứ hai dài bao nhiêu cm? [ ? ]",
+      questionEn: "String 1 is 4 cm longer than string 2. Together they are 16 cm. How long is string 2? [ ? ]",
+      visual: "━━━━━━━━━━<br>━━━━━━",
+      answer: "6",
+      hint: "Bớt phần dài hơn 4 cm, phần còn lại chia đôi.",
+      explanation: "16 - 4 = 12; 12 chia đôi = 6 cm. Thử: 6 + 10 = 16 ✔.",
+      xp: 20
+    },
+    {
+      id: "comb-q26",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-1",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Có 2 loại bánh và 3 loại nước uống. Chọn 1 bánh và 1 nước uống thì có mấy cách?",
+      questionEn: "There are 2 kinds of cake and 3 kinds of drink. How many ways to choose 1 cake and 1 drink?",
+      visual: "🍰🧁 | 🥤🧃🥛",
+      options: [
+        "5",
+        "6",
+        "4",
+        "3"
+      ],
+      answer: "6",
+      hint: "Mỗi loại bánh đi với 3 loại nước.",
+      explanation: "3 + 3 = 6 cách.",
+      xp: 10
+    },
+    {
+      id: "comb-q27",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-1",
+      difficulty: 1,
+      type: "fill-blank",
+      question: "Có 2 bạn trai (An, Bình) và 2 bạn gái (Chi, Dung). Ghép 1 bạn trai với 1 bạn gái thành 1 cặp. Có mấy cách ghép? [ ? ]",
+      questionEn: "2 boys (An, Binh) and 2 girls (Chi, Dung). How many ways to make 1 boy-girl pair? [ ? ]",
+      answer: "4",
+      hint: "Liệt kê: An-Chi, An-Dung, ...",
+      explanation: "An-Chi, An-Dung, Bình-Chi, Bình-Dung = 4 cách.",
+      xp: 10
+    },
+    {
+      id: "comb-q28",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-1",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Có 4 chiếc áo và 2 chiếc quần. Có bao nhiêu bộ quần áo khác nhau?",
+      questionEn: "There are 4 shirts and 2 pairs of trousers. How many different outfits?",
+      visual: "👕👕👕👕 | 👖👖",
+      options: [
+        "6",
+        "8",
+        "4",
+        "2"
+      ],
+      answer: "8",
+      hint: "Mỗi chiếc áo đi với 2 chiếc quần.",
+      explanation: "2 + 2 + 2 + 2 = 8 bộ.",
+      xp: 15
+    },
+    {
+      id: "comb-q29",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-1",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Từ nhà đến chợ có 2 con đường, từ chợ đến trường có 4 con đường. Có bao nhiêu cách đi từ nhà qua chợ đến trường? [ ? ]",
+      questionEn: "2 roads go from home to the market, 4 from the market to school. How many ways from home to school via the market? [ ? ]",
+      visual: "🏠 ⇉ 🏪 ⇶ 🏫",
+      answer: "8",
+      hint: "Mỗi đường đến chợ có 4 cách đi tiếp.",
+      explanation: "4 + 4 = 8 cách.",
+      xp: 15
+    },
+    {
+      id: "comb-q30",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-1",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Bé chọn 1 món chính (cơm hoặc phở) và 1 món tráng miệng (chuối, kem hoặc sữa chua). Bé không ăn phở cùng kem. Có mấy cách chọn?",
+      questionEn: "Choose 1 main (rice or pho) and 1 dessert (banana, ice cream or yoghurt). Pho with ice cream is not allowed. How many choices?",
+      visual: "🍚🍜 | 🍌🍦🥛",
+      options: [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      answer: "5",
+      hint: "Đếm tất cả rồi bỏ cách không được phép.",
+      explanation: "Tất cả 3 + 3 = 6 cách, bỏ 1 cách (phở + kem) ➔ 5 cách.",
+      xp: 20
+    },
+    {
+      id: "comb-q31",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-2",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Từ 2 thẻ số 3 và 8, bé lập được các số có 2 chữ số khác nhau nào?",
+      questionEn: "With cards 3 and 8, which 2-digit numbers (different digits) can you make?",
+      visual: "[3] [8]",
+      options: [
+        "38 và 83",
+        "Chỉ 38",
+        "Chỉ 83",
+        "33 và 88"
+      ],
+      answer: "38 và 83",
+      hint: "Đổi chỗ 2 thẻ.",
+      explanation: "Thẻ 3 đứng trước: 38; thẻ 8 đứng trước: 83.",
+      xp: 10
+    },
+    {
+      id: "comb-q32",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-2",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Từ 3 thẻ số 1, 4, 7 lập các số có 2 chữ số khác nhau. Số lớn nhất là số nào? [ ? ]",
+      questionEn: "Using cards 1, 4, 7, make 2-digit numbers with different digits. What is the largest? [ ? ]",
+      visual: "[1] [4] [7]",
+      answer: "74",
+      hint: "Chọn thẻ lớn nhất làm hàng chục.",
+      explanation: "Hàng chục 7, hàng đơn vị lớn nhất còn lại 4 ➔ 74.",
+      xp: 15
+    },
+    {
+      id: "comb-q33",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-2",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Có bao nhiêu số có 2 chữ số mà chữ số hàng chục là 5?",
+      questionEn: "How many 2-digit numbers have 5 as the tens digit?",
+      options: [
+        "5",
+        "9",
+        "10",
+        "11"
+      ],
+      answer: "10",
+      hint: "Đó là các số từ 50 đến 59.",
+      explanation: "50, 51, ..., 59 = 10 số.",
+      xp: 15
+    },
+    {
+      id: "comb-q34",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-2",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Từ các thẻ 0, 2, 5 lập các số có 2 chữ số khác nhau. Số bé nhất là số nào? [ ? ]",
+      questionEn: "Using cards 0, 2, 5, make 2-digit numbers with different digits. What is the smallest? [ ? ]",
+      visual: "[0] [2] [5]",
+      answer: "20",
+      hint: "Chữ số 0 không đứng ở hàng chục.",
+      explanation: "Hàng chục bé nhất có thể là 2, hàng đơn vị bé nhất là 0 ➔ 20.",
+      xp: 20
+    },
+    {
+      id: "comb-q35",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-2",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Có bao nhiêu số có 2 chữ số mà 2 chữ số giống nhau (như 11, 22)?",
+      questionEn: "How many 2-digit numbers have two equal digits (like 11, 22)?",
+      options: [
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      answer: "9",
+      hint: "Không có số 00.",
+      explanation: "11, 22, 33, 44, 55, 66, 77, 88, 99 = 9 số.",
+      xp: 20
+    },
+    {
+      id: "comb-q36",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-3",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Có 2 màu Xanh và Đỏ. Tô 1 quả bóng bằng 1 màu. Có mấy cách tô?",
+      questionEn: "There are 2 colours, blue and red. Colour 1 ball with 1 colour. How many ways?",
+      visual: "⚪",
+      options: [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      answer: "2",
+      hint: "Mỗi màu là 1 cách.",
+      explanation: "Tô Xanh hoặc tô Đỏ = 2 cách.",
+      xp: 10
+    },
+    {
+      id: "comb-q37",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-3",
+      difficulty: 1,
+      type: "fill-blank",
+      question: "Có 3 bút màu khác nhau. Tô 1 bông hoa bằng 1 màu. Có mấy cách tô? [ ? ]",
+      questionEn: "There are 3 different crayons. Colour 1 flower with 1 colour. How many ways? [ ? ]",
+      visual: "🖍️🖍️🖍️ 🌼",
+      answer: "3",
+      hint: "Mỗi bút màu là 1 cách.",
+      explanation: "Có 3 cách tô.",
+      xp: 10
+    },
+    {
+      id: "comb-q38",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-3",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Tô 2 ô liền nhau bằng 2 màu Đỏ và Vàng, 2 ô được phép cùng màu. Có mấy cách tô?",
+      questionEn: "Colour 2 neighbouring boxes using red and yellow; the boxes may be the same colour. How many ways?",
+      visual: "⬜⬜",
+      options: [
+        "2",
+        "3",
+        "4",
+        "6"
+      ],
+      answer: "4",
+      hint: "Liệt kê: Đỏ-Đỏ, Đỏ-Vàng, ...",
+      explanation: "Đỏ-Đỏ, Đỏ-Vàng, Vàng-Đỏ, Vàng-Vàng = 4 cách.",
+      xp: 15
+    },
+    {
+      id: "comb-q39",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-3",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Có 4 màu. Tô 2 ô liền nhau sao cho 2 ô khác màu. Có mấy cách tô? [ ? ]",
+      questionEn: "There are 4 colours. Colour 2 neighbouring boxes so they are different. How many ways? [ ? ]",
+      visual: "⬜⬜",
+      answer: "12",
+      hint: "Ô 1 có 4 cách, ô 2 còn 3 cách.",
+      explanation: "3 + 3 + 3 + 3 = 12 cách.",
+      xp: 20
+    },
+    {
+      id: "comb-q40",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-3",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Tô 3 ô thẳng hàng bằng 3 màu Đỏ, Xanh, Vàng, mỗi ô 1 màu khác nhau, ô ở giữa phải màu Đỏ. Có mấy cách tô?",
+      questionEn: "Colour 3 boxes in a row with red, blue and yellow, all different, and the middle one must be red. How many ways?",
+      visual: "⬜🟥⬜",
+      options: [
+        "1",
+        "2",
+        "3",
+        "6"
+      ],
+      answer: "2",
+      hint: "Ô giữa đã cố định, chỉ còn đổi chỗ Xanh và Vàng.",
+      explanation: "Xanh-Đỏ-Vàng và Vàng-Đỏ-Xanh = 2 cách.",
+      xp: 15
+    },
+    {
+      id: "comb-q41",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-3",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Bản đồ có 3 vùng A, B, C, vùng nào cũng giáp 2 vùng còn lại. Dùng 3 màu, 2 vùng giáp nhau phải khác màu. Có mấy cách tô?",
+      questionEn: "A map has 3 regions A, B, C, each touching the other two. Using 3 colours, touching regions must differ. How many ways?",
+      visual: "🗺️",
+      options: [
+        "3",
+        "4",
+        "6",
+        "9"
+      ],
+      answer: "6",
+      hint: "Vùng A có 3 cách, vùng B còn 2 cách, vùng C còn 1 cách.",
+      explanation: "A có 3 cách; mỗi cách A, B có 2 cách; C chỉ còn 1 cách ➔ 2 + 2 + 2 = 6 cách.",
+      xp: 20
+    },
+    {
+      id: "comb-q42",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-4",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Có 2 bạn gặp nhau, mỗi bạn bắt tay bạn kia 1 lần. Có mấy cái bắt tay?",
+      questionEn: "2 friends meet and shake hands once. How many handshakes?",
+      visual: "🤝",
+      options: [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      answer: "1",
+      hint: "Một cái bắt tay cần 2 bàn tay của 2 bạn.",
+      explanation: "Chỉ có 1 cái bắt tay.",
+      xp: 10
+    },
+    {
+      id: "comb-q43",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-4",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Có 4 loại quả: táo, cam, lê, xoài. Chọn 2 loại khác nhau. Có mấy cách chọn? [ ? ]",
+      questionEn: "4 fruits: apple, orange, pear, mango. Choose 2 different ones. How many ways? [ ? ]",
+      visual: "🍎🍊🍐🥭",
+      answer: "6",
+      hint: "Liệt kê theo từng quả, không đếm trùng.",
+      explanation: "Táo đi với 3 quả, cam với 2 quả còn lại, lê với 1 ➔ 3 + 2 + 1 = 6 cách.",
+      xp: 15
+    },
+    {
+      id: "comb-q44",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-4",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Có 5 đội bóng, mỗi đội đấu với mỗi đội khác đúng 1 trận. Có tất cả bao nhiêu trận?",
+      questionEn: "5 teams each play every other team once. How many matches in total?",
+      visual: "⚽",
+      options: [
+        "8",
+        "10",
+        "12",
+        "20"
+      ],
+      answer: "10",
+      hint: "Đội 1 đấu 4 trận, đội 2 thêm 3 trận mới, ...",
+      explanation: "4 + 3 + 2 + 1 = 10 trận.",
+      xp: 15
+    },
+    {
+      id: "comb-q45",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-4",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Hộp có 3 bi đỏ và 3 bi xanh. Không nhìn, phải lấy ra ít nhất bao nhiêu viên để chắc chắn có 2 viên cùng màu? [ ? ]",
+      questionEn: "A box has 3 red and 3 blue marbles. Without looking, how many must you take to be sure of 2 the same colour? [ ? ]",
+      visual: "🔴🔴🔴🔵🔵🔵",
+      answer: "3",
+      hint: "Nghĩ đến trường hợp xui nhất: 2 viên đầu khác màu.",
+      explanation: "2 viên đầu có thể 1 đỏ 1 xanh; viên thứ 3 chắc chắn trùng màu ➔ 3 viên.",
+      xp: 20
+    },
+    {
+      id: "comb-q46",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-4",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Hộp có 5 bi đỏ và 4 bi xanh. Không nhìn, phải lấy ra ít nhất mấy viên để chắc chắn có 1 viên bi xanh?",
+      questionEn: "A box has 5 red and 4 blue marbles. Without looking, how many must you take to be sure of getting a blue one? [ ? ]",
+      visual: "🔴🔴🔴🔴🔴🔵🔵🔵🔵",
+      options: [
+        "4",
+        "5",
+        "6",
+        "9"
+      ],
+      answer: "6",
+      hint: "Trường hợp xui nhất: lấy hết bi đỏ trước.",
+      explanation: "Lấy hết 5 bi đỏ, viên thứ 6 chắc chắn là bi xanh ➔ 6 viên.",
+      xp: 20
+    },
+    {
+      id: "comb-q47",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-5",
+      difficulty: 1,
+      type: "fill-blank",
+      question: "Cắt 1 sợi dây bằng 3 nhát kéo thẳng. Sợi dây đứt thành mấy đoạn? [ ? ]",
+      questionEn: "Cut a string 3 times. How many pieces are there? [ ? ]",
+      visual: "✂️",
+      answer: "4",
+      hint: "Số đoạn = số nhát cắt + 1.",
+      explanation: "3 + 1 = 4 đoạn.",
+      xp: 10
+    },
+    {
+      id: "comb-q48",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-5",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Bánh pizza tròn được cắt 3 nhát thẳng, nhát nào cũng đi qua tâm bánh. Được mấy miếng?",
+      questionEn: "A round pizza is cut 3 times, every cut through the centre. How many slices?",
+      visual: "🍕",
+      options: [
+        "3",
+        "4",
+        "6",
+        "8"
+      ],
+      answer: "6",
+      hint: "Mỗi nhát qua tâm tạo thêm 2 miếng.",
+      explanation: "1 nhát: 2 miếng; 2 nhát: 4 miếng; 3 nhát: 6 miếng.",
+      xp: 15
+    },
+    {
+      id: "comb-q49",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-5",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Hàng rào có 6 cái cọc thẳng hàng. Giữa 2 cọc liền nhau căng 1 tấm lưới. Cần mấy tấm lưới? [ ? ]",
+      questionEn: "A fence has 6 posts in a row with one net between each two neighbouring posts. How many nets? [ ? ]",
+      visual: "|#|#|#|#|#|",
+      answer: "5",
+      hint: "Số tấm lưới = số khoảng giữa các cọc.",
+      explanation: "6 - 1 = 5 tấm lưới.",
+      xp: 15
+    },
+    {
+      id: "comb-q50",
+      topic: "combinatorics",
+      lessonId: "comb-lesson-5",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Cưa một khúc gỗ thành 5 đoạn, mỗi lần cưa mất 3 phút. Cưa xong hết bao nhiêu phút?",
+      questionEn: "Sawing a log into 5 pieces takes 3 minutes per cut. How many minutes in total?",
+      visual: "🪵",
+      options: [
+        "9",
+        "12",
+        "15",
+        "10"
+      ],
+      answer: "12",
+      hint: "Tìm số nhát cưa trước.",
+      explanation: "Số nhát cưa = 5 - 1 = 4; 3 + 3 + 3 + 3 = 12 phút.",
+      xp: 20
+    },
+
+    // --- TOPIC: NUMBER THEORY / LÝ THUYẾT SỐ (50 câu) ---
+    {
+      id: "nt-q1",
+      topic: "number-theory",
+      lessonId: "nt-lesson-1",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Số nào là số chẵn?",
+      questionEn: "Which number is even?",
+      options: [
+        "3",
+        "5",
+        "8",
+        "9"
+      ],
+      answer: "8",
+      hint: "Số chẵn có chữ số tận cùng 0, 2, 4, 6, 8.",
+      explanation: "8 là số chẵn (chia thành 2 phần bằng nhau: 4 và 4).",
+      xp: 10
+    },
+    {
+      id: "nt-q2",
+      topic: "number-theory",
+      lessonId: "nt-lesson-1",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Số nào là số lẻ?",
+      questionEn: "Which number is odd?",
+      options: [
+        "2",
+        "4",
+        "6",
+        "7"
+      ],
+      answer: "7",
+      hint: "Số lẻ có chữ số tận cùng 1, 3, 5, 7, 9.",
+      explanation: "7 là số lẻ.",
+      xp: 10
+    },
+    {
+      id: "nt-q3",
+      topic: "number-theory",
+      lessonId: "nt-lesson-1",
+      difficulty: 1,
+      type: "fill-blank",
+      question: "Số chẵn liền sau số 6 là số nào? [ ? ]",
+      questionEn: "What is the next even number after 6? [ ? ]",
+      answer: "8",
+      hint: "Hai số chẵn liền nhau hơn kém nhau 2.",
+      explanation: "6 + 2 = 8.",
+      xp: 10
+    },
+    {
+      id: "nt-q4",
+      topic: "number-theory",
+      lessonId: "nt-lesson-1",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Từ 1 đến 10 có bao nhiêu số chẵn? [ ? ]",
+      questionEn: "How many even numbers are there from 1 to 10? [ ? ]",
+      visual: "1 2 3 4 5 6 7 8 9 10",
+      answer: "5",
+      hint: "Liệt kê các số chẵn.",
+      explanation: "2, 4, 6, 8, 10 = 5 số chẵn.",
+      xp: 15
+    },
+    {
+      id: "nt-q5",
+      topic: "number-theory",
+      lessonId: "nt-lesson-1",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Cộng hai số lẻ với nhau thì được số chẵn hay số lẻ?",
+      questionEn: "Is the sum of two odd numbers even or odd?",
+      options: [
+        "Số chẵn",
+        "Số lẻ"
+      ],
+      answer: "Số chẵn",
+      hint: "Thử: 3 + 5 = ?",
+      explanation: "Ví dụ 3 + 5 = 8, 1 + 7 = 8: tổng hai số lẻ luôn là số chẵn.",
+      xp: 15
+    },
+    {
+      id: "nt-q6",
+      topic: "number-theory",
+      lessonId: "nt-lesson-1",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Có 9 chiếc giày. Ghép thành từng đôi thì thế nào?",
+      questionEn: "There are 9 shoes. What happens when you put them into pairs?",
+      visual: "👟👟👟👟👟👟👟👟👟",
+      options: [
+        "Vừa đủ, không thừa chiếc nào",
+        "Thừa 1 chiếc"
+      ],
+      answer: "Thừa 1 chiếc",
+      hint: "9 là số chẵn hay số lẻ?",
+      explanation: "9 là số lẻ nên ghép đôi được 4 đôi và thừa 1 chiếc.",
+      xp: 15
+    },
+    {
+      id: "nt-q7",
+      topic: "number-theory",
+      lessonId: "nt-lesson-1",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Số lẻ lớn nhất có 1 chữ số là số nào? [ ? ]",
+      questionEn: "What is the largest 1-digit odd number? [ ? ]",
+      answer: "9",
+      hint: "Số có 1 chữ số là từ 0 đến 9.",
+      explanation: "Số lẻ có 1 chữ số: 1, 3, 5, 7, 9 ➔ lớn nhất là 9.",
+      xp: 15
+    },
+    {
+      id: "nt-q8",
+      topic: "number-theory",
+      lessonId: "nt-lesson-1",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Từ 11 đến 20 có bao nhiêu số lẻ? [ ? ]",
+      questionEn: "How many odd numbers are there from 11 to 20? [ ? ]",
+      answer: "5",
+      hint: "Liệt kê các số tận cùng 1, 3, 5, 7, 9.",
+      explanation: "11, 13, 15, 17, 19 = 5 số lẻ.",
+      xp: 20
+    },
+    {
+      id: "nt-q9",
+      topic: "number-theory",
+      lessonId: "nt-lesson-1",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Số chẵn lớn nhất có 2 chữ số là số nào?",
+      questionEn: "What is the largest 2-digit even number?",
+      options: [
+        "90",
+        "98",
+        "99",
+        "100"
+      ],
+      answer: "98",
+      hint: "99 là số lẻ; 100 có 3 chữ số.",
+      explanation: "Số chẵn lớn nhất có 2 chữ số là 98.",
+      xp: 20
+    },
+    {
+      id: "nt-q10",
+      topic: "number-theory",
+      lessonId: "nt-lesson-1",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Tính tổng các số lẻ từ 1 đến 9: 1 + 3 + 5 + 7 + 9 = [ ? ]",
+      questionEn: "Add the odd numbers from 1 to 9: 1 + 3 + 5 + 7 + 9 = [ ? ]",
+      answer: "25",
+      hint: "Ghép cặp có tổng bằng 10: (1 + 9), (3 + 7).",
+      explanation: "(1 + 9) + (3 + 7) + 5 = 10 + 10 + 5 = 25.",
+      xp: 20
+    },
+    {
+      id: "nt-q11",
+      topic: "number-theory",
+      lessonId: "nt-lesson-2",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Số 35 gồm mấy chục và mấy đơn vị?",
+      questionEn: "How many tens and ones are in 35?",
+      visual: "🧺🧺🧺 + 🍎🍎🍎🍎🍎",
+      options: [
+        "3 chục và 5 đơn vị",
+        "5 chục và 3 đơn vị",
+        "35 chục",
+        "3 đơn vị và 5 chục"
+      ],
+      answer: "3 chục và 5 đơn vị",
+      hint: "Chữ số bên trái là hàng chục.",
+      explanation: "35 = 30 + 5 = 3 chục và 5 đơn vị.",
+      xp: 10
+    },
+    {
+      id: "nt-q12",
+      topic: "number-theory",
+      lessonId: "nt-lesson-2",
+      difficulty: 1,
+      type: "fill-blank",
+      question: "Số gồm 4 chục và 7 đơn vị là số nào? [ ? ]",
+      questionEn: "Which number has 4 tens and 7 ones? [ ? ]",
+      answer: "47",
+      hint: "Viết chữ số hàng chục trước.",
+      explanation: "4 chục và 7 đơn vị = 40 + 7 = 47.",
+      xp: 10
+    },
+    {
+      id: "nt-q13",
+      topic: "number-theory",
+      lessonId: "nt-lesson-2",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Chữ số hàng đơn vị của số 60 là chữ số nào?",
+      questionEn: "What is the ones digit of 60?",
+      options: [
+        "0",
+        "6",
+        "60",
+        "1"
+      ],
+      answer: "0",
+      hint: "Hàng đơn vị là chữ số bên phải.",
+      explanation: "60 = 6 chục và 0 đơn vị ➔ chữ số hàng đơn vị là 0.",
+      xp: 10
+    },
+    {
+      id: "nt-q14",
+      topic: "number-theory",
+      lessonId: "nt-lesson-2",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Số gồm 8 đơn vị và 2 chục là số nào? [ ? ]",
+      questionEn: "Which number has 8 ones and 2 tens? [ ? ]",
+      answer: "28",
+      hint: "Chú ý: chục viết trước, đơn vị viết sau.",
+      explanation: "2 chục và 8 đơn vị = 20 + 8 = 28.",
+      xp: 15
+    },
+    {
+      id: "nt-q15",
+      topic: "number-theory",
+      lessonId: "nt-lesson-2",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Mỗi bó que tính có 10 que. 5 bó và 3 que rời có tất cả bao nhiêu que tính?",
+      questionEn: "Each bundle has 10 sticks. How many sticks are in 5 bundles and 3 loose sticks?",
+      visual: "🥢×10 ×5 + 🥢🥢🥢",
+      options: [
+        "8",
+        "35",
+        "50",
+        "53"
+      ],
+      answer: "53",
+      hint: "5 bó là 5 chục.",
+      explanation: "5 chục + 3 đơn vị = 50 + 3 = 53 que.",
+      xp: 15
+    },
+    {
+      id: "nt-q16",
+      topic: "number-theory",
+      lessonId: "nt-lesson-2",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Số liền sau của 39 là số nào? [ ? ]",
+      questionEn: "What number comes right after 39? [ ? ]",
+      answer: "40",
+      hint: "Thêm 1 vào 39.",
+      explanation: "39 + 1 = 40 (9 đơn vị thêm 1 thành 1 chục).",
+      xp: 15
+    },
+    {
+      id: "nt-q17",
+      topic: "number-theory",
+      lessonId: "nt-lesson-2",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Số có 2 chữ số, chữ số hàng chục là 7, chữ số hàng đơn vị kém chữ số hàng chục 2. Số đó là số nào?",
+      questionEn: "A 2-digit number has tens digit 7 and its ones digit is 2 less than the tens digit. What is it?",
+      options: [
+        "57",
+        "72",
+        "75",
+        "79"
+      ],
+      answer: "75",
+      hint: "Hàng đơn vị = 7 - 2.",
+      explanation: "Hàng đơn vị: 7 - 2 = 5 ➔ số 75.",
+      xp: 15
+    },
+    {
+      id: "nt-q18",
+      topic: "number-theory",
+      lessonId: "nt-lesson-2",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Tổng hai chữ số của số 46 là bao nhiêu? [ ? ]",
+      questionEn: "What is the sum of the digits of 46? [ ? ]",
+      answer: "10",
+      hint: "Cộng chữ số hàng chục với chữ số hàng đơn vị.",
+      explanation: "4 + 6 = 10.",
+      xp: 20
+    },
+    {
+      id: "nt-q19",
+      topic: "number-theory",
+      lessonId: "nt-lesson-2",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Có bao nhiêu số có 2 chữ số mà tổng hai chữ số bằng 3?",
+      questionEn: "How many 2-digit numbers have digits adding up to 3?",
+      options: [
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      answer: "3",
+      hint: "Hàng chục có thể là 1, 2, 3.",
+      explanation: "12, 21, 30 = 3 số.",
+      xp: 20
+    },
+    {
+      id: "nt-q20",
+      topic: "number-theory",
+      lessonId: "nt-lesson-2",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Số tròn chục lớn nhất bé hơn 75 là số nào? [ ? ]",
+      questionEn: "What is the largest multiple of ten less than 75? [ ? ]",
+      answer: "70",
+      hint: "Số tròn chục có hàng đơn vị là 0.",
+      explanation: "Các số tròn chục bé hơn 75: 10, 20, ..., 70 ➔ lớn nhất là 70.",
+      xp: 20
+    },
+    {
+      id: "nt-q21",
+      topic: "number-theory",
+      lessonId: "nt-lesson-3",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Số nào lớn nhất: 45, 54, 39, 50?",
+      questionEn: "Which is the largest: 45, 54, 39, 50?",
+      options: [
+        "45",
+        "54",
+        "39",
+        "50"
+      ],
+      answer: "54",
+      hint: "So sánh chữ số hàng chục trước.",
+      explanation: "Hàng chục lớn nhất là 5 (54 và 50); so tiếp hàng đơn vị: 4 > 0 ➔ 54.",
+      xp: 10
+    },
+    {
+      id: "nt-q22",
+      topic: "number-theory",
+      lessonId: "nt-lesson-3",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Số nào bé nhất: 17, 71, 27, 12?",
+      questionEn: "Which is the smallest: 17, 71, 27, 12?",
+      options: [
+        "17",
+        "71",
+        "27",
+        "12"
+      ],
+      answer: "12",
+      hint: "So sánh hàng chục, rồi hàng đơn vị.",
+      explanation: "Hàng chục bé nhất là 1 (17 và 12); 2 < 7 ➔ 12.",
+      xp: 10
+    },
+    {
+      id: "nt-q23",
+      topic: "number-theory",
+      lessonId: "nt-lesson-3",
+      difficulty: 1,
+      type: "fill-blank",
+      question: "Số liền trước của 50 là số nào? [ ? ]",
+      questionEn: "What number comes right before 50? [ ? ]",
+      answer: "49",
+      hint: "Bớt 1 từ 50.",
+      explanation: "50 - 1 = 49.",
+      xp: 10
+    },
+    {
+      id: "nt-q24",
+      topic: "number-theory",
+      lessonId: "nt-lesson-3",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Sắp xếp các số 28, 82, 52 theo thứ tự từ bé đến lớn:",
+      questionEn: "Order 28, 82, 52 from smallest to largest:",
+      options: [
+        "28, 52, 82",
+        "82, 52, 28",
+        "52, 28, 82",
+        "28, 82, 52"
+      ],
+      answer: "28, 52, 82",
+      hint: "So sánh chữ số hàng chục: 2, 8, 5.",
+      explanation: "2 < 5 < 8 ➔ 28, 52, 82.",
+      xp: 15
+    },
+    {
+      id: "nt-q25",
+      topic: "number-theory",
+      lessonId: "nt-lesson-3",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Có bao nhiêu số nằm giữa 15 và 21? [ ? ]",
+      questionEn: "How many numbers are between 15 and 21? [ ? ]",
+      answer: "5",
+      hint: "Không tính 15 và 21.",
+      explanation: "16, 17, 18, 19, 20 = 5 số.",
+      xp: 15
+    },
+    {
+      id: "nt-q26",
+      topic: "number-theory",
+      lessonId: "nt-lesson-3",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Số nào lớn hơn 36, bé hơn 40 và là số chẵn?",
+      questionEn: "Which number is greater than 36, less than 40 and even?",
+      options: [
+        "37",
+        "38",
+        "39",
+        "40"
+      ],
+      answer: "38",
+      hint: "Các số lớn hơn 36 và bé hơn 40 là 37, 38, 39.",
+      explanation: "Trong 37, 38, 39 chỉ có 38 là số chẵn.",
+      xp: 15
+    },
+    {
+      id: "nt-q27",
+      topic: "number-theory",
+      lessonId: "nt-lesson-3",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Số bé nhất có 2 chữ số là số nào? [ ? ]",
+      questionEn: "What is the smallest 2-digit number? [ ? ]",
+      answer: "10",
+      hint: "Hàng chục không được là 0.",
+      explanation: "Số bé nhất có 2 chữ số là 10.",
+      xp: 15
+    },
+    {
+      id: "nt-q28",
+      topic: "number-theory",
+      lessonId: "nt-lesson-3",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Số lớn nhất có 2 chữ số khác nhau là số nào? [ ? ]",
+      questionEn: "What is the largest 2-digit number with different digits? [ ? ]",
+      answer: "98",
+      hint: "99 có 2 chữ số giống nhau.",
+      explanation: "Hàng chục lớn nhất 9, hàng đơn vị lớn nhất khác 9 là 8 ➔ 98.",
+      xp: 20
+    },
+    {
+      id: "nt-q29",
+      topic: "number-theory",
+      lessonId: "nt-lesson-3",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Số 5[ ? ] lớn hơn 57 và là số lẻ. Chữ số còn thiếu là chữ số nào?",
+      questionEn: "The number 5[ ? ] is greater than 57 and odd. What is the missing digit?",
+      options: [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      answer: "9",
+      hint: "Số lớn hơn 57 là 58 hoặc 59.",
+      explanation: "58 là số chẵn, 59 là số lẻ ➔ chữ số còn thiếu là 9.",
+      xp: 20
+    },
+    {
+      id: "nt-q30",
+      topic: "number-theory",
+      lessonId: "nt-lesson-3",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Có bao nhiêu số có 2 chữ số lớn hơn 90? [ ? ]",
+      questionEn: "How many 2-digit numbers are greater than 90? [ ? ]",
+      answer: "9",
+      hint: "Đếm từ 91 đến 99.",
+      explanation: "91, 92, ..., 99 = 9 số.",
+      xp: 20
+    },
+    {
+      id: "nt-q31",
+      topic: "number-theory",
+      lessonId: "nt-lesson-4",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Có 6 cái kẹo chia đều cho 2 bạn. Mỗi bạn được mấy cái?",
+      questionEn: "6 sweets are shared equally between 2 children. How many does each get?",
+      visual: "🍬🍬🍬🍬🍬🍬",
+      options: [
+        "2",
+        "3",
+        "4",
+        "6"
+      ],
+      answer: "3",
+      hint: "Phát lần lượt mỗi bạn 1 cái cho đến hết.",
+      explanation: "3 + 3 = 6 ➔ mỗi bạn 3 cái.",
+      xp: 10
+    },
+    {
+      id: "nt-q32",
+      topic: "number-theory",
+      lessonId: "nt-lesson-4",
+      difficulty: 1,
+      type: "fill-blank",
+      question: "Có 8 quả táo xếp đều vào 2 đĩa. Mỗi đĩa có mấy quả? [ ? ]",
+      questionEn: "8 apples are placed equally on 2 plates. How many on each plate? [ ? ]",
+      visual: "🍎🍎🍎🍎🍎🍎🍎🍎",
+      answer: "4",
+      hint: "Tìm số cộng với chính nó bằng 8.",
+      explanation: "4 + 4 = 8 ➔ mỗi đĩa 4 quả.",
+      xp: 10
+    },
+    {
+      id: "nt-q33",
+      topic: "number-theory",
+      lessonId: "nt-lesson-4",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Có 10 bông hoa, cắm vào các lọ, mỗi lọ 5 bông. Cần mấy lọ?",
+      questionEn: "10 flowers go into vases, 5 per vase. How many vases?",
+      visual: "🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸",
+      options: [
+        "1",
+        "2",
+        "3",
+        "5"
+      ],
+      answer: "2",
+      hint: "Đếm từng nhóm 5 bông.",
+      explanation: "5 + 5 = 10 ➔ cần 2 lọ.",
+      xp: 10
+    },
+    {
+      id: "nt-q34",
+      topic: "number-theory",
+      lessonId: "nt-lesson-4",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Có 12 cái bánh xếp vào các hộp, mỗi hộp 3 cái. Cần mấy hộp? [ ? ]",
+      questionEn: "12 cakes go into boxes, 3 per box. How many boxes? [ ? ]",
+      visual: "🧁🧁🧁 🧁🧁🧁 🧁🧁🧁 🧁🧁🧁",
+      answer: "4",
+      hint: "Đếm số nhóm 3 cái.",
+      explanation: "3 + 3 + 3 + 3 = 12 ➔ 4 hộp.",
+      xp: 15
+    },
+    {
+      id: "nt-q35",
+      topic: "number-theory",
+      lessonId: "nt-lesson-4",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Có 9 viên bi chia đều cho 3 bạn. Mỗi bạn được mấy viên?",
+      questionEn: "9 marbles are shared equally among 3 children. How many each?",
+      visual: "🔵🔵🔵🔵🔵🔵🔵🔵🔵",
+      options: [
+        "2",
+        "3",
+        "4",
+        "6"
+      ],
+      answer: "3",
+      hint: "Tìm số cộng 3 lần bằng 9.",
+      explanation: "3 + 3 + 3 = 9 ➔ mỗi bạn 3 viên.",
+      xp: 15
+    },
+    {
+      id: "nt-q36",
+      topic: "number-theory",
+      lessonId: "nt-lesson-4",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Có 7 cái kẹo chia đều cho 2 bạn. Mỗi bạn được nhiều nhất mấy cái? [ ? ]",
+      questionEn: "7 sweets are shared equally between 2 children. At most how many does each get? [ ? ]",
+      visual: "🍬🍬🍬🍬🍬🍬🍬",
+      answer: "3",
+      hint: "7 là số lẻ nên sẽ thừa 1 cái.",
+      explanation: "3 + 3 = 6, thừa 1 cái ➔ mỗi bạn nhiều nhất 3 cái.",
+      xp: 15
+    },
+    {
+      id: "nt-q37",
+      topic: "number-theory",
+      lessonId: "nt-lesson-4",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Có 14 chiếc đũa. Ghép được bao nhiêu đôi đũa?",
+      questionEn: "There are 14 chopsticks. How many pairs can be made?",
+      visual: "🥢",
+      options: [
+        "6",
+        "7",
+        "8",
+        "14"
+      ],
+      answer: "7",
+      hint: "Mỗi đôi gồm 2 chiếc.",
+      explanation: "7 + 7 = 14 ➔ 7 đôi đũa.",
+      xp: 15
+    },
+    {
+      id: "nt-q38",
+      topic: "number-theory",
+      lessonId: "nt-lesson-4",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Có 15 quả cam chia đều vào 3 giỏ. Mỗi giỏ có mấy quả? [ ? ]",
+      questionEn: "15 oranges are shared equally into 3 baskets. How many in each? [ ? ]",
+      visual: "🍊",
+      answer: "5",
+      hint: "Tìm số cộng 3 lần bằng 15.",
+      explanation: "5 + 5 + 5 = 15 ➔ mỗi giỏ 5 quả.",
+      xp: 20
+    },
+    {
+      id: "nt-q39",
+      topic: "number-theory",
+      lessonId: "nt-lesson-4",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Có 11 bạn đi thuyền, mỗi thuyền chở được nhiều nhất 4 bạn. Cần ít nhất mấy chiếc thuyền?",
+      questionEn: "11 children take boats; each boat holds at most 4. At least how many boats are needed?",
+      visual: "⛵",
+      options: [
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      answer: "3",
+      hint: "2 thuyền chở được 8 bạn, còn thừa bạn nào không?",
+      explanation: "2 thuyền chở 8 bạn, còn 3 bạn cần thêm 1 thuyền ➔ 3 thuyền.",
+      xp: 20
+    },
+    {
+      id: "nt-q40",
+      topic: "number-theory",
+      lessonId: "nt-lesson-4",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Có 20 cái bút chia đều cho 4 bạn. Mỗi bạn được mấy cái? [ ? ]",
+      questionEn: "20 pens are shared equally among 4 children. How many each? [ ? ]",
+      visual: "✏️",
+      answer: "5",
+      hint: "Tìm số cộng 4 lần bằng 20.",
+      explanation: "5 + 5 + 5 + 5 = 20 ➔ mỗi bạn 5 cái.",
+      xp: 20
+    },
+    {
+      id: "nt-q41",
+      topic: "number-theory",
+      lessonId: "nt-lesson-5",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Chữ cái tiếp theo: A, B, C, D, ?",
+      questionEn: "Next letter: A, B, C, D, ?",
+      options: [
+        "E",
+        "F",
+        "G",
+        "C"
+      ],
+      answer: "E",
+      hint: "Theo thứ tự bảng chữ cái.",
+      explanation: "Sau D là E.",
+      xp: 10
+    },
+    {
+      id: "nt-q42",
+      topic: "number-theory",
+      lessonId: "nt-lesson-5",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Chữ cái tiếp theo: A, B, A, B, A, ?",
+      questionEn: "Next letter: A, B, A, B, A, ?",
+      options: [
+        "A",
+        "B",
+        "C"
+      ],
+      answer: "B",
+      hint: "Nhóm A, B lặp lại.",
+      explanation: "Sau A là B.",
+      xp: 10
+    },
+    {
+      id: "nt-q43",
+      topic: "number-theory",
+      lessonId: "nt-lesson-5",
+      difficulty: 1,
+      type: "multiple-choice",
+      question: "Số tiếp theo: 1, 2, 1, 2, 1, ?",
+      questionEn: "Next number: 1, 2, 1, 2, 1, ?",
+      options: [
+        "1",
+        "2",
+        "3"
+      ],
+      answer: "2",
+      hint: "Nhóm 1, 2 lặp lại.",
+      explanation: "Sau 1 là 2.",
+      xp: 10
+    },
+    {
+      id: "nt-q44",
+      topic: "number-theory",
+      lessonId: "nt-lesson-5",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Chữ cái tiếp theo: A, C, E, G, ?",
+      questionEn: "Next letter: A, C, E, G, ?",
+      options: [
+        "H",
+        "I",
+        "J",
+        "K"
+      ],
+      answer: "I",
+      hint: "Mỗi lần bỏ qua 1 chữ cái.",
+      explanation: "A (b) C (d) E (f) G (h) I ➔ I.",
+      xp: 15
+    },
+    {
+      id: "nt-q45",
+      topic: "number-theory",
+      lessonId: "nt-lesson-5",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Chữ cái tiếp theo: A, A, B, B, C, C, ?",
+      questionEn: "Next letter: A, A, B, B, C, C, ?",
+      options: [
+        "C",
+        "D",
+        "E"
+      ],
+      answer: "D",
+      hint: "Mỗi chữ cái xuất hiện 2 lần.",
+      explanation: "Sau C, C là D.",
+      xp: 15
+    },
+    {
+      id: "nt-q46",
+      topic: "number-theory",
+      lessonId: "nt-lesson-5",
+      difficulty: 2,
+      type: "fill-blank",
+      question: "Dãy số lặp lại: 1, 2, 3, 1, 2, 3, ... Số thứ 8 là số nào? [ ? ]",
+      questionEn: "Repeating pattern: 1, 2, 3, 1, 2, 3, ... What is the 8th number? [ ? ]",
+      answer: "2",
+      hint: "Mỗi nhóm có 3 số; số thứ 6 là số cuối nhóm thứ 2.",
+      explanation: "Số thứ 7 là 1, số thứ 8 là 2.",
+      xp: 15
+    },
+    {
+      id: "nt-q47",
+      topic: "number-theory",
+      lessonId: "nt-lesson-5",
+      difficulty: 2,
+      type: "multiple-choice",
+      question: "Dãy chữ T, O, A, N lặp lại: T O A N T O A N ... Chữ thứ 6 là chữ gì?",
+      questionEn: "The letters T, O, A, N repeat: T O A N T O A N ... What is the 6th letter?",
+      options: [
+        "T",
+        "O",
+        "A",
+        "N"
+      ],
+      answer: "O",
+      hint: "Mỗi nhóm có 4 chữ.",
+      explanation: "Chữ thứ 5 là T, chữ thứ 6 là O.",
+      xp: 15
+    },
+    {
+      id: "nt-q48",
+      topic: "number-theory",
+      lessonId: "nt-lesson-5",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Chữ cái tiếp theo: Z, Y, X, W, ?",
+      questionEn: "Next letter: Z, Y, X, W, ?",
+      options: [
+        "U",
+        "V",
+        "T",
+        "X"
+      ],
+      answer: "V",
+      hint: "Bảng chữ cái đếm ngược.",
+      explanation: "Đếm lùi: Z, Y, X, W, V.",
+      xp: 20
+    },
+    {
+      id: "nt-q49",
+      topic: "number-theory",
+      lessonId: "nt-lesson-5",
+      difficulty: 3,
+      type: "fill-blank",
+      question: "Dãy lặp lại: 5, 10, 5, 10, 5, 10, ... Tổng 6 số đầu tiên là bao nhiêu? [ ? ]",
+      questionEn: "Repeating: 5, 10, 5, 10, 5, 10, ... What is the sum of the first 6 numbers? [ ? ]",
+      answer: "45",
+      hint: "Mỗi cặp (5, 10) có tổng 15.",
+      explanation: "6 số = 3 cặp; 15 + 15 + 15 = 45.",
+      xp: 20
+    },
+    {
+      id: "nt-q50",
+      topic: "number-theory",
+      lessonId: "nt-lesson-5",
+      difficulty: 3,
+      type: "multiple-choice",
+      question: "Dãy hình lặp lại: 🔴 🔵 🔵 🔴 🔵 🔵 🔴 ... Hình thứ 9 là hình gì?",
+      questionEn: "Repeating: 🔴 🔵 🔵 🔴 🔵 🔵 🔴 ... What is the 9th shape?",
+      visual: "🔴 🔵 🔵 🔴 🔵 🔵 🔴 ...",
+      options: [
+        "🔴",
+        "🔵"
+      ],
+      answer: "🔵",
+      hint: "Mỗi nhóm có 3 hình, hình cuối nhóm là 🔵.",
+      explanation: "Hình thứ 3, 6, 9 là hình cuối mỗi nhóm ➔ 🔵.",
+      xp: 20
     }
   ],
 
@@ -2611,6 +5716,14 @@ const TIMO_DATA = {
       icon: "🔢",
       desc: "Hoàn thành toàn bộ 5 bài học Số học",
       topicId: "arithmetic"
+    },
+    {
+      id: "badge-number-theory",
+      name: "Nhà Thông Thái Con Số",
+      englishName: "Number Wizard",
+      icon: "🧮",
+      desc: "Hoàn thành toàn bộ 5 bài học Lý thuyết số",
+      topicId: "number-theory"
     },
     {
       id: "badge-geometry",
@@ -2649,7 +5762,7 @@ const TIMO_DATA = {
       name: "Đại Hiệp TIMO 1 Vô Địch",
       englishName: "TIMO 1 Grandmaster",
       icon: "👑",
-      desc: "Hoàn thành xuất sắc toàn bộ 25 bài học của TIMO 1",
+      desc: "Hoàn thành xuất sắc toàn bộ 30 bài học của TIMO 1",
       topicId: "all"
     }
   ],
@@ -2672,28 +5785,41 @@ const TIMO_DATA = {
     },
     {
       level: 3,
-      title: "Cấp độ 3: Thế giới Hình học",
+      title: "Cấp độ 3: Bí mật Con số",
+      englishTitle: "Level 3 — Number Theory",
+      lessons: [
+        "nt-lesson-1",
+        "nt-lesson-2",
+        "nt-lesson-3",
+        "nt-lesson-4",
+        "nt-lesson-5"
+      ],
+      icon: "🧮"
+    },
+    {
+      level: 4,
+      title: "Cấp độ 4: Thế giới Hình học",
       englishTitle: "Level 3 — Geometry Universe",
       lessons: ["geo-lesson-1", "geo-lesson-2", "geo-lesson-3", "geo-lesson-4", "geo-lesson-5"],
       icon: "📐"
     },
     {
-      level: 4,
-      title: "Cấp độ 4: Thám tử Lập luận Logic",
+      level: 5,
+      title: "Cấp độ 5: Thám tử Lập luận Logic",
       englishTitle: "Level 4 — Logical Thinking",
       lessons: ["logic-lesson-1", "logic-lesson-2", "logic-lesson-3", "logic-lesson-4", "logic-lesson-5"],
       icon: "🧠"
     },
     {
-      level: 5,
-      title: "Cấp độ 5: Bài toán Lời văn & Thực tế",
+      level: 6,
+      title: "Cấp độ 6: Bài toán Lời văn & Thực tế",
       englishTitle: "Level 5 — Word Problems",
       lessons: ["adv-lesson-1", "adv-lesson-2", "adv-lesson-3", "adv-lesson-4", "adv-lesson-5"],
       icon: "📚"
     },
     {
-      level: 6,
-      title: "Cấp độ 6: Đỉnh cao Tổ hợp & Đếm nhanh",
+      level: 7,
+      title: "Cấp độ 7: Đỉnh cao Tổ hợp & Đếm nhanh",
       englishTitle: "Level 6 — Combinatorics Master",
       lessons: ["comb-lesson-1", "comb-lesson-2", "comb-lesson-3", "comb-lesson-4", "comb-lesson-5"],
       icon: "🏆"

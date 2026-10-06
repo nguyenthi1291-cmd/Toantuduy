@@ -1,4 +1,20 @@
 // Question Engine: Renderers, Interactive Inputs, Hints, Bilingual Support & Audio TTS
+
+// Cấu hình bài thi thử TIMO (vòng loại / Heat Round): 25 câu, 5 phần × 5 câu, 4 điểm/câu.
+// Thời gian làm bài có thể khác nhau tùy khu vực tổ chức → chỉnh "minutes" nếu cần.
+window.TIMO_EXAM = {
+  minutes: 90,
+  questionsPerSection: 5,
+  pointsPerQuestion: 4,
+  sections: [
+    { name: "Logical Thinking", topics: ["logic"] },
+    { name: "Arithmetic", topics: ["arithmetic", "advanced-arithmetic"] },
+    { name: "Number Theory", topics: ["number-theory"] },
+    { name: "Geometry", topics: ["geometry"] },
+    { name: "Combinatorics", topics: ["combinatorics"] }
+  ]
+};
+
 class QuestionEngine {
   constructor() {
     this.allQuestions = TIMO_DATA.questions || [];
@@ -42,16 +58,21 @@ class QuestionEngine {
     return list;
   }
 
-  getTimoChallengeQuestions(count = 10) {
-    // Pick questions from each of the 5 topics for balanced competition
-    const topics = ["arithmetic", "geometry", "logic", "advanced-arithmetic", "combinatorics"];
+  getTimoChallengeQuestions() {
+    // Mô phỏng đề TIMO thật: 5 phần × 5 câu = 25 câu, mỗi câu 4 điểm (tối đa 100 điểm).
+    // Câu hỏi được nhóm theo từng phần (không trộn lẫn giữa các phần) giống đề thi chính thức.
+    const exam = window.TIMO_EXAM;
     let selected = [];
-    topics.forEach(topId => {
-      const qs = this.getQuestionsByTopic(topId);
-      selected.push(...qs.slice(0, 2));
+    exam.sections.forEach(section => {
+      const pool = this.prioritizeAndRotate(
+        this.allQuestions.filter(q => section.topics.includes(q.topic))
+      );
+      // Mỗi phần sắp xếp từ dễ đến khó, giống cấu trúc đề thật
+      const picked = pool.slice(0, exam.questionsPerSection)
+        .sort((a, b) => (a.difficulty || 1) - (b.difficulty || 1));
+      selected.push(...picked);
     });
-
-    return this.shuffleArray(selected).slice(0, count);
+    return selected;
   }
 
   getDailyQuestion() {

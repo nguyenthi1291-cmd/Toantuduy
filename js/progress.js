@@ -9,6 +9,7 @@ class ProgressManager {
 
     if (this.activeProfileId && this.profiles[this.activeProfileId]) {
       this.state = this.profiles[this.activeProfileId];
+      this.ensureTopicProgress(this.state);
       this.isLoggedIn = true;
       this.checkDailyStreak();
     } else {
@@ -16,6 +17,42 @@ class ProgressManager {
       this.isLoggedIn = false;
       this.activeProfileId = null;
     }
+  }
+
+  // Tổng số bài học / chủ đề lấy động từ TIMO_DATA (không hardcode 25 / 5)
+  getTotalLessons() {
+    return (TIMO_DATA.topics || []).reduce((acc, t) => acc + (t.lessons || []).length, 0);
+  }
+
+  getTotalTopics() {
+    return (TIMO_DATA.topics || []).length;
+  }
+
+  buildEmptyTopicProgress() {
+    const result = {};
+    (TIMO_DATA.topics || []).forEach(t => {
+      result[t.id] = { completed: 0, total: (t.lessons || []).length, stars: 0 };
+    });
+    return result;
+  }
+
+  // Bổ sung chủ đề mới (vd: Lý thuyết số) cho hồ sơ bé tạo trước bản cập nhật
+  ensureTopicProgress(profile) {
+    if (!profile) return;
+    if (!profile.topicProgress) profile.topicProgress = {};
+    (TIMO_DATA.topics || []).forEach(t => {
+      const total = (t.lessons || []).length;
+      if (!profile.topicProgress[t.id]) {
+        const done = (t.lessons || []).filter(l => profile.completedLessons && profile.completedLessons[l.id]);
+        profile.topicProgress[t.id] = {
+          completed: done.length,
+          total,
+          stars: done.reduce((acc, l) => acc + (profile.completedLessons[l.id].stars || 0), 0)
+        };
+      } else {
+        profile.topicProgress[t.id].total = total;
+      }
+    });
   }
 
   loadProfiles() {
@@ -108,13 +145,7 @@ class ProgressManager {
       lastActiveDate: new Date().toISOString().split("T")[0],
       dailyCompletedDate: null,
       completedLessons: {},
-      topicProgress: {
-        "arithmetic": { completed: 0, total: 5, stars: 0 },
-        "geometry": { completed: 0, total: 5, stars: 0 },
-        "logic": { completed: 0, total: 5, stars: 0 },
-        "advanced-arithmetic": { completed: 0, total: 5, stars: 0 },
-        "combinatorics": { completed: 0, total: 5, stars: 0 }
-      },
+      topicProgress: this.buildEmptyTopicProgress(),
       badges: [],
       mistakes: [],
       answeredQuestions: [],
@@ -155,6 +186,7 @@ class ProgressManager {
 
       this.activeProfileId = matched.id;
       this.state = matched;
+      this.ensureTopicProgress(this.state);
       this.isLoggedIn = true;
       this.saveProfiles();
       this.checkDailyStreak();
@@ -196,6 +228,7 @@ class ProgressManager {
 
     this.activeProfileId = profileId;
     this.state = target;
+    this.ensureTopicProgress(this.state);
     this.isLoggedIn = true;
     this.saveProfiles();
     this.checkDailyStreak();
@@ -297,6 +330,12 @@ class ProgressManager {
     if (!prevTopic) return true;
 
     const completedMap = this.state.completedLessons || {};
+
+    // Giữ nguyên tiến độ cũ: chủ đề bé đã học ít nhất 1 bài thì luôn mở
+    // (tránh khóa lại khi chèn chủ đề mới vào giữa lộ trình)
+    const topic = topics[index];
+    if (topic.lessons.some(l => completedMap[l.id])) return true;
+
     const passedCount = prevTopic.lessons.filter(l => completedMap[l.id] && (completedMap[l.id].stars > 0 || completedMap[l.id].score > 0)).length;
 
     // Must pass at least 4 of 5 lessons in previous topic to unlock next topic
@@ -345,6 +384,7 @@ class ProgressManager {
       this.addStars(diffStars);
     }
 
+    this.ensureTopicProgress(this.state);
     if (topicId && this.state.topicProgress && this.state.topicProgress[topicId]) {
       const topicLessons = TIMO_DATA.topics.find(t => t.id === topicId)?.lessons || [];
       const completedCount = topicLessons.filter(l => this.state.completedLessons[l.id]).length;
@@ -366,7 +406,7 @@ class ProgressManager {
     TIMO_DATA.badges.forEach(badge => {
       if (!this.state.badges.includes(badge.id)) {
         if (badge.topicId === "all") {
-          const totalLessons = 25;
+          const totalLessons = this.getTotalLessons();
           const done = Object.keys(this.state.completedLessons || {}).length;
           if (done >= totalLessons) {
             this.state.badges.push(badge.id);
@@ -428,9 +468,9 @@ class ProgressManager {
       return {
         progressPercent: 0,
         completedLessonsCount: 0,
-        totalLessons: 25,
+        totalLessons: this.getTotalLessons(),
         completedTopicsCount: 0,
-        totalTopics: 5,
+        totalTopics: this.getTotalTopics(),
         accuracy: 100,
         xp: 0,
         stars: 0,
@@ -441,7 +481,7 @@ class ProgressManager {
       };
     }
 
-    const totalLessons = 25;
+    const totalLessons = this.getTotalLessons();
     const completedCount = Object.keys(this.state.completedLessons || {}).length;
     const progressPercent = Math.round((completedCount / totalLessons) * 100);
 
@@ -463,7 +503,7 @@ class ProgressManager {
       completedLessonsCount: completedCount,
       totalLessons,
       completedTopicsCount,
-      totalTopics: 5,
+      totalTopics: this.getTotalTopics(),
       accuracy,
       xp: this.state.xp || 0,
       stars: this.state.stars || 0,

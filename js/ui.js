@@ -246,7 +246,7 @@ class UIManager {
           <div class="continue-info">
             <div class="continue-icon">👑</div>
             <div class="continue-text">
-              <h4>Bé đã hoàn thành toàn bộ 25 bài học của TIMO 1!</h4>
+              <h4>Bé đã hoàn thành toàn bộ ${window.progressManager.getTotalLessons()} bài học của TIMO 1!</h4>
               <p>Hãy tham gia <strong>Đấu trường TIMO 1</strong> hoặc <strong>Luyện tập tự do</strong> để nâng cao thành tích!</p>
             </div>
           </div>
@@ -543,7 +543,7 @@ class UIManager {
     document.getElementById("prog-total-xp").textContent = `${stats.xp.toLocaleString()} XP`;
     document.getElementById("prog-total-stars").textContent = `${stats.stars} ⭐`;
     document.getElementById("prog-streak-days").textContent = `${stats.streak} ngày`;
-    document.getElementById("prog-lessons-done").textContent = `${stats.completedLessonsCount}/25`;
+    document.getElementById("prog-lessons-done").textContent = `${stats.completedLessonsCount}/${stats.totalLessons}`;
     document.getElementById("prog-accuracy-val").textContent = `${stats.accuracy}%`;
 
     const tableBody = document.getElementById("quiz-history-table-body");
@@ -594,7 +594,11 @@ class UIManager {
     const modal = document.getElementById("quiz-result-modal");
     if (!modal) return;
 
-    document.getElementById("res-modal-score").textContent = `${data.score} / ${data.total}`;
+    const isTimo = data.mode === "timo_challenge";
+    const ppq = window.TIMO_EXAM?.pointsPerQuestion || 4;
+    document.getElementById("res-modal-score").textContent = isTimo
+      ? `${data.score} / ${data.total} câu (${data.score * ppq}/${data.total * ppq} điểm)`
+      : `${data.score} / ${data.total}`;
     document.getElementById("res-modal-accuracy").textContent = `${data.accuracy}%`;
     document.getElementById("res-modal-xp").textContent = `+${data.xpEarned} XP`;
     document.getElementById("res-modal-stars").innerHTML = "⭐".repeat(data.starsEarned || 1);

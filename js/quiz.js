@@ -52,14 +52,15 @@ class QuizRunner {
     this.currentMode = "timo_challenge";
     this.currentTopic = null;
     this.currentLesson = null;
-    this.currentQuestions = window.questionEngine.getTimoChallengeQuestions(10);
+    this.currentQuestions = window.questionEngine.getTimoChallengeQuestions();
     this.currentIndex = 0;
     this.score = 0;
     this.xpEarned = 0;
     this.answersDetail = [];
-    this.timeRemaining = 15 * 60; // 15 minutes
+    this.timeRemaining = (window.TIMO_EXAM?.minutes || 90) * 60;
     this.startTime = Date.now();
     this.showQuizView();
+    this.updateTimerDisplay();
     this.startTimer();
   }
 
@@ -149,7 +150,10 @@ class QuizRunner {
       } else if (this.currentMode === "practice") {
         headerTitle.innerHTML = `🧩 <strong>Luyện tập tự do</strong>: ${this.currentTopic ? this.currentTopic.name : "Tổng hợp"}`;
       } else if (this.currentMode === "timo_challenge") {
-        headerTitle.innerHTML = `🏆 <strong>THỬ THÁCH ĐẤU TRƯỜNG TIMO 1</strong>`;
+        const exam = window.TIMO_EXAM;
+        const secIdx = Math.floor(this.currentIndex / (exam?.questionsPerSection || 5));
+        const sec = exam?.sections?.[secIdx];
+        headerTitle.innerHTML = `🏆 <strong>THỬ THÁCH ĐẤU TRƯỜNG TIMO 1</strong>${sec ? ` — Phần ${secIdx + 1}: ${sec.name}` : ""}`;
       } else if (this.currentMode === "daily") {
         headerTitle.innerHTML = `🌟 <strong>THỬ THÁCH TOÁN HỌC HÀNG NGÀY</strong>`;
       } else if (this.currentMode === "review") {

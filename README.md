@@ -14,15 +14,16 @@ Nền tảng học toán tương tác và chuẩn bị thi **Toán Quốc tế T
      - Tên đăng nhập / Email
      - Mật khẩu / Mã PIN bảo vệ
    - **Đăng nhập**: Nhập tài khoản + mật khẩu hoặc bấm chọn nhanh bé đã lưu trên thiết bị.
-   - **Tách biệt dữ liệu**: Mỗi bé có kho dữ liệu riêng biệt (tiến độ 25 bài học, số sao, điểm XP, danh hiệu, lịch sử thi và các câu từng làm sai).
+   - **Tách biệt dữ liệu**: Mỗi bé có kho dữ liệu riêng biệt (tiến độ 30 bài học, số sao, điểm XP, danh hiệu, lịch sử thi và các câu từng làm sai).
 
 2. **Giao diện Trực Quan, Chuẩn Sư Phạm cho Bé Lớp 1**:
    - Thiết kế Bright, Friendly & Gamified với màu sắc tươi sáng, font chữ bo tròn dễ đọc (`Nunito`).
    - Mô phỏng toán học trực quan (quả táo 🍎, que tính, trục số 📏, khối hình 🔺🟦🔴, chia kẹo 🍬).
    - Hiệu ứng âm thanh sinh động (sử dụng Web Audio API không phụ thuộc file ngoài).
 
-3. **Đầy Đủ 5 Chủ Đề Cốt Lõi (25 Bài Học + Hơn 105 Câu Hỏi)**:
+3. **Đầy Đủ 6 Chủ Đề Cốt Lõi (30 Bài Học + 300 Câu Hỏi)**:
    - **Số học (Arithmetic)**: Cộng trừ trong phạm vi 20, 100, tìm số chưa biết, quy luật dãy số.
+   - **Lý thuyết số (Number Theory)**: Số chẵn - số lẻ, chục và đơn vị, so sánh & sắp xếp số, chia đều & chia nhóm, dãy chữ & dãy lặp lại.
    - **Hình học (Geometry)**: Nhận biết hình, đếm hình tam giác/chữ nhật, ghép hình, đếm đoạn thẳng, khối lập phương.
    - **Lập luận logic (Logical Thinking)**: Ngày thứ trong tuần, hôm qua - hôm nay - ngày mai, thứ tự xếp hàng, trái phải trước sau, suy luận loại trừ.
    - **Số học nâng cao (Advanced Arithmetic)**: Toán lời văn thêm bớt, trao đổi cân bằng, toán mua sắm thực tế, bài toán tính tuổi, sơ đồ đoạn thẳng.
@@ -30,7 +31,7 @@ Nền tảng học toán tương tác và chuẩn bị thi **Toán Quốc tế T
 
 4. **Chế Độ Học Tập & Thi Đấu Đa Dạng**:
    - **Bài học theo chuẩn 6 bước**: Mục tiêu ➔ Lý thuyết trực quan ➔ Ví dụ mẫu có lời giải ➔ Luyện tập thực hành ➔ Nhận thưởng XP & Sao.
-   - **Đấu Trường TIMO 1**: Bài thi thử 10 câu hỏi tổng hợp trong 15 phút có đồng hồ đếm ngược.
+   - **Đấu Trường TIMO 1**: Bài thi thử 25 câu chuẩn TIMO (5 phần × 5 câu, 4 điểm/câu, tối đa 100 điểm) trong 90 phút có đồng hồ đếm ngược.
    - **Thử Thách Hàng Ngày (Daily Challenge)**: Làm mới mỗi ngày, duy trì chuỗi học liên tiếp (Streak 🔥).
    - **Trung Tâm Luyện Tập Tự Do (Practice Center)**: Tùy chọn chủ đề, cấp độ khó 1-3 sao và số lượng câu hỏi (5/10/20 câu).
    - **Góc Ôn Tập Câu Sai (Mistake Review)**: Tự động ghi nhớ câu hỏi bé trả lời sai để luyện lại đến khi thuần thục.
