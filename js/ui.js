@@ -123,6 +123,9 @@ class UIManager {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
+    // Tự bật toàn màn hình + xoay ngang khi vào bài học / làm bài, tự thoát khi rời đi
+    window.fullscreenManager?.onViewChange(viewId);
+
     document.querySelectorAll(".nav-link").forEach(link => {
       if (link.getAttribute("data-target") === viewId) {
         link.classList.add("active");

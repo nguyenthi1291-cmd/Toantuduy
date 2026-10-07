@@ -166,3 +166,124 @@
     text-align: center;
   }
 }
+
+/* =====================================================================
+   TOÀN MÀN HÌNH & XOAY NGANG KHI HỌC / LÀM BÀI
+   body.focus-mode  : đang ở chế độ học toàn màn hình (API thật hoặc chế độ tập trung)
+   ===================================================================== */
+.btn-fullscreen-toggle {
+  background: #EBF8FF;
+  color: #2B6CB0;
+  border: 2px solid #BEE3F8;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.btn-fullscreen-toggle:hover { background: #BEE3F8; transform: translateY(-1px); }
+.btn-fullscreen-toggle[aria-pressed="true"] { background: #2B6CB0; color: #fff; border-color: #2B6CB0; }
+
+.quiz-top-nav-bar { gap: 10px; flex-wrap: wrap; }
+
+/* Ẩn đầu trang, menu, chân trang → vùng học chiếm trọn màn hình */
+body.focus-mode .app-header,
+body.focus-mode .app-footer,
+body.focus-mode .top-nav { display: none !important; }
+
+body.focus-mode .app-main {
+  padding: max(12px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right))
+           max(12px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)) !important;
+  margin: 0 !important;
+  min-height: 100vh;
+  min-height: 100dvh;
+  max-width: none !important;
+}
+body.focus-mode .quiz-runner-container { max-width: 1100px; }
+body.focus-mode .lesson-page-container { max-width: 1200px; }
+
+/* Nền khi đang ở Fullscreen API (tránh nền đen mặc định) */
+html:fullscreen, html:-webkit-full-screen { background: var(--bg-main, #F7FAFC); overflow-y: auto; }
+
+/* ---------- Gợi ý xoay ngang ---------- */
+.rotate-hint { display: none; }
+body.suggest-rotate .rotate-hint {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: fixed;
+  left: 12px; right: 12px;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  z-index: 9999;
+  background: #2D3748;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 800;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+.rotate-hint-icon { font-size: 22px; animation: rotateWiggle 1.6s ease-in-out infinite; }
+.rotate-hint span:nth-child(2) { flex: 1; }
+.rotate-hint-close {
+  background: rgba(255,255,255,0.15); color: #fff; border: none;
+  width: 30px; height: 30px; border-radius: 50%; font-weight: 900; cursor: pointer;
+}
+@keyframes rotateWiggle { 0%,100% { transform: rotate(0); } 50% { transform: rotate(-90deg); } }
+
+/* ---------- Bố cục màn hình NGANG (điện thoại / máy tính bảng xoay ngang) ---------- */
+@media (orientation: landscape) and (max-height: 600px) {
+  .app-main { padding-top: 10px; }
+
+  /* Thanh trên của bài làm gọn lại */
+  .quiz-top-nav-bar { padding: 6px 12px; margin-bottom: 8px; }
+  .quiz-title-txt { font-size: 13px; }
+  .quiz-progress-track { margin-bottom: 10px; height: 6px; }
+  .lesson-top-bar { margin-bottom: 10px; }
+
+  /* Thẻ câu hỏi chia 2 cột: đề bài bên trái – vùng trả lời bên phải */
+  .question-card { padding: 14px 18px; }
+  .question-header { margin-bottom: 8px; }
+  .question-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    grid-template-areas:
+      "prompt audio"
+      "prompt answer"
+      "visual answer";
+    grid-template-rows: auto 1fr auto;
+    column-gap: 18px;
+    align-items: start;
+  }
+  .question-body > .audio-speaker-toolbar { grid-area: audio; margin-bottom: 8px; justify-content: flex-end; }
+  .question-body > .bilingual-question-box { grid-area: prompt; margin-bottom: 8px; padding: 12px 14px; }
+  .question-body > .question-visual-box { grid-area: visual; margin-bottom: 0; padding: 10px; font-size: 22px; }
+  .question-body > .options-grid,
+  .question-body > .tf-options-grid,
+  .question-body > .fill-blank-container { grid-area: answer; align-self: center; }
+
+  .question-text { font-size: 18px; margin-bottom: 6px; }
+  .question-text-en { font-size: 13px; }
+
+  .options-grid { gap: 10px; margin-bottom: 0; }
+  .option-btn { padding: 10px 12px; }
+
+  .fill-blank-container { gap: 8px; }
+  .blank-input-box { height: 44px; font-size: 24px; }
+  .kid-numpad { gap: 6px; max-width: 100%; }
+  .num-key { height: 42px; font-size: 20px; }
+  .btn-submit-answer { padding: 10px 26px; font-size: 15px; }
+
+  .feedback-container { margin-top: 10px; padding: 10px 14px; }
+
+  /* Trang bài học gọn lề */
+  .lesson-main-card { padding: 16px 20px; }
+}
+
+/* Điện thoại ngang thấp (≤ 430px chiều cao): bớt chi tiết phụ */
+@media (orientation: landscape) and (max-height: 430px) {
+  .question-header .q-xp-tag { display: none; }
+  .question-visual-box { font-size: 18px; }
+}

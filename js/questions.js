@@ -42,7 +42,8 @@ class QuestionEngine {
   }
 
   getQuestionsByLesson(lessonId) {
-    let list = this.allQuestions.filter(q => q.lessonId === lessonId);
+    // Câu "practiceOnly" chỉ dùng cho Luyện tập tự do / Thi thử, không làm dài bài kiểm tra của bài học
+    let list = this.allQuestions.filter(q => q.lessonId === lessonId && !q.practiceOnly);
     return this.prioritizeAndRotate(list);
   }
 
@@ -90,6 +91,19 @@ class QuestionEngine {
   getMistakeQuestions(mistakeIds) {
     if (!mistakeIds || mistakeIds.length === 0) return [];
     return this.allQuestions.filter(q => mistakeIds.includes(q.id));
+  }
+
+  // Trả về bản sao câu hỏi với thứ tự đáp án A/B/C/D được xáo ngẫu nhiên (không sửa dữ liệu gốc).
+  // Chấm điểm so sánh theo nội dung đáp án nên xáo vị trí không ảnh hưởng kết quả.
+  withShuffledOptions(question) {
+    if (!question || question.type !== "multiple-choice" || !Array.isArray(question.options)) return question;
+    return { ...question, options: this.shuffleArray([...question.options]) };
+  }
+
+  // Chuẩn bị bộ câu hỏi cho mỗi lượt làm bài: xáo đáp án; tùy chọn xáo thêm thứ tự câu hỏi
+  prepareSession(questions, shuffleOrder = false) {
+    const list = shuffleOrder ? this.shuffleArray([...questions]) : [...questions];
+    return list.map(q => this.withShuffledOptions(q));
   }
 
   shuffleArray(array) {

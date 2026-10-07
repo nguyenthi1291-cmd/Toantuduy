@@ -2,7 +2,12 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <!-- Khi "Thêm vào Màn hình chính" trên iPhone/iPad: chạy như ứng dụng, không có thanh địa chỉ -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="TIMO 1" />
   <title>TIMO 1 Math Adventure — Học Toán Thông Minh Lớp 1</title>
   <meta name="description" content="Nền tảng học và luyện thi toán TIMO 1 trực quan dành cho học sinh lớp 1 với tài khoản đăng nhập cá nhân, lưu trữ bài học và đồng bộ Supabase Cloud." />
 
@@ -315,6 +320,7 @@
           <button type="button" class="btn-back-link" id="btn-back-from-lesson">← Quay lại danh sách bài</button>
           <span class="lesson-topic-badge" id="lesson-topic-badge">Số học • Arithmetic</span>
           <div id="lesson-current-status"></div>
+          <button type="button" class="btn-fullscreen-toggle" aria-pressed="false">⛶ Toàn màn hình</button>
         </div>
 
         <div class="lesson-main-card">
@@ -349,6 +355,7 @@
         <div class="quiz-top-nav-bar">
           <div class="quiz-title-txt" id="quiz-top-title">📚 Bài học số 1</div>
           <div class="quiz-timer-badge" id="quiz-timer-display" style="display: inline-block;">⏱️ 90:00</div>
+          <button type="button" class="btn-fullscreen-toggle" aria-pressed="false">⛶ Toàn màn hình</button>
           <button type="button" class="btn-exit-quiz-pill" id="btn-exit-quiz">✕ Dừng bài</button>
         </div>
 
@@ -631,12 +638,20 @@
   </footer>
 
   <!-- Core JavaScript Modules -->
+  <!-- Gợi ý xoay ngang (hiện khi đang học trên điện thoại cầm dọc) -->
+  <div class="rotate-hint" role="status">
+    <span class="rotate-hint-icon">📱↻</span>
+    <span>Xoay ngang điện thoại để học dễ hơn nhé!</span>
+    <button type="button" class="rotate-hint-close" onclick="window.fullscreenManager?.dismissRotateHint()">✕</button>
+  </div>
+
   <script src="js/sound.js"></script>
   <script src="js/supabase-client.js"></script>
   <script src="js/data.js"></script>
   <script src="js/questions.js"></script>
   <script src="js/progress.js"></script>
   <script src="js/quiz.js"></script>
+  <script src="js/fullscreen.js"></script>
   <script src="js/ui.js"></script>
   <script src="js/app.js"></script>
 </body>

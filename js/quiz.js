@@ -124,6 +124,13 @@ class QuizRunner {
   }
 
   showQuizView() {
+    // Mỗi lượt làm bài: xáo vị trí đáp án A/B/C/D cho mọi chế độ.
+    // Thứ tự câu đã được xáo sẵn ở lesson/practice; xáo thêm cho chế độ ôn câu sai.
+    // Thi thử TIMO giữ thứ tự theo phần (dễ → khó) như đề thật.
+    this.currentQuestions = window.questionEngine.prepareSession(
+      this.currentQuestions,
+      this.currentMode === "review"
+    );
     window.uiManager.showView("quiz-view");
     this.renderCurrentQuestion();
   }
