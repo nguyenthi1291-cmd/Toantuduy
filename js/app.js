@@ -50,10 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (btnHeroRoadmap) {
     btnHeroRoadmap.addEventListener("click", () => {
       window.soundManager.playClick();
-      const roadmapSection = document.getElementById("roadmap-section");
-      if (roadmapSection) {
-        roadmapSection.scrollIntoView({ behavior: "smooth" });
-      }
+      window.uiManager.showView("roadmap-view");
     });
   }
 

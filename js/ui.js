@@ -136,6 +136,10 @@ class UIManager {
       this.renderTopicsGrid();
       this.renderRoadmap();
       this.renderBadgesGrid();
+    } else if (viewId === "roadmap-view") {
+      this.renderRoadmap();
+    } else if (viewId === "badges-view") {
+      this.renderBadgesGrid();
     } else if (viewId === "progress-view") {
       this.renderFullProgressPage();
     } else if (viewId === "practice-view") {

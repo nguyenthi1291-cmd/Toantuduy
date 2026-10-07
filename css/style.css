@@ -494,18 +494,19 @@ body {
 .top-nav {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
 }
 
 .nav-link {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
+  gap: 6px;
+  padding: 10px 12px;
   border-radius: var(--radius-full);
   color: var(--text-dark);
   font-weight: 700;
-  font-size: 15px;
+  font-size: 14px;
+  white-space: nowrap;
   text-decoration: none;
   transition: var(--transition);
   cursor: pointer;

@@ -128,8 +128,9 @@
         <a class="nav-link active" data-target="home-view">🏠 Trang chủ</a>
         <a class="nav-link" data-target="home-view" onclick="document.getElementById('topics-section')?.scrollIntoView({behavior: 'smooth'})">📚 Bài học</a>
         <a class="nav-link" data-target="practice-view">🧩 Luyện tập</a>
+        <a class="nav-link" data-target="roadmap-view">🗺️ Lộ trình</a>
         <a class="nav-link" data-target="progress-view">📊 Tiến độ</a>
-        <a class="nav-link" data-target="home-view" onclick="document.getElementById('badges-section')?.scrollIntoView({behavior: 'smooth'})">🏆 Thành tích</a>
+        <a class="nav-link" data-target="badges-view">🏆 Thành tích</a>
       </nav>
 
       <!-- Actions & Profile -->
@@ -276,6 +277,12 @@
         <div class="topics-grid" id="topics-cards-grid"></div>
       </section>
 
+
+    </div>
+
+    <!-- ================= ROADMAP VIEW (trang riêng) ================= -->
+    <div id="roadmap-view" class="app-view">
+      <div class="practice-center-container" style="max-width: 1100px;">
       <!-- Learning Roadmap Section -->
       <section id="roadmap-section" style="margin-bottom: 48px;">
         <div class="section-header-block">
@@ -284,7 +291,12 @@
         </div>
         <div class="roadmap-container" id="roadmap-container"></div>
       </section>
+      </div>
+    </div>
 
+    <!-- ================= BADGES VIEW (trang riêng) ================= -->
+    <div id="badges-view" class="app-view">
+      <div class="practice-center-container" style="max-width: 1100px;">
       <!-- Badges & Achievements Section -->
       <section id="badges-section" style="margin-bottom: 48px;">
         <div class="section-header-block">
@@ -293,7 +305,7 @@
         </div>
         <div class="badges-grid" id="badges-grid-container"></div>
       </section>
-
+      </div>
     </div>
 
     <!-- ================= 2. LESSON DETAIL VIEW ================= -->
