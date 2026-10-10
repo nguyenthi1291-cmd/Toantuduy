@@ -89,7 +89,7 @@ class SupabaseService {
   async saveProfile(userId, profile) {
     if (!this.client || !this.isOnline || !userId) return;
     try {
-      await this.client.from("timo_profiles").upsert({
+      const { error } = await this.client.from("timo_profiles").upsert({
         id: userId,
         kid_name: profile.name || profile.kid_name || "Bé Lớp 1",
         username: profile.username || profile.email || userId,
@@ -97,6 +97,7 @@ class SupabaseService {
         grade: profile.grade || 1,
         updated_at: new Date().toISOString()
       });
+      if (error) console.warn("Supabase saveProfile error:", error);
     } catch (e) {
       console.warn("Could not sync profile to Supabase:", e);
     }
@@ -111,7 +112,7 @@ class SupabaseService {
         await this.saveProfile(userId, window.progressManager.state);
       }
 
-      await this.client.from("timo_progress").upsert({
+      const { error } = await this.client.from("timo_progress").upsert({
         user_id: userId,
         xp: progressData.xp || 0,
         stars: progressData.stars || 0,
@@ -125,9 +126,28 @@ class SupabaseService {
         timo_best_score: progressData.timoBestScore || 0,
         updated_at: new Date().toISOString()
       });
+      if (error) console.warn("Supabase syncProgress error:", error);
     } catch (e) {
       console.warn("Could not sync progress to Supabase:", e);
     }
+  }
+
+  // Gọi hàm RPC trên Supabase (timo_login / timo_register). Trả về null nếu lỗi / chưa chạy SQL.
+  async rpc(fn, params) {
+    if (!this.client) return null;
+    try {
+      const { data, error } = await this.client.rpc(fn, params);
+      if (error) { console.warn("Supabase rpc " + fn + " error:", error); return null; }
+      return data;
+    } catch (e) {
+      console.warn("Supabase rpc " + fn + " exception:", e);
+      return null;
+    }
+  }
+
+  async signOut() {
+    this.currentUser = null;
+    try { if (this.client) await this.client.auth.signOut(); } catch (e) { /* bỏ qua */ }
   }
 
   async loadProgressFromCloud(userId) {

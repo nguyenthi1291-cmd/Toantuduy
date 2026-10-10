@@ -83,20 +83,20 @@ class UIManager {
     `;
 
     container.querySelectorAll(".btn-quick-login").forEach(btn => {
-      btn.addEventListener("click", () => {
+      btn.addEventListener("click", async () => {
         const kidId = btn.getAttribute("data-kid-id");
         const profile = window.progressManager.profiles[kidId];
         if (profile) {
-          if (profile.password) {
+          if (window.progressManager.hasPin(profile)) {
             const inputPass = prompt(`Nhập mật khẩu / mã PIN của bé ${profile.name}:`);
             if (inputPass === null) return;
-            const res = window.progressManager.switchAccount(kidId, inputPass);
+            const res = await window.progressManager.switchAccount(kidId, inputPass);
             if (!res.success) {
               alert(res.error || "Mật khẩu không đúng!");
               return;
             }
           } else {
-            window.progressManager.switchAccount(kidId);
+            await window.progressManager.switchAccount(kidId);
           }
           window.soundManager.playStar();
           this.hideAuthGate();

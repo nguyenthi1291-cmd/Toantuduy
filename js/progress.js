@@ -102,6 +102,33 @@ class ProgressManager {
     }
   }
 
+  // ===== Mã PIN: chỉ lưu dạng băm SHA-256 trên máy, không lưu PIN gốc =====
+  async hashLocalPin(userId, pin) {
+    const data = new TextEncoder().encode("timo:" + userId + ":" + (pin || ""));
+    const buf = await crypto.subtle.digest("SHA-256", data);
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+  }
+
+  hasPin(profile) {
+    return !!(profile && (profile.pinHash || profile.password));
+  }
+
+  // Kiểm tra PIN với hồ sơ trên máy; hồ sơ cũ còn lưu PIN gốc sẽ được chuyển sang dạng băm
+  async verifyLocalPin(profile, pin) {
+    if (!profile) return false;
+    if (profile.pinHash) {
+      return (await this.hashLocalPin(profile.id, pin)) === profile.pinHash;
+    }
+    if (profile.password) {
+      if (profile.password !== pin) return false;
+      profile.pinHash = await this.hashLocalPin(profile.id, pin);
+      delete profile.password;
+      this.saveProfiles();
+      return true;
+    }
+    return true; // hồ sơ không đặt PIN
+  }
+
   notifyUpdate() {
     window.dispatchEvent(new CustomEvent("timo_progress_updated", { detail: this.state }));
   }
@@ -134,7 +161,7 @@ class ProgressManager {
       name: trimmedName,
       username: trimmedUser,
       email: trimmedUser.includes("@") ? trimmedUser : "",
-      password: password,
+      pinHash: await this.hashLocalPin(userId, password),
       grade: 1,
       avatar: avatar || "🦁",
       xp: 0,
@@ -180,7 +207,7 @@ class ProgressManager {
     );
 
     if (matched) {
-      if (matched.password && matched.password !== password) {
+      if (!(await this.verifyLocalPin(matched, password))) {
         return { success: false, error: "Mật khẩu hoặc mã PIN không chính xác! Vui lòng thử lại." };
       }
 
@@ -218,11 +245,11 @@ class ProgressManager {
   }
 
   // Switch account directly by profile ID
-  switchAccount(profileId, password = null) {
+  async switchAccount(profileId, password = null) {
     const target = this.profiles[profileId];
     if (!target) return { success: false, error: "Hồ sơ không tồn tại!" };
 
-    if (target.password && password !== null && target.password !== password) {
+    if (this.hasPin(target) && !(await this.verifyLocalPin(target, password))) {
       return { success: false, error: "Mật khẩu/Mã PIN không đúng!" };
     }
 
